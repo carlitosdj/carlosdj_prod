@@ -32,26 +32,28 @@ export function PrivateRoutes() {
   const me = useSelector((state: ApplicationState) => state.me)
   console.log("ME*************", me)
   //const navigate = useNavigate()
-  if (
-      !me.me.profile?.name ||
-      !me.me.profile.address ||
-      !me.me.profile.addressNumber ||
-      !me.me.profile.whatsapp ||
-      !me.me.profile.cpf ||
-      // !me.me.profile.addressDistrict ||
-      // !me.me.profile.addressCity ||
-      // !me.me.profile.addressState ||
-      //!me.me.profile.addressCountry ||
-      !me.me.profile.postalCode
-  )
+
+  //TRAVA PESSOA QUE NAO TEM PERFIL COMPLETO:
+  // if (
+  //     !me.me.profile?.name ||
+  //     !me.me.profile.address ||
+  //     !me.me.profile.addressNumber ||
+  //     !me.me.profile.whatsapp ||
+  //     !me.me.profile.cpf ||
+  //     // !me.me.profile.addressDistrict ||
+  //     // !me.me.profile.addressCity ||
+  //     // !me.me.profile.addressState ||
+  //     //!me.me.profile.addressCountry ||
+  //     !me.me.profile.postalCode
+  // )
   
-  {
-    return (
-      <Routes>
-        <Route path="*" element={<EditProfile/>} />
-      </Routes>
-    )
-  }
+  // {
+  //   return (
+  //     <Routes>
+  //       <Route path="*" element={<EditProfile/>} />
+  //     </Routes>
+  //   )
+  // }
 
   var created_at = MOMENT(Number(me.me.created_at) * 1000) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')

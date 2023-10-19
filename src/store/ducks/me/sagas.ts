@@ -45,7 +45,7 @@ import { User } from '../users/types'
 //Login
 export function* loginUser(payload: ReturnType<typeof loginUserRequest>) {
   try {
-    const response: User = yield call(api.post, 'login', payload.payload) //Payload.payload está ok
+    const response: User = yield call(api.post, 'auth/login', payload.payload) //Payload.payload está ok
     yield put(loginUserSuccess(response))
   } catch (error) {
     yield put(loginUserFailure())

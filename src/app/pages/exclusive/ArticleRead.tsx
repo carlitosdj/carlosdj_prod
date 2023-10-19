@@ -68,7 +68,7 @@ const ArticleReadPage: FC<React.PropsWithChildren<unknown>> = () => {
   //const intl = useIntl()
   let {id} = useParams<ParamTypes>() //id do módulo
   useEffect(() => {
-    dispatch(loadComponentRequest(id!.toString(),'ASC'))
+    dispatch(loadComponentRequest(id!.toString(),'asc'))
   }, [])
 
   console.log("component", component)

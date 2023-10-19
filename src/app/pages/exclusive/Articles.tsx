@@ -21,7 +21,7 @@ const ArticlesPage: FC<React.PropsWithChildren<unknown>> = () => {
   useEffect(() => {
     dispatch(loadLastLiveClassRequest())
     dispatch(loadLastClassRequest(me.me.id!))
-    dispatch(loadComponentRequest('74', 'DESC'))
+    dispatch(loadComponentRequest('74', 'desc'))
   }, [])
 
   return (

@@ -20,7 +20,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
   useEffect(() => {
     // dispatch(loadLastLiveClassRequest())
     // dispatch(loadLastClassRequest(me.me.id!))
-    dispatch(loadComponentRequest('2','DESC'))
+    dispatch(loadComponentRequest('2','desc'))
   }, [])
   // console.log("COMPONENT*******", component)
   // let url: string | undefined = ''

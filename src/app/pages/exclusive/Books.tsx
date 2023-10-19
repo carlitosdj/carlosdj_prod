@@ -21,7 +21,7 @@ const BooksPage: FC<React.PropsWithChildren<unknown>> = () => {
   useEffect(() => {
     dispatch(loadLastLiveClassRequest())
     dispatch(loadLastClassRequest(me.me.id!))
-    dispatch(loadComponentRequest('73', 'DESC'))
+    dispatch(loadComponentRequest('73', 'desc'))
   }, [])
   
   return (
