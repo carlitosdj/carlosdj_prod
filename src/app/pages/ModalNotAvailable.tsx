@@ -1,0 +1,37 @@
+import React from 'react'
+import { Modal } from 'react-bootstrap-v5'
+import { Component } from '../../store/ducks/component/types'
+const MOMENT = require('moment')
+
+type Props = {
+    show: boolean
+    setShow: React.Dispatch<React.SetStateAction<boolean>>
+    data: Component
+}
+const ModalNotAvailable: React.FC<Props> = ({ show, setShow, data }) => {
+    let extra_release = data?.extras?.filter((extra: any) => extra.key_extra === 'release')[0];
+    let release = '1969/01/01 00:00:01'
+    if(extra_release?.value_extra) 
+    release = extra_release?.value_extra
+
+    return (
+        <Modal
+            show={show}
+            onHide={() => setShow(false)}
+            backdrop='static'
+            size='lg'
+            aria-labelledby='contained-modal-title-vcenter'
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>Ops! Também estamos ansiosos por esse conteúdo.</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div>
+                    <b>{data.name}</b> estará disponível em {MOMENT(release).format('DD/MM/YY')}.
+                </div>
+            </Modal.Body>
+        </Modal>
+    )
+}
+export default ModalNotAvailable

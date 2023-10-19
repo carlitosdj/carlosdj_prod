@@ -1,0 +1,144 @@
+.annotationLayer {
+  height: 0 !important;
+}
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: yellow;
+}
+.off {
+  color: #ccc;
+}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.table.table-row-dashed tr {
+  border: none !important;
+  border-bottom: 1px dashed #d0d0e7 !important;
+}
+.table.table-row-gray-200 tr {
+  border: none !important;
+  border-bottom: 1px dashed #d0d0e7 !important;
+}
+.table > :not(:first-child) {
+  border-top: 1px dashed #d0d0e7;
+}
+
+.embed-responsive:before {
+  display: block;
+  content: '';
+}
+
+.embed-responsive-16by9::before {
+  padding-top: 56.25%;
+}
+
+.embed-responsive .embed-responsive-item,
+.embed-responsive embed,
+.embed-responsive iframe,
+.embed-responsive object,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.toHover:hover {
+  opacity: 1;
+  transform: scale(1.02); 
+  box-shadow: 0 10px 20px rgb(0 0 0 / 12%), 0 4px 8px rgb(0 0 0 / 6%);
+}
+
+.toHover {
+  box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
+  transition: transform 0.5s cubic-bezier(0.155, 1.105, 0.295, 1.12), box-shadow 0.5s,
+    -webkit-transform 0.5s cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  /* padding: 14px 80px 18px 36px; */
+  opacity: 0.9;
+}
+
+.toHover,
+a:hover {
+  cursor: pointer;
+}
+
+.toHoverNoPointer:hover {
+  opacity: 1;
+  /* transform: scale(1.01); */
+  box-shadow: 0 10px 20px rgb(0 0 0 / 12%), 0 4px 8px rgb(0 0 0 / 6%);
+}
+
+.toHoverNoPointer {
+  box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
+  transition: transform 0.5s cubic-bezier(0.155, 1.105, 0.295, 1.12), box-shadow 0.5s,
+    -webkit-transform 0.5s cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  /* padding: 14px 80px 18px 36px; */
+  opacity: 0.9;
+}
+
+
+
+
+.disabled-blog {
+  filter: gray;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  background-image: url(https://labiopalatina.com.br/imgs/background.webp);
+  z-index: 1000;
+}
+
+.full {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)),
+    url(https://labiopalatina.com.br/imgs/background.webp) no-repeat center bottom 100%;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-overflow-scrolling: touch;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.landing-dark-bg {
+  background-color: #07000e !important;
+}
+.landing-dark-color {
+  color: #07000e !important;
+}
+
+.form-check:not(.form-switch) .form-check-input[type='checkbox'] {
+  /* background-size: 100% 100%; */
+  background-color: #111;
+}
+
+@media (max-width: 991.98px) {
+  .header-tablet-and-mobile-fixed.toolbar-tablet-and-mobile-fixed .wrapper {
+    padding-top: calc(10px + var(--kt-toolbar-height-tablet-and-mobile)) !important;
+  }
+  .scrolltop {
+    bottom: 7px;
+    right: 7px;
+    width: 30px;
+    height: 30px;
+    z-index: 999;
+  }
+}
+
