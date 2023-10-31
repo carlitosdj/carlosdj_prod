@@ -48,7 +48,6 @@ import {
   createRateRequest,
   createRateSuccess,
   createRateFailure,
-
   loadLastLiveClassRequest,
   loadLastLiveClassSuccess,
   loadLastLiveClassFailure,
@@ -69,10 +68,13 @@ import {Extras} from '../extras/types'
 export function* loadComponent(payload: ReturnType<typeof loadComponentRequest>) {
   try {
     put(loadComponentRequest(payload.payload.id, payload.payload.sort))
-    const response: Component = yield call(api.get, 'component/id/' + payload.payload.id + '/' + payload.payload.sort)
+    const response: Component = yield call(
+      api.get,
+      'component/id/' + payload.payload.id + '/' + payload.payload.sort
+    )
     yield put(loadComponentSuccess(response))
-  } catch (error) {
-    yield put(loadComponentFailure())
+  } catch (error: any) {
+    yield put(loadComponentFailure(error.response.data))
   }
 }
 
@@ -80,21 +82,28 @@ export function* loadComponent(payload: ReturnType<typeof loadComponentRequest>)
 export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
   try {
     //console.log("loadModules SAGA", [payload.payload.id, payload.payload.user_id, payload.payload.num_turma])
-    put(loadModulesRequest(payload.payload.id, payload.payload.user_id, payload.payload.num_turma, payload.payload.orderby))
+    put(
+      loadModulesRequest(
+        payload.payload.id,
+        payload.payload.user_id,
+        payload.payload.num_turma,
+        payload.payload.orderby
+      )
+    )
     const response: Component = yield call(
       api.get,
-      'components/modules/' +
+      'component/modules/' +
         payload.payload.id +
         '/' +
-        payload.payload.user_id +
+        1 + //payload.payload.user_id +
         '/' +
-        payload.payload.num_turma +
-        '/' + 
+        1 + //payload.payload.num_turma +
+        '/' +
         payload.payload.orderby
     )
     yield put(loadModulesSuccess(response))
-  } catch (error) {
-    yield put(loadModulesFailure())
+  } catch (error: any) {
+    yield put(loadModulesFailure(error.response.data))
   }
 }
 
@@ -105,11 +114,15 @@ export function* loadClasses(payload: ReturnType<typeof loadClassesRequest>) {
     put(loadClassesRequest(payload.payload.id, payload.payload.user_id, payload.payload.orderby))
     const response: Component = yield call(
       api.get,
-      'components/classes/' + payload.payload.id + '/' + payload.payload.user_id + '/' + payload.payload.orderby
+      `component/classes/${payload.payload.id}/1/${
+        payload.payload.orderby ? payload.payload.orderby : 'asc'
+      }`
     )
+
+    console.log('RESPONSE', response)
     yield put(loadClassesSuccess(response))
-  } catch (error) {
-    yield put(loadClassesFailure())
+  } catch (error: any) {
+    yield put(loadClassesFailure(error.response.data))
   }
 }
 
@@ -117,13 +130,10 @@ export function* loadLastLiveClass(payload: ReturnType<typeof loadLastLiveClassR
   //console.log("loadLASTClass SAGA", payload)
   try {
     put(loadLastLiveClassRequest())
-    const response: Component = yield call(
-      api.get,
-      'lastliveclass'
-    )
+    const response: Component = yield call(api.get, 'lastliveclass')
     yield put(loadLastLiveClassSuccess(response))
-  } catch (error) {
-    yield put(loadLastLiveClassFailure())
+  } catch (error: any) {
+    yield put(loadLastLiveClassFailure(error.response.data))
   }
 }
 
@@ -133,27 +143,13 @@ export function* loadLastClass(payload: ReturnType<typeof loadLastClassRequest>)
     put(loadLastClassRequest(payload.payload.user_id))
     const response: Component = yield call(
       api.get,
-      'lastclass/'+payload.payload.user_id //done
+      'lastclass/' + payload.payload.user_id //done
     )
     yield put(loadLastClassSuccess(response))
-  } catch (error) {
-    yield put(loadLastClassFailure())
+  } catch (error: any) {
+    yield put(loadLastClassFailure(error.response.data))
   }
 }
-
-//Load Course:
-// export function* loadCourse(payload:ReturnType<typeof loadCourseRequest>) {
-//     // console.log("loadComponent SAGA", payload)
-//     try {
-
-//         put(loadComponentRequest(payload.payload))
-//         const response : Component = yield call(api.get, 'readCourse/'+payload.payload);
-//         yield put(loadComponentSuccess(response));
-
-//     } catch (error) {
-//         yield put(loadComponentFailure());
-//     }
-// }
 
 //Load Component by Description
 export function* loadComponentByDescription(
@@ -163,8 +159,8 @@ export function* loadComponentByDescription(
     put(loadComponentByDescriptionRequest(payload.payload))
     const response: Component = yield call(api.get, 'componentsbydesc/' + payload.payload)
     yield put(loadComponentByDescriptionSuccess(response))
-  } catch (error) {
-    yield put(loadComponentByDescriptionFailure())
+  } catch (error: any) {
+    yield put(loadComponentByDescriptionFailure(error.response.data))
   }
 }
 
@@ -184,8 +180,8 @@ export function* updateComponent(payload: ReturnType<typeof updateComponentReque
     put(updateComponentRequest(payload.payload))
     const response: Component = yield call(api.post, 'components', payload.payload)
     yield put(updateComponentSuccess(response))
-  } catch (error) {
-    yield put(updateComponentFailure())
+  } catch (error: any) {
+    yield put(updateComponentFailure(error.response.data))
   }
 }
 
@@ -194,8 +190,8 @@ export function* deleteComponent(payload: ReturnType<typeof deleteComponentReque
   try {
     const number: number = yield call(api.delete, 'components/' + payload.payload)
     yield put(deleteComponentSuccess(number))
-  } catch (error) {
-    yield put(deleteComponentFailure())
+  } catch (error: any) {
+    yield put(deleteComponentFailure(error.response.data))
   }
 }
 
@@ -211,28 +207,14 @@ export function* createExtra(payload: ReturnType<typeof createExtraRequest>) {
   }
 }
 
-// export function* uploadExtra(payload:ReturnType<typeof uploadExtraRequest>) {
-//     try {
-//         console.log("--------UPLOAD EXTRA------ ################PAYLOOOOOOOOOAD", payload)
-
-//         // put(updateExtraRequest(payload.payload))
-//         // const response : Extras = yield call(api.post, 'upload', payload.payload, { });
-//         const response : Extras = yield axios.post("http://localhost:8887/upload", payload, { });
-//         yield put(createExtraSuccess(response));
-//         yield console.log('response', response)
-//     } catch (error) {
-//         yield put(createExtraFailure(error));
-//     }
-// }
-
 //Update Extra
 export function* updateExtra(payload: ReturnType<typeof updateExtraRequest>) {
   try {
     put(updateExtraRequest(payload.payload))
     const response: Extras = yield call(api.post, 'extras', payload.payload)
     yield put(updateExtraSuccess(response))
-  } catch (error) {
-    yield put(updateExtraFailure())
+  } catch (error: any) {
+    yield put(updateExtraFailure(error.response.data))
   }
 }
 
@@ -241,8 +223,8 @@ export function* deleteExtra(payload: ReturnType<typeof deleteExtraRequest>) {
   try {
     const number: number = yield call(api.delete, 'extras/' + payload.payload)
     yield put(deleteExtraSuccess(number))
-  } catch (error) {
-    yield put(deleteExtraFailure())
+  } catch (error: any) {
+    yield put(deleteExtraFailure(error.response.data))
   }
 }
 
@@ -253,7 +235,7 @@ export function* createAulaConcluida(payload: ReturnType<typeof createAulaConclu
       createAulaConcluidaRequest(
         payload.payload.id,
         payload.payload.user_id,
-        payload.payload.component_id,
+        payload.payload.componentId,
         payload.payload.parent_id,
         payload.payload.status
       )
@@ -283,7 +265,7 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
       createRateRequest(
         payload.payload.id,
         payload.payload.user_id,
-        payload.payload.component_id,
+        payload.payload.componentId,
         payload.payload.rate
       )
     )
@@ -296,7 +278,6 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
   }
 }
 
-
 //Load Component
 export function* searchComponent(payload: ReturnType<typeof searchRequest>) {
   try {
@@ -304,7 +285,7 @@ export function* searchComponent(payload: ReturnType<typeof searchRequest>) {
     const response: Component = yield call(api.get, 'search/' + payload.payload)
     //console.log("RESPONSE SEARCH", response)
     yield put(searchSuccess(response))
-  } catch (error:any) {
+  } catch (error: any) {
     yield put(searchFailure(error.response))
   }
 }

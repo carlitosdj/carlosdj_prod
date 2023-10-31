@@ -47,20 +47,20 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
   let pastModule = comp.modules[indexModule - 1]
 
   let today = MOMENT(new Date()).format( 'YYYY-MM-DD HH:mm:ss.000' );
-  let dataAvailable = nextModule?nextModule.componentavailable[0]?.available_date:''
-  let isAvailable = nextModule?nextModule.componentavailable[0] ? MOMENT(today).isAfter(dataAvailable)? true : false : false: false;
+  let dataAvailable = nextModule?nextModule.available[0]?.available_date:''
+  let isAvailable = nextModule?nextModule.available[0] ? MOMENT(today).isAfter(dataAvailable)? true : false : false: false;
 
   //  let isAvailable = true
 
   const aulaconcluida = (aula: any) => {
     // console.log('aula ver', aula)
-    if (aula.aulaconcluida[0]?.status === 1) {
+    if (aula.completed[0]?.status === 1) {
       //Desmarcar
-      // dispatch(deleteAulaConcluidaRequest(aula.aulaconcluida[0].id, aula))
-      dispatch(createAulaConcluidaRequest(aula.aulaconcluida[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
+      // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
+      dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
     } else {
       // console.log('MARCAR como concluida', aula)
-      dispatch(createAulaConcluidaRequest(aula.aulaconcluida[0]?.id, me.me.id!, aula.id, aula.parent.id, 1))
+      dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 1))
     }
   }
 
@@ -87,7 +87,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
       .indexOf(selectedClass.id)
     let next = comp.classes[index + 1]
 
-    if (selectedClass.aulaconcluida[0]?.status === 0 || selectedClass.aulaconcluida[0]?.status === null || !selectedClass.aulaconcluida.length) aulaconcluida(selectedClass)
+    if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) aulaconcluida(selectedClass)
     //aulaconcluida(selectedClass)
     if (next) {
       navigate('/class/' + id + '/' + module_id + '/' + next.id)
@@ -121,7 +121,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
     // console.log("Index", index)
     let next = comp.modules[index + 1]
 
-    if (!selectedClass.aulaconcluida.length) aulaconcluida(selectedClass)
+    if (!selectedClass.completed.length) aulaconcluida(selectedClass)
 
     if (next) {
       navigate('/class/' + id + '/' + next.id)
@@ -204,8 +204,8 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
                   ) : (
                     <Link to='#' onClick={() => aulaconcluida(aula)}>
                       <div style={{display: 'flex'}}>
-                        {aula.aulaconcluida.length ? (
-                          aula.aulaconcluida[0].status ? (
+                        {aula.completed.length ? (
+                          aula.completed[0].status ? (
                             <KTSVG
                               className='svg-icon-2 svg-icon-success'
                               path='/media/icons/duotune/arrows/arr016.svg'

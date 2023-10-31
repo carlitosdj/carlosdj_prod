@@ -9,10 +9,10 @@ type Props = {
     data: Component
 }
 const ModalNotAvailable: React.FC<Props> = ({ show, setShow, data }) => {
-    let extra_release = data?.extras?.filter((extra: any) => extra.key_extra === 'release')[0];
+    let extra_release = data?.extras?.filter((extra: any) => extra.keyExtra === 'release')[0];
     let release = '1969/01/01 00:00:01'
-    if(extra_release?.value_extra) 
-    release = extra_release?.value_extra
+    if(extra_release?.valueExtra) 
+    release = extra_release?.valueExtra
 
     return (
         <Modal

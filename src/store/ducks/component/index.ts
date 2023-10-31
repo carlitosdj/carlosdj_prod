@@ -24,7 +24,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.LOAD_COMPONENT_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case ComponentTypes.LOAD_COMPONENT_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     //load modules
     case ComponentTypes.LOAD_MODULES_REQUEST:
@@ -32,28 +32,28 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.LOAD_MODULES_SUCCESS:
       return {...state, loading: false, error: false, modules: action.payload.data}
     case ComponentTypes.LOAD_MODULES_FAILURE:
-      return {...state, loading: false, error: true, modules: []}
+      return {...state, loading: false, error: action.payload, modules: []}
 
     case ComponentTypes.LOAD_CLASSES_REQUEST:
       return {...state, loading: true}
     case ComponentTypes.LOAD_CLASSES_SUCCESS:
       return {...state, loading: false, error: false, classes: action.payload.data}
     case ComponentTypes.LOAD_CLASSES_FAILURE:
-      return {...state, loading: false, error: true, classes: []}
+      return {...state, loading: false, error: action.payload, classes: []}
 
     case ComponentTypes.LOAD_LASTLIVECLASS_REQUEST:
       return {...state, loadingLastLiveClass: true}
     case ComponentTypes.LOAD_LASTLIVECLASS_SUCCESS:
       return {...state, loadingLastLiveClass: false, error: false, lastliveclass: action.payload.data}
       case ComponentTypes.LOAD_LASTLIVECLASS_FAILURE:
-        return {...state, loadingLastLiveClass: false, error: true, lastliveclass: {}}
+        return {...state, loadingLastLiveClass: false, error: action.payload, lastliveclass: {}}
 
     case ComponentTypes.LOAD_LASTCLASS_REQUEST:
       return {...state, loadingLastClass: true}
     case ComponentTypes.LOAD_LASTCLASS_SUCCESS:
       return {...state, loadingLastClass: false, error: false, lastclass: action.payload.data}
       case ComponentTypes.LOAD_LASTCLASS_FAILURE:
-        return {...state, loadingLastClass: false, error: true, lastclass: {}}
+        return {...state, loadingLastClass: false, error: action.payload, lastclass: {}}
     //Course:
     // case ComponentTypes.LOAD_COURSE_REQUEST:
     //     return { ...state, loading: true, }
@@ -67,7 +67,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.LOAD_COMPONENT_BY_DESC_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case ComponentTypes.LOAD_COMPONENT_BY_DESC_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     //Success children:
     case ComponentTypes.LOAD_COMPONENT_CHILDREN_SUCCESS:
@@ -87,7 +87,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         data: {...state.data, children: state.data.children?.concat(action.payload.data)},
       }
     case ComponentTypes.CREATE_COMPONENT_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //##update component:
     case ComponentTypes.UPDATE_COMPONENT_REQUEST:
@@ -105,7 +105,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         },
       } //update data?
     case ComponentTypes.UPDATE_COMPONENT_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     //delete user:
     case ComponentTypes.DELETE_COMPONENT_REQUEST:
@@ -121,7 +121,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         },
       }
     case ComponentTypes.DELETE_COMPONENT_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //create extra inside component: & Upload
     case ComponentTypes.UPLOAD_EXTRA_REQUEST:
@@ -136,7 +136,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         data: {...state.data, extras: state.data.extras?.concat(action.payload.data)},
       }
     case ComponentTypes.CREATE_EXTRA_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //##update extra:
     case ComponentTypes.UPDATE_EXTRA_REQUEST:
@@ -154,7 +154,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         },
       } //update data?
     case ComponentTypes.UPDATE_EXTRA_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     //delete extra:
     case ComponentTypes.DELETE_EXTRA_REQUEST:
@@ -170,14 +170,14 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         },
       }
     case ComponentTypes.DELETE_EXTRA_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Aula concluida:
     case ComponentTypes.CREATE_AULACONCLUIDA_REQUEST:
       return {
         ...state,
         loadingAulaConcluida: true,
-        loadingAulaConcluidaId: action.payload.component_id,
+        loadingAulaConcluidaId: action.payload.componentId,
       }
     case ComponentTypes.CREATE_AULACONCLUIDA_SUCCESS:
       return {
@@ -194,9 +194,9 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
               // console.log("Achei", modulo)
               //modulo.aulaconcluida = [action.payload.data]
               modulo.children?.map((aula) => {
-                if (aula.id === action.payload.data.data.component_id) {
+                if (aula.id === action.payload.data.data.componentId) {
                   // console.log("achei de novo", aula)
-                  aula.aulaconcluida = [action.payload.data.data]
+                  aula.completed = [action.payload.data.data]
                 }
                 return aula
               })
@@ -206,11 +206,11 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         }),
         classes: Object.assign([], state.classes, {
           ...state.classes.map((aula) => {
-            // console.log("Payload", action.payload.data.data.component_id)
+            // console.log("Payload", action.payload.data.data.componentId)
             // console.log("Aula", aula.id)
-            if (aula.id === action.payload.data.data.component_id) {
+            if (aula.id === action.payload.data.data.componentId) {
               // console.log("Achei")
-              aula.aulaconcluida = [action.payload.data.data]
+              aula.completed = [action.payload.data.data]
             }
             return aula
           }),
@@ -241,7 +241,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
                 // console.log('Aulax: ', action.payload)
                 if (aula.id === action.payload.aula.id) {
                   // console.log('achei de novo', aula)
-                  aula.aulaconcluida = []
+                  aula.completed = []
                 }
                 return aula
               })
@@ -251,12 +251,12 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         }),
         classes: Object.assign([], state.classes, {
           ...state.classes.map((aula) => {
-            if (aula.aulaconcluida?.length) {
+            if (aula.completed?.length) {
               // console.log("aulaaa", aula.aulaconcluida![0].id)
               // console.log("payload", action.payload.id.data)
-              if (aula.aulaconcluida![0].id === action.payload.id.data) {
+              if (aula.completed![0].id === action.payload.id.data) {
                 // console.log("Achei!", aula)
-                aula.aulaconcluida = []
+                aula.completed = []
               }
             }
             return aula
@@ -276,7 +276,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         // loadingAulaConcluida: true,
-        // loadingAulaConcluidaId: action.payload.component_id,
+        // loadingAulaConcluidaId: action.payload.componentId,
       }
     case ComponentTypes.CREATE_RATE_SUCCESS:
       //console.log("BATEUU!!", action.payload.data)
@@ -287,11 +287,11 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         error: {},
         classes: Object.assign([], state.classes, {
           ...state.classes.map((aula) => {
-            // console.log("Payload New", action.payload.data.component_id)
+            // console.log("Payload New", action.payload.data.componentId)
             // console.log("Aula", aula.id)
-            if (aula.id === action.payload.data.component_id) {
+            if (aula.id === action.payload.data.componentId) {
               // console.log("Achei XXXXXX")
-              aula.aulaconcluida = [action.payload.data]
+              aula.completed = [action.payload.data]
             }
             return aula
           }),
@@ -308,7 +308,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.SEARCH_SUCCESS:
       return {...state, loading: false, error: false, search: action.payload.data}
     case ComponentTypes.SEARCH_FAILURE:
-      return {...state, loading: false, error: true, search: []}
+      return {...state, loading: false, error: action.payload, search: []}
 
 
 

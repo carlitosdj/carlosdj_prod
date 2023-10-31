@@ -45,32 +45,33 @@ const Modules: FC<React.PropsWithChildren<unknown>> = () => {
       isSeparator: false,
       isActive: false,
     },
-    // {
-    //   title: '',
-    //   path: '',
-    //   isSeparator: true,
-    //   isActive: false,
-    // },
   ]
   useEffect(() => {
-    console.log('****************** Loading component...', component)
+    //console.log('****************** Loading component...', component)
     if (!component.modules.length) {
       dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
       //console.log("HEEEYYYY", [id!, me.me.id!, me.me.num_turma!])
-    } else {
-      if (component.modules[0].parent!.id !== Number(id))
+      console.log("nao tem length")
+    } 
+    
+    else {
+      if (component.modules[0].parent!.id !== Number(id)) {
         dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+        console.log("nao tem parent.id")
+        console.log("Number ID", Number(id))
+        console.log("Number ID", component.modules[0].parent!.id)
+        
+      }
+        
     }
 
   }, [id, me, component.modules, dispatch])
 
-  //console.log("Component loaded", component)
+  console.log("Component loaded", component)
 
   if (component.loading || !component.modules.length) return <Loading />
-
-  if (component.modules[0].parent!.id !== Number(id)) return <Loading />
-
-  // let today = MOMENT().format( 'YYYY-MM-DD HH:mm:ss.000' );
+  //if (component.modules[0].parent!.id !== Number(id)) return <Loading />
+ 
 
   return (
     <>

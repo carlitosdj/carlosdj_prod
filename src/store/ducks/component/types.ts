@@ -1,5 +1,5 @@
 import {AulaConcluida} from '../aulaconcluida/types'
-// import { ComponentAvailable } from '../componentavailable/types';
+// import { available } from '../available/types';
 import {Extras} from '../extras/types'
 /**
  * Action types
@@ -104,7 +104,7 @@ export enum ComponentTypes {
 // User Imported from Me
 export interface Component {
   id?: number
-  component_id?: number
+  componentId?: number
   name?: string
   description?: string
   created_at?: string
@@ -113,8 +113,8 @@ export interface Component {
   children?: Component[] | undefined
   extras?: Extras[]
   parent?: Component | undefined
-  aulaconcluida?: AulaConcluida[]
-  componentavailable?: any
+  completed?: AulaConcluida[]
+  available?: any
   orderby?: any
 }
 /**

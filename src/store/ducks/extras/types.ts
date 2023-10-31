@@ -29,9 +29,9 @@ export enum ExtrasTypes {
 // User Imported from Me
 export interface Extras {
   id?: number | undefined
-  component_id?: number
-  key_extra?: string
-  value_extra?: string
+  componentId?: number
+  keyExtra?: string
+  valueExtra?: string
   created_at?: number
   status?: number
 }

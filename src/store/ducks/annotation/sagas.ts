@@ -17,10 +17,10 @@ import {Annotation} from './types'
 //Single
 export function* loadAnnotationsSingle(payload: ReturnType<typeof loadAnnotationSingleRequest>) {
   try {
-    put(loadAnnotationSingleRequest(payload.payload.user_id, payload.payload.component_id))
+    put(loadAnnotationSingleRequest(payload.payload.user_id, payload.payload.componentId))
     const response: Annotation = yield call(
       api.get,
-      'annotationOnComponent/' + payload.payload.user_id + '/' + payload.payload.component_id
+      'annotationOnComponent/' + payload.payload.user_id + '/' + payload.payload.componentId
     )
     yield put(loadAnnotationSingleSuccess(response))
   } catch (error: any) {

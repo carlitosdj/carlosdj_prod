@@ -72,8 +72,8 @@ const ArticleReadPage: FC<React.PropsWithChildren<unknown>> = () => {
   }, [])
 
   console.log("component", component)
-  // let extra_img = component.data?.extras?.filter((extra: any) => extra.key_extra === 'img')[0];
-  let extra_file = component.data?.extras?.filter((extra: any) => extra.key_extra === 'file')[0];
+  // let extra_img = component.data?.extras?.filter((extra: any) => extra.keyExtra === 'img')[0];
+  let extra_file = component.data?.extras?.filter((extra: any) => extra.keyExtra === 'file')[0];
   const nextPage = () => {
     setPageNumber(pageNumber+1)
     setRange(Math.round((pageNumber / numPages!) * 100))
@@ -84,12 +84,12 @@ const ArticleReadPage: FC<React.PropsWithChildren<unknown>> = () => {
   }
           
   // let img = '1652141135752-logo.png'
-  // if (extra_img?.value_extra)
-  //   img = extra_img?.value_extra
+  // if (extra_img?.valueExtra)
+  //   img = extra_img?.valueExtra
 
   let filePDF = ''
-    if (extra_file?.value_extra)
-      filePDF = extra_file?.value_extra
+    if (extra_file?.valueExtra)
+      filePDF = extra_file?.valueExtra
       
   //let now = Math.round((pageNumber / numPages!) * 100);
 

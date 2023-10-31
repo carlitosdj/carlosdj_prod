@@ -71,11 +71,11 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                 {/* begin::Table body */}
                 <tbody>
                   {comp.modules?.map((module: any, index) => {
-                    // let conclusao = Math.round(module.children.map((aula:any) => aula.aulaconcluida.length).reduce(add,0) / module.children!.length * 100);
-                    // let dataAvailable = MOMENT(module.componentavailable[0]?.available_date).format("YYYY-MM-DD HH:mm:ss.000");
-                    // let dataAvailableMoment = MOMENT(module.componentavailable[0]?.available_date).format("DD/MM");
-                    // let isAvailable = module.componentavailable[0] ? MOMENT(today).isAfter(dataAvailable)? true : false : false;
-                    // let textAvailable =  module.componentavailable[0] ? isAvailable ? "Liberado" : "Disponível em: " + dataAvailableMoment : "A definir";
+                    // let conclusao = Math.round(module.children.map((aula:any) => aula.completed.length).reduce(add,0) / module.children!.length * 100);
+                    // let dataAvailable = MOMENT(module.available[0]?.available_date).format("YYYY-MM-DD HH:mm:ss.000");
+                    // let dataAvailableMoment = MOMENT(module.available[0]?.available_date).format("DD/MM");
+                    // let isAvailable = module.available[0] ? MOMENT(today).isAfter(dataAvailable)? true : false : false;
+                    // let textAvailable =  module.available[0] ? isAvailable ? "Liberado" : "Disponível em: " + dataAvailableMoment : "A definir";
 
                     return (
                       <tr>

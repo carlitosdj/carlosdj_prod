@@ -117,7 +117,7 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                                 <iframe
                                     title='video'
                                     className='embed-responsive-item rounded'
-                                    src={component.value_extra}
+                                    src={component.valueExtra}
                                     
                                     style={{
                                       width:100, 
@@ -161,7 +161,7 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                         {/* <td className='text-end text-muted fw-bold'>{component.parentName}</td> */}
                         {/* component.search.map((component,index) => 
                             <div key={index}>
-                              {component.parentName} {component.name} {component.id} {component.parentId} {component.firstId} {component.value_extra}
+                              {component.parentName} {component.name} {component.id} {component.parentId} {component.firstId} {component.valueExtra}
                             </div>
                         ) */}
                       </tr>

@@ -9,43 +9,49 @@ export const loadComponentRequest = (id: string, sort: string) =>
   action(ComponentTypes.LOAD_COMPONENT_REQUEST, {id, sort})
 export const loadComponentSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_COMPONENT_SUCCESS, data)
-export const loadComponentFailure = () => action(ComponentTypes.LOAD_COMPONENT_FAILURE)
+export const loadComponentFailure = (err: any[]) =>
+  action(ComponentTypes.LOAD_COMPONENT_FAILURE, err)
 
 //Load Modules
-export const loadModulesRequest = (id: string, user_id: number, num_turma: number, orderby: string) =>
-  action(ComponentTypes.LOAD_MODULES_REQUEST, {id, user_id, num_turma, orderby})
+export const loadModulesRequest = (
+  id: string,
+  user_id: number,
+  num_turma: number,
+  orderby: string
+) => action(ComponentTypes.LOAD_MODULES_REQUEST, {id, user_id, num_turma, orderby})
 export const loadModulesSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_MODULES_SUCCESS, data)
-export const loadModulesFailure = () => action(ComponentTypes.LOAD_MODULES_FAILURE)
+export const loadModulesFailure = (err: any[]) => action(ComponentTypes.LOAD_MODULES_FAILURE, err)
 
 //Load Classes
 export const loadClassesRequest = (id: string, user_id: number, orderby: string) =>
   action(ComponentTypes.LOAD_CLASSES_REQUEST, {id, user_id, orderby})
 export const loadClassesSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_CLASSES_SUCCESS, data)
-export const loadClassesFailure = () => action(ComponentTypes.LOAD_CLASSES_FAILURE)
+export const loadClassesFailure = (err: any[]) => action(ComponentTypes.LOAD_CLASSES_FAILURE, err)
 
 //Load Last Live Class
-export const loadLastLiveClassRequest = () =>
-  action(ComponentTypes.LOAD_LASTLIVECLASS_REQUEST)
+export const loadLastLiveClassRequest = () => action(ComponentTypes.LOAD_LASTLIVECLASS_REQUEST)
 export const loadLastLiveClassSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_LASTLIVECLASS_SUCCESS, data)
-export const loadLastLiveClassFailure = () => action(ComponentTypes.LOAD_LASTLIVECLASS_FAILURE)
+export const loadLastLiveClassFailure = (err: any[]) =>
+  action(ComponentTypes.LOAD_LASTLIVECLASS_FAILURE, err)
 
 //Load Last Class
 export const loadLastClassRequest = (user_id: number) =>
   action(ComponentTypes.LOAD_LASTCLASS_REQUEST, {user_id})
 export const loadLastClassSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_LASTCLASS_SUCCESS, data)
-export const loadLastClassFailure = () => action(ComponentTypes.LOAD_LASTCLASS_FAILURE)
+export const loadLastClassFailure = (err: any[]) =>
+  action(ComponentTypes.LOAD_LASTCLASS_FAILURE, err)
 
 //Load Component by Description
 export const loadComponentByDescriptionRequest = (id: string) =>
   action(ComponentTypes.LOAD_COMPONENT_BY_DESC_REQUEST, id)
 export const loadComponentByDescriptionSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_COMPONENT_BY_DESC_SUCCESS, data)
-export const loadComponentByDescriptionFailure = () =>
-  action(ComponentTypes.LOAD_COMPONENT_BY_DESC_FAILURE)
+export const loadComponentByDescriptionFailure = (err: any[]) =>
+  action(ComponentTypes.LOAD_COMPONENT_BY_DESC_FAILURE, err)
 
 //Create Component
 export const createComponentRequest = (newComponent: Component) =>
@@ -60,14 +66,16 @@ export const updateComponentRequest = (componentToUpdate: Component) =>
   action(ComponentTypes.UPDATE_COMPONENT_REQUEST, componentToUpdate)
 export const updateComponentSuccess = (data: Component) =>
   action(ComponentTypes.UPDATE_COMPONENT_SUCCESS, data)
-export const updateComponentFailure = () => action(ComponentTypes.UPDATE_COMPONENT_FAILURE)
+export const updateComponentFailure = (err: any[]) =>
+  action(ComponentTypes.UPDATE_COMPONENT_FAILURE, err)
 
 //Delete Component
 export const deleteComponentRequest = (id: number) =>
   action(ComponentTypes.DELETE_COMPONENT_REQUEST, id)
 export const deleteComponentSuccess = (id: number) =>
   action(ComponentTypes.DELETE_COMPONENT_SUCCESS, id)
-export const deleteComponentFailure = () => action(ComponentTypes.DELETE_COMPONENT_FAILURE)
+export const deleteComponentFailure = (err: any[]) =>
+  action(ComponentTypes.DELETE_COMPONENT_FAILURE, err)
 
 //Create Extra
 export const createExtraRequest = (newExtra: Extras) =>
@@ -86,40 +94,53 @@ export const updateExtraRequest = (extraToUpdate: Component) =>
   action(ComponentTypes.UPDATE_EXTRA_REQUEST, extraToUpdate)
 export const updateExtraSuccess = (data: Extras) =>
   action(ComponentTypes.UPDATE_EXTRA_SUCCESS, data)
-export const updateExtraFailure = () => action(ComponentTypes.UPDATE_EXTRA_FAILURE)
+export const updateExtraFailure = (err: any[]) => action(ComponentTypes.UPDATE_EXTRA_FAILURE, err)
 
 //Delete Extra
 export const deleteExtraRequest = (id: number) => action(ComponentTypes.DELETE_EXTRA_REQUEST, id)
 export const deleteExtraSuccess = (id: number) => action(ComponentTypes.DELETE_EXTRA_SUCCESS, id)
-export const deleteExtraFailure = () => action(ComponentTypes.DELETE_EXTRA_FAILURE)
+export const deleteExtraFailure = (err: any[]) => action(ComponentTypes.DELETE_EXTRA_FAILURE, err)
 
 //Single Aula Concluida
 export const createAulaConcluidaRequest = (
   id: number,
   user_id: number,
-  component_id: number,
+  componentId: number,
   parent_id: number,
-  status: number,
-) => action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_REQUEST, {id, user_id, component_id, parent_id, status})
+  status: number
+) =>
+  action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_REQUEST, {
+    id,
+    user_id,
+    componentId,
+    parent_id,
+    status,
+  })
 export const createAulaConcluidaSuccess = (data: AulaConcluida, parent_id: number) =>
   action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_SUCCESS, {data, parent_id})
-export const createAulaConcluidaFailure = (error: {}) =>
-  action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_FAILURE, error)
+export const createAulaConcluidaFailure = (err: any[]) =>
+  action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_FAILURE, err)
 
 //Create Aula Concluida
 export const deleteAulaConcluidaRequest = (id: number, aula: Component) =>
   action(AulaConcluidaTypes.DELETE_AULACONCLUIDA_REQUEST, {id, aula})
 export const deleteAulaConcluidaSuccess = (id: number, aula: Component) =>
   action(AulaConcluidaTypes.DELETE_AULACONCLUIDA_SUCCESS, {id, aula})
-export const deleteAulaConcluidaFailure = (error: {}) =>
-  action(AulaConcluidaTypes.DELETE_AULACONCLUIDA_FAILURE, error)
+export const deleteAulaConcluidaFailure = (err: any[]) =>
+  action(AulaConcluidaTypes.DELETE_AULACONCLUIDA_FAILURE, err)
 
 //Single Aula Concluida
-export const createRateRequest = (id: number, user_id: number, component_id: number, rate: number) => action(ComponentTypes.CREATE_RATE_REQUEST, {id, user_id, component_id, rate})
-export const createRateSuccess = (data: AulaConcluida) => action(ComponentTypes.CREATE_RATE_SUCCESS, data)
-export const createRateFailure = (error: {}) => action(ComponentTypes.CREATE_RATE_FAILURE, error)
+export const createRateRequest = (
+  id: number,
+  user_id: number,
+  componentId: number,
+  rate: number
+) => action(ComponentTypes.CREATE_RATE_REQUEST, {id, user_id, componentId, rate})
+export const createRateSuccess = (data: AulaConcluida) =>
+  action(ComponentTypes.CREATE_RATE_SUCCESS, data)
+export const createRateFailure = (err: any[]) => action(ComponentTypes.CREATE_RATE_FAILURE, err)
 
 //Search
 export const searchRequest = (search: string) => action(ComponentTypes.SEARCH_REQUEST, search)
 export const searchSuccess = (data: Component) => action(ComponentTypes.SEARCH_SUCCESS, data)
-export const searchFailure = (error: {}) => action(ComponentTypes.SEARCH_FAILURE, error)
+export const searchFailure = (err: any[]) => action(ComponentTypes.SEARCH_FAILURE, err)

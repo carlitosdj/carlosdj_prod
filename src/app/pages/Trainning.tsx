@@ -26,11 +26,11 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
   // let url: string | undefined = ''
   // let urlLastClass: string | undefined = ''
 
-  // let check = component.lastliveclass?.extras?.filter((extra: any) => extra.key_extra === 'url')[0] //Checa se tem o 'extra' de url.
-  // if (check) url = check.value_extra
+  // let check = component.lastliveclass?.extras?.filter((extra: any) => extra.keyExtra === 'url')[0] //Checa se tem o 'extra' de url.
+  // if (check) url = check.valueExtra
 
-  // let checkLastClass = component.lastclass?.extras?.filter((extra: any) => extra.key_extra === 'url')[0] //Checa se tem o 'extra' de url.
-  // if (checkLastClass) urlLastClass = checkLastClass.value_extra
+  // let checkLastClass = component.lastclass?.extras?.filter((extra: any) => extra.keyExtra === 'url')[0] //Checa se tem o 'extra' de url.
+  // if (checkLastClass) urlLastClass = checkLastClass.valueExtra
 
   // let reg = /.+?:\/\/.+?(\/.+?)(?:#|\?|$)/;
   // let video_id = ""
@@ -137,20 +137,20 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
         {/* <h2>Próximos</h2> *x/}
         {component.loading && <Loading/>}
         {!component.loading && component.data.children?.map((data,index) => {
-          let extra_img = data?.extras?.filter((extra: any) => extra.key_extra === 'img')[0];
-          let extra_release = data?.extras?.filter((extra: any) => extra.key_extra === 'release')[0];
+          let extra_img = data?.extras?.filter((extra: any) => extra.keyExtra === 'img')[0];
+          let extra_release = data?.extras?.filter((extra: any) => extra.keyExtra === 'release')[0];
           
           let img = '1652141135752-logo.png'
-          if (extra_img?.value_extra)
-            img = extra_img?.value_extra
+          if (extra_img?.valueExtra)
+            img = extra_img?.valueExtra
 
 
-          //console.log("extra", extra?.value_extra)
+          //console.log("extra", extra?.valueExtra)
           
-          //let + '' + data.extras![0].value_extra
+          //let + '' + data.extras![0].valueExtra
           let release = '1969/01/01 00:00:01'
-          if(extra_release?.value_extra)
-            release = extra_release?.value_extra
+          if(extra_release?.valueExtra)
+            release = extra_release?.valueExtra
           
           let dataAvailable = MOMENT(release).format('YYYY-MM-DD HH:mm:ss.000')
           let isAvailable =  MOMENT(today).isAfter(dataAvailable) ? true : false

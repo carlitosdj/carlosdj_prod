@@ -2,8 +2,8 @@ import {action} from 'typesafe-actions'
 import {AnnotationTypes, Annotation} from './types'
 
 //Single
-export const loadAnnotationSingleRequest = (user_id: number, component_id: number) =>
-  action(AnnotationTypes.LOAD_ANNOTATION_SINGLE_REQUEST, {user_id, component_id})
+export const loadAnnotationSingleRequest = (user_id: number, componentId: number) =>
+  action(AnnotationTypes.LOAD_ANNOTATION_SINGLE_REQUEST, {user_id, componentId})
 export const loadAnnotationSingleSuccess = (data: Annotation) =>
   action(AnnotationTypes.LOAD_ANNOTATION_SINGLE_SUCCESS, data)
 export const loadAnnotationSingleFailure = (error: {}) =>

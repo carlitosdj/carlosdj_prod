@@ -1,7 +1,7 @@
 /**
  * Action types
  */
-export enum ComponentavailableTypes {}
+export enum availableTypes {}
 
 //create aulaconcluida
 // CREATE_AULACONCLUIDA_REQUEST = '@component/CREATE_AULACONCLUIDA_REQUEST',
@@ -15,11 +15,11 @@ export enum ComponentavailableTypes {}
 /**
  * Data types
  */
-export interface ComponentAvailable {
+export interface available {
   id?: number | undefined
   turma_num?: any | undefined
   available_date?: any | undefined
-  component_id?: any | undefined
+  componentId?: any | undefined
   parent?: any | undefined
 }
 

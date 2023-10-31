@@ -69,11 +69,11 @@ const ClassPage: React.FC<React.PropsWithChildren<Props>> = ({
             />
           </div>
           <div className='col-xxl-6'>
-            <CommentClassWidget
+            {/* <CommentClassWidget
               className='card-xxl-stretch mb-5 mb-xxl-8'
               selectedClass={selectedClass}
               url={url}
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -141,6 +141,7 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
     }
 
     if (!component.classes.length || Number(module_id) !== component.classes[0].parent?.id){
+      console.log("Carregando classes..")
       dispatch(loadClassesRequest(module_id!, me.me.id!, component.modules[0]?.orderby))
     }
 
@@ -161,7 +162,8 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
     Number(module_id) !== component.classes[0].parent?.id
   ) {
     // console.log('Loading?', component.loading)
-    // console.log('Component?', component)
+    
+    console.log('Component?', component)
     // console.log('Modules lenght', component.modules.length)
 
     return <Loading />
@@ -178,24 +180,24 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
     //console.log('Caiu aqui')
     //Se tiver aula na url:
     selectedClass = component.classes?.filter((aula: any) => aula.id === Number(class_id))[0]
-    let check = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'url')[0] //Checa se tem o 'extra' de url.
+    let check = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'url')[0] //Checa se tem o 'extra' de url.
     
     if (check) 
-      url = check.value_extra
+      url = check.valueExtra
 
-    extras_files = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'file')
-    extras_links = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'link')
+    extras_files = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'file')
+    extras_links = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'link')
     // console.log('EXTRA-files', extras_files)
   } else {
     //Nenhuma aula está selecionada:
     //console.log("Alguma aula selecionada?", selectedClass)
     //Seleciona a primeira aula não feita, se todas estiverem feitas, seleciona a primeira aula:
     let notDoneClass = component.classes.filter(
-      (classfilter: any) => classfilter.aulaconcluida[0]?.status === null || classfilter.aulaconcluida[0]?.status === 0 || classfilter.aulaconcluida?.length === 0
+      (classfilter: any) => classfilter.completed[0]?.status === null || classfilter.completed[0]?.status === 0 || classfilter.completed?.length === 0
     )[0]
 
     let allDoneClasses = component.classes.filter(
-      (classfilter: any) => classfilter.aulaconcluida[0]?.status === 1
+      (classfilter: any) => classfilter.completed[0]?.status === 1
     )
 
     let allclassesInModule = component.classes.length
@@ -227,11 +229,11 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
     selectedClass = notDoneClass
 
     console.log('Selecionando a aula: ', selectedClass)
-    let check = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'url')[0] //Checa se tem o 'extra' de url.
-    if (check) url = check.value_extra
+    let check = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'url')[0] //Checa se tem o 'extra' de url.
+    if (check) url = check.valueExtra
 
-    extras_files = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'file')
-    extras_links = selectedClass?.extras?.filter((extra: any) => extra.key_extra === 'link')
+    extras_files = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'file')
+    extras_links = selectedClass?.extras?.filter((extra: any) => extra.keyExtra === 'link')
     // id = selectedClass.id
   }
   //console.log("###component", component)

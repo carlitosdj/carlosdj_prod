@@ -31,7 +31,7 @@ export function AsideMenuMain() {
         
       />
       
-      <AsideMenuItem
+      {/* <AsideMenuItem
         to='/books'
         icon='/media/icons/duotune/general/gen025.svg'
         fontIcon='bi-app-indicator'
@@ -44,45 +44,14 @@ export function AsideMenuMain() {
         fontIcon='bi-app-indicator'
         title={intl.formatMessage({id: 'MENU.ARTICLES'})}
         
-      />
+      /> */}
       <AsideMenuItem
         to='/annotation'
         icon='/media/icons/duotune/general/gen055.svg'
         fontIcon='bi-app-indicator'
         title={intl.formatMessage({id: 'MENU.MYANNOTATIONS'})}
       />
-      {/* <AsideMenuItem
-        to='/palestras'
-        icon='/media/icons/duotune/general/gen025.svg'
-        fontIcon='bi-app-indicator'
-        //title={intl.formatMessage({id: 'MENU.ONLINECOURSES'})}
-        title="Palestras"
-      />
-      <AsideMenuItem
-        to='/lives'
-        icon='/media/icons/duotune/general/gen025.svg'
-        fontIcon='bi-app-indicator'
-        //title={intl.formatMessage({id: 'MENU.ONLINECOURSES'})}
-        title="Lives"
-      /> */}
-      <div className='menu-item'>
-        <div className='menu-content pt-8 pb-2'>
-          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Pacientes</span>
-        </div>
-      </div>
-      {/* <AsideMenuItem
-        to='/partners'
-        icon='/media/icons/duotune/general/gen025.svg'
-        fontIcon='bi-app-indicator'
-        //title={intl.formatMessage({id: 'MENU.ONLINECOURSES'})}
-        title="Parceiros"
-      /> */}
-      <AsideMenuItem
-        to='/patients'
-        icon='/media/icons/duotune/general/gen004.svg'
-        fontIcon='bi-app-indicator'
-        title={intl.formatMessage({id: 'MENU.PATIENTS'})}
-      />
+
       {/* <AsideMenuItem
         to='/agenda/71'
         icon='/media/icons/duotune/general/gen014.svg'

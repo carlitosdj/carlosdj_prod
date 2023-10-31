@@ -19,7 +19,7 @@ export enum AnnotationTypes {
 export interface Annotation {
   id?: number | undefined
   user_id?: number | undefined
-  component_id?: number | undefined
+  componentId?: number | undefined
   message?: string | undefined
   created_at?: string | undefined
   status?: number | undefined

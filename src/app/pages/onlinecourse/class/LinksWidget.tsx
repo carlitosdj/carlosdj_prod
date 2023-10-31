@@ -31,9 +31,9 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({className, extra
 
             {extras_links.map((link: any, index: any) => {
               return (
-                <a href={link.value_extra} key={index} target="_blank">
+                <a href={link.valueExtra} key={index} target="_blank">
                   <div className='fs-6 text-gray-800 text-hover-primary fw-bolder pb-2'>
-                    {link.value_extra}
+                    {link.valueExtra}
                   </div>
                 </a>
               )
@@ -41,9 +41,9 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({className, extra
 
             {extras_files.map((link: any, index: any) => {
               return ( 
-                <a href={'https://www.violaofeeling.com.br/files/' + link.value_extra} key={index} target="_blank">
+                <a href={'https://www.violaofeeling.com.br/files/' + link.valueExtra} key={index} target="_blank">
                   <div className='fs-6 text-gray-800 text-hover-primary fw-bolder pb-2'>
-                    {link.value_extra}
+                    {link.valueExtra}
                   </div>
                 </a>
               )
