@@ -17,7 +17,7 @@ import {Button, Col, Form} from 'react-bootstrap-v5'
 //import { MeState } from '../../../../store/ducks/users/types'
 import {useCookies} from 'react-cookie'
 import api from '../../../../services/api'
-import {CKEditor} from 'ckeditor4-react'
+// import {CKEditor} from 'ckeditor4-react'
 //import { loadStateRequest } from '../../../../store/ducks/state/actions'
 
 import FileResizer from 'react-image-file-resizer'
@@ -26,10 +26,10 @@ import {canvasPreview} from '../canvasPreview'
 import {useDebounceEffect} from '../useDebounceEffect'
 import {loadStateRequest} from '../../../../store/ducks/state/actions'
 import {loadCityRequest} from '../../../../store/ducks/city/actions'
-const MOMENT = require('moment')
-type ParamTypes = {
-  id: string
-}
+// const MOMENT = require('moment')
+// type ParamTypes = {
+//   id: string
+// }
 
 // type Props = {
 //   me: MeState
@@ -63,7 +63,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
   const [scale, setScale] = useState(1)
   const [rotate, setRotate] = useState(0)
   const [aspect, setAspect] = useState<number | undefined>(1 / 1) //16 / 9
-  const [occupation, setOccupation] = useState<Occupation[]>([])
+  //const [occupation, setOccupation] = useState<Occupation[]>([])
 
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -139,9 +139,9 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
   const [username, setUsername] = useState<string | undefined>('')
   const [email, setEmail] = useState<string | undefined>('')
   const [whatsapp, setWhatsapp] = useState<string | undefined>('')
-  const [bio, setBio] = useState<string | undefined>('')
+  //const [bio, setBio] = useState<string | undefined>('')
   const [cpf, setCpf] = useState<string | undefined>('')
-  const [endereco, setEndereco] = useState<string | undefined>('')
+  //const [endereco, setEndereco] = useState<string | undefined>('')
   const [address, setAddress] = useState<string | undefined>('')
   const [addressCEP, setAddressCEP] = useState<string | undefined>('')
 
@@ -172,31 +172,34 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
   //console.log("ME", me)
   const state = useSelector((state: ApplicationState) => state.state)
   const city = useSelector((state: ApplicationState) => state.city)
+  console.log('ME', me)
+  console.log('City', city)
+  console.log('State', state)
 
   useEffect(() => {
-    setName(me.me.profile?.name)
+    setName(me.me.name)
     setUsername(me.me.username)
     setEmail(me.me.email)
-    setWhatsapp(me.me.profile?.whatsapp)
-    setCpf(me.me.profile?.cpf)
-    setAddress(me.me.profile?.endereco)
-    setImage(me.me.profile?.image)
+    setWhatsapp(me.me.whatsapp)
+    setCpf(me.me.cpf)
+    setAddress(me.me.endereco)
+    setImage(me.me.image)
 
-    setEndereco(me.me.profile?.endereco)
-    setAddress(me.me.profile?.address)
-    setAddressNumber(me.me.profile?.addressNumber)
-    setAddressDistrict(me.me.profile?.addressDistrict)
-    setAddressCity(me.me.profile?.addressCity)
-    setAddressState(me.me.profile?.addressState)
-    setAddressCountry(me.me.profile?.addressCountry)
-    setAddressCEP(me.me.profile?.postalCode)
+    //setEndereco(me.me.endereco)
+    setAddress(me.me.address)
+    setAddressNumber(me.me.addressNumber)
+    setAddressDistrict(me.me.addressDistrict)
+    setAddressCity(me.me.addressCity)
+    setAddressState(me.me.addressState)
+    setAddressCountry(me.me.addressCountry)
+    setAddressCEP(me.me.postalCode)
     setNumTurma(me.me.num_turma)
     setCreatedAt(me.me.created_at)
-    setUserCity('' + me.me.profile?.cityParent?.id!)
-    setUserState('' + me.me.profile?.stateParent?.id!)
-    setOccupation(me.me.profile?.occupation!)
-    setBio(me.me.profile?.bio)
-    // setCandonate(users.user.profile?.image!)
+    setUserCity('' + me.me.city?.id!)
+    setUserState('' + me.me.state?.id!)
+    //setOccupation(me.me.occupation!)
+    //setBio(me.me.bio)
+    // setCandonate(users.user.image!)
 
     // console.log("Setando cookies")
     var date = new Date()
@@ -212,21 +215,21 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
   }, [me.me])
   //}, [users.user, me.me])
 
-  console.log('OCCUPATION GERAL', occupation)
-  const handleOccupation = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    occupationSelected: Occupation
-  ) => {
-    console.log('OI?')
-    console.log('occupation-selected', occupationSelected)
-    if (event.target.checked) {
-      setOccupation([...occupation, occupationSelected])
-    } else {
-      setOccupation((current) =>
-        current.filter((occupation) => occupation.name !== occupationSelected.name)
-      )
-    }
-  }
+  //console.log('OCCUPATION GERAL', occupation)
+  // const handleOccupation = (
+  //   event: React.ChangeEvent<HTMLInputElement>,
+  //   occupationSelected: Occupation
+  // ) => {
+  //   console.log('OI?')
+  //   console.log('occupation-selected', occupationSelected)
+  //   if (event.target.checked) {
+  //     setOccupation([...occupation, occupationSelected])
+  //   } else {
+  //     setOccupation((current) =>
+  //       current.filter((occupation) => occupation.name !== occupationSelected.name)
+  //     )
+  //   }
+  // }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //console.log('submit', campaign.data.id)
@@ -237,8 +240,9 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
       event.stopPropagation()
     }
     setValidated(true)
-    if (name && username && email && cpf) {
+    if (name && email && cpf) {
       if (selectedFile) {
+        console.log("file is selected")
         //Se selecionou arquivo novo
         //console.log("Selecionado novo arquivo")
         const formdata = new FormData()
@@ -251,29 +255,30 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
           const userToUpdate: User = {
             id: me.me.id,
             email,
-            username: email,
+            //username: email,
             num_turma: numTurma,
-            created_at: created_at,
-            profile: {
-              user_id: me.me.id,
-              name,
-              profileUserId: me.me.id,
-              image: res.data.filename,
-              whatsapp,
-              cpf,
-              //endereco,
-              address,
-              addressNumber,
-              addressDistrict,
-              addressCity,
-              addressState,
-              addressCountry,
-              postalCode: addressCEP,
-              cityParent: {id: +userCity},
-              stateParent: {id: +userState},
-              occupation,
-              bio,
-            },
+            //created_at: created_at,
+            // profile: {
+            //user_id: me.me.id,
+            name,
+            //profileUserId: me.me.id,
+            image: res.data.filename,
+            whatsapp,
+            cpf,
+            //endereco,
+            address,
+            addressNumber,
+            addressDistrict,
+            addressCity,
+            addressState,
+            addressCountry,
+            postalCode: addressCEP,
+
+            cityId: userCity,
+            stateId: userState,
+            //occupation,
+            //bio,
+            // },
 
             updated_at: data.getTime() / 1000,
           }
@@ -289,35 +294,35 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
         })
       } else {
         //Se não selecionou nenhuma foto nova:
-        //console.log("Nao selecionou nenhum arquivo")
+        console.log("Nao selecionou nenhum arquivo")
         var data = new Date()
         const userToUpdate: User = {
           id: me.me.id,
           email,
-          username: email,
+          //username: email,
           num_turma: numTurma,
-          created_at: created_at,
-          profile: {
-            user_id: me.me.id,
-            name,
-            profileUserId: me.me.id,
-            whatsapp,
-            cpf,
-            //endereco,
-            address,
-            addressNumber,
-            addressDistrict,
-            addressCity,
-            addressState,
-            addressCountry,
-            postalCode: addressCEP,
-            cityParent: {id: +userCity},
-            stateParent: {id: +userState},
-            occupation,
-            bio,
-          },
+          //created_at: created_at,
+          //profile: {
+          //user_id: me.me.id,
+          name,
+          //profileUserId: me.me.id,
+          whatsapp,
+          cpf,
+          //endereco,
+          address,
+          addressNumber,
+          addressDistrict,
+          addressCity,
+          addressState,
+          addressCountry,
+          postalCode: addressCEP,
+          cityId: userCity,
+          stateId: userState,
+          //occupation,
+          //bio,
+          //},
 
-          updated_at: data.getTime() / 1000,
+          //updated_at: data.getTime() / 1000,
         }
 
         //console.log('------------------ USER TO UPDATE', userToUpdate)
@@ -677,7 +682,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
                       </Form.Group> */}
                       <br />
 
-                      <Form.Group controlId='formDescription'>
+                      {/* <Form.Group controlId='formDescription'>
                         <Form.Label>Biografia em poucas palavras</Form.Label>
                         <Form.Control
                           placeholder=''
@@ -691,7 +696,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
                         <Form.Control.Feedback type='invalid'>
                           Por favor informe a descrição do produto
                         </Form.Control.Feedback>
-                      </Form.Group>
+                      </Form.Group> */}
 
                       {/* <Form.Label>Biografia</Form.Label>
                       <CKEditor
@@ -822,19 +827,19 @@ const EditProfile: FC<React.PropsWithChildren<unknown>> = () => {
 
     //Carrega estados e cidades desse estado
     dispatch(loadStateRequest()) //Puxa componentes com seus filhos primários
-    dispatch(loadCityRequest('' + me.me.profile?.stateParent?.id!))
-    // console.log("CARREGANDO...", me.me.profile?.stateParent?.id!)
+    dispatch(loadCityRequest('' + me.me.state?.id!))
+    // console.log("CARREGANDO...", me.me.stateParent?.id!)
     // console.log("Me", me)
     //console.log("Me", me)
   }, [])
-  // document.title = 'Editar '+ users.user?.profile?.name + ' | Salve mais um';
+  // document.title = 'Editar '+ users.user?.name + ' | Salve mais um';
   // console.log("USER", users)
   // if(users.loadingUser) return <Loading />
 
   return (
     <>
       {/* <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.SALVEMAISUM'})}</PageTitle> */}
-      <PageTitle breadcrumbs={[]}>{me.me.profile?.name}</PageTitle>
+      <PageTitle breadcrumbs={[]}>{me.me.name}</PageTitle>
       {/* <PageTitle breadcrumbs={[]}>Teste</PageTitle> */}
       <EditProfilePage />
     </>

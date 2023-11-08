@@ -42,9 +42,9 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
             <img
               alt=''
               src={
-                me.me.profile?.image?.includes('https://')
-                  ? me.me.profile?.image
-                  : 'https://labiopalatina.com.br/files/' + me.me.profile?.image
+                me.me.image?.includes('https://')
+                  ? me.me.image
+                  : 'https://labiopalatina.com.br/files/' + me.me.image
               }
               style={{width: '100%'}}
               onError={({currentTarget}) => {
@@ -55,7 +55,7 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
             {/* begin::Header */}
             <div className='card-header border-0 pt-5'>
               <h3 className='card-title align-items-start flex-column'>
-                <span className='card-label fw-bolder fs-3'>{me.me.profile?.name}</span>
+                <span className='card-label fw-bolder fs-3'>{me.me.name}</span>
               </h3>
               <div className='d-flex flex-column w-100 me-2'>
                 <div className='d-flex flex-stack mb-2'>
@@ -93,7 +93,7 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                 <br />
               </div>
               {/* {me.me.id === id && <div><Link className='btn btn-sm btn-primary' to={'/campaigns'}>Criar campanhas</Link><br/><br/></div>} */}
-              {/* {users.user.profile?.cityParent?.name} {users.user.profile?.stateParent?.state} */}
+              {/* {users.user.cityParent?.name} {users.user.stateParent?.state} */}
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                       {/* begin::Table body */}
                       <tbody>
                         <span className='text-dark fw-bolder fs-6'>
-                          Nome: {me.me.profile?.name}
+                          Nome: {me.me.name}
                         </span>
                         <br />
                         <br />
@@ -136,18 +136,18 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                         <br />
                         <br />
                         <span className='text-dark fw-bolder fs-6'>
-                          Whatsapp: {me.me.profile?.whatsapp}
+                          Whatsapp: {me.me.whatsapp}
                         </span>
                         <br />
                         <br />
-                        <span className='text-dark fw-bolder fs-6'>CPF: {me.me.profile?.cpf}</span>
+                        <span className='text-dark fw-bolder fs-6'>CPF: {me.me.cpf}</span>
                         <br />
                         <br />
                         <span className='text-dark fw-bolder fs-6'>
-                          Endereço: {me.me.profile?.address}, {me.me.profile?.addressNumber},{' '}
-                          {me.me.profile?.addressDistrict} - {me.me.profile?.cityParent?.name} /{' '}
-                          {me.me.profile?.stateParent?.state} / {me.me.profile?.addressCountry} -{' '}
-                          {me.me.profile?.postalCode}
+                          Endereço: {me.me.address}, {me.me.addressNumber},{' '}
+                          {me.me.addressDistrict} - {me.me.city?.name} /{' '}
+                          {me.me.state?.state} / {me.me.addressCountry} -{' '}
+                          {me.me.postalCode}
                         </span>
                         <br />
                         <br />
@@ -158,21 +158,21 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                         {/* <span className='text-dark fw-bolder fs-5'>{now.diff(created_at, 'years', true) > 1? 'RENOVAÇÃO' : 'NO PRAZO'}</span> */}
                         {/* <span className='text-dark fw-bolder fs-5'>{(now.diff(created_at, 'years', true)*100).toFixed(2)}%</span> */}
                         <br />
-                        <span className='text-dark fw-bolder fs-6'>Ocupações:</span>
-                        {me.me.profile?.occupation?.map((occ) => {
+                        {/* <span className='text-dark fw-bolder fs-6'>Ocupações:</span>
+                        {me.me.occupation?.map((occ) => {
                           return <div>{occ.name}</div>
                         })}
+                        <br /> */}
+                        {/* <span className='text-dark fw-bolder fs-6'>Biografia:</span>
                         <br />
-                        <span className='text-dark fw-bolder fs-6'>Biografia:</span>
-                        <br />
-                        {me.me.profile?.bio?.split('\n').map(function (item, key) {
+                        {me.me.bio?.split('\n').map(function (item, key) {
                           return (
                             <span key={key}>
                               {item}
                               <br />
                             </span>
                           )
-                        })}
+                        })} */}
                       </tbody>
                       {/* end::Table body */}
                     </table>
@@ -201,8 +201,8 @@ const MyProfile: FC<React.PropsWithChildren<unknown>> = () => {
   // const dispatch = useDispatch()
   let {id} = useParams<ParamTypes>()
 
-  // console.log("ME AQUI", me)
-  // console.log("USERS", users)
+  console.log("ME AQUI", me)
+  console.log("USERS", users)
 
   useEffect(() => {
     // console.log("############ Loading component hey...", { module_id, class_id, me })
@@ -214,14 +214,14 @@ const MyProfile: FC<React.PropsWithChildren<unknown>> = () => {
     // dispatch(loadMyCampaignsRequest(+id!))
   }, [me.me])
   //console.log("USER", users)
-  // document.title = 'Perfil '+ users.user?.profile?.name + ' | Salve mais um';
+  // document.title = 'Perfil '+ users.user?.name + ' | Salve mais um';
   // if(users.loadingUser) return <Loading />
 
   return (
     <>
       {/* <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.SALVEMAISUM'})}</PageTitle> */}
-      {/* <PageTitle breadcrumbs={[]}>{users.user.profile?.name}</PageTitle> */}
-      <PageTitle breadcrumbs={[]}>{me.me.profile?.name}</PageTitle>
+      {/* <PageTitle breadcrumbs={[]}>{users.user.name}</PageTitle> */}
+      <PageTitle breadcrumbs={[]}>{me.me.name}</PageTitle>
       <MyProfilePage users={users} id={+id!} />
     </>
   )

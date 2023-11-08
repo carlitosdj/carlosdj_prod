@@ -39,7 +39,7 @@ import { User } from './types'
 export function* loadUsers(payload: ReturnType<typeof loadUsersRequest>) {
   try {
     put(loadUsersRequest(payload.payload.page, payload.payload.take))
-    const response: User[] = yield call(api.get, `users/${payload.payload.page}/${payload.payload.take}`)
+    const response: User[] = yield call(api.get, `user/${payload.payload.page}/${payload.payload.take}`)
     yield put(loadUsersSuccess(response))
   } catch (error) {
     yield put(loadUsersFailure())
@@ -63,7 +63,7 @@ export function* findUserId(id: number) {
 export function* searchUser(payload: ReturnType<typeof searchUserRequest>) {
   try {
     put(searchUserRequest(payload.payload))
-    const response: User[] = yield call(api.get, 'userssearch/' + payload.payload)
+    const response: User[] = yield call(api.get, 'user/search/' + payload.payload)
     yield put(searchUserSuccess(response))
   } catch (error) {
     yield put(searchUserFailure())
@@ -74,7 +74,7 @@ export function* searchUser(payload: ReturnType<typeof searchUserRequest>) {
 export function* createUser(payload: ReturnType<typeof createUserRequest>) {
   try {
     put(createUserRequest(payload.payload))
-    const response: User = yield call(api.post, 'users', payload.payload)
+    const response: User = yield call(api.post, 'user', payload.payload)
     yield put(createUserSuccess(response))
   } catch (error) {
     yield put(createUserFailure())
@@ -85,7 +85,7 @@ export function* createUser(payload: ReturnType<typeof createUserRequest>) {
 export function* updateUser(payload: ReturnType<typeof updateUserRequest>) {
   try {
     // put(updateUserRequest(payload.payload))
-    const response: User = yield call(api.post, 'users', payload.payload)
+    const response: User = yield call(api.patch, 'user/'+payload.payload.id, payload.payload)
     yield put(updateUserSuccess(response))
   } catch (error) {
     yield put(updateUserFailure())
@@ -95,7 +95,7 @@ export function* updateUser(payload: ReturnType<typeof updateUserRequest>) {
 //Delete
 export function* deleteUser(payload: ReturnType<typeof deleteUserRequest>) {
   try {
-    const response: User = yield call(api.delete, 'users/' + payload.payload)
+    const response: User = yield call(api.delete, 'user/' + payload.payload)
     yield put(deleteUserSuccess(response))
   } catch (error) {
     yield put(deleteUserFailure())

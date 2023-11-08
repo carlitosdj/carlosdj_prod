@@ -59,8 +59,32 @@ export interface User {
   last_login_at?: number
   origin?: string
   num_turma?: number
+  
   //profile:
   profile?: Profile
+  name?: string
+  bio?: string
+  timezone?: string
+  whatsapp?: string
+  cpf?: string
+  endereco?: string
+  address?: string
+  addressNumber?: string
+  addressDistrict?: string
+  addressCity?: string
+  addressState?: string
+  addressCountry?: string
+  image?: string
+  profileUserId?: number
+  postalCode?:string
+
+  city?: City
+  state?: State
+
+  data?: any
+
+  cityId?: string
+  stateId?: string
   /*  */
 }
 
@@ -89,7 +113,10 @@ export interface Profile {
 
   cityParent?: City
   stateParent?: State
-  occupation?: Occupation[]
+
+  cityId: string
+  stateId: string
+  //occupation?: Occupation[]
 }
 
 export interface Occupation {

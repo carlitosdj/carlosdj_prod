@@ -13,7 +13,8 @@ import {State} from './types'
 export function* loadState(payload: ReturnType<typeof loadStateRequest>) {
   try {
     put(loadStateRequest())
-    const response: State[] = yield call(api.get, 'states/')
+    const response: State[] = yield call(api.get, 'state')
+    console.log("response", response)
     yield put(loadStateSuccess(response))
   } catch (error) {
     yield put(loadStateFailure())
