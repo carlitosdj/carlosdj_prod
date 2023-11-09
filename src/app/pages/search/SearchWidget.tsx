@@ -81,11 +81,13 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                 
                   {component.search?.map((component: any, index) => {
 
-                    const terms = ["mentoria", "terça musical", "quinta teórica", "terca musical", "quinta teorica", "turma 2", "turma 1"]
-                    const result = terms.some(term => component.parentName.toLowerCase().includes(term))
+                    // const terms = ["mentoria", "terça musical", "quinta teórica", "terca musical", "quinta teorica", "turma 2", "turma 1"]
+                    // const result = terms.some(term => component.parentName.toLowerCase().includes(term))
                     return (
 
-                      <tr key={index} className={result && blockAreas? 'block':''}>
+                      <tr key={index} 
+                      // className={result && blockAreas? 'block':''}
+                      >
                         
                         <td >
                         <Link
@@ -104,16 +106,18 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                               style={{
                                 width:100, 
                                 pointerEvents: 'none',
-                                backgroundImage: result && blockAreas
-                                  ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')})`
-                                  : '',
+                                // backgroundImage: result && blockAreas
+                                //   ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')})`
+                                //   : '',
                                 backgroundPosition: 'right top',
                                 backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
                                 
                             }}
                             >
-                              <div className={blockAreas && result ? 'block' : ''} >
+                              <div 
+                              // className={blockAreas && result ? 'block' : ''} 
+                              >
                                 <iframe
                                     title='video'
                                     className='embed-responsive-item rounded'

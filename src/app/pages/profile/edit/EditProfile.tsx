@@ -242,7 +242,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
     setValidated(true)
     if (name && email && cpf) {
       if (selectedFile) {
-        console.log("file is selected")
+        console.log('file is selected')
         //Se selecionou arquivo novo
         //console.log("Selecionado novo arquivo")
         const formdata = new FormData()
@@ -250,22 +250,15 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
         // console.log('[formData]', formdata)
         // console.log('selectedFile', selectedFile)
         api.post('/upload', formdata, {}).then((res: any) => {
-          //console.log("Selecionou arquivo")
+          console.log('Selecionou arquivo', res)
           var data = new Date()
           const userToUpdate: User = {
             id: me.me.id,
             email,
-            //username: email,
             num_turma: numTurma,
-            //created_at: created_at,
-            // profile: {
-            //user_id: me.me.id,
             name,
-            //profileUserId: me.me.id,
-            image: res.data.filename,
             whatsapp,
             cpf,
-            //endereco,
             address,
             addressNumber,
             addressDistrict,
@@ -273,14 +266,9 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
             addressState,
             addressCountry,
             postalCode: addressCEP,
-
             cityId: userCity,
             stateId: userState,
-            //occupation,
-            //bio,
-            // },
-
-            updated_at: data.getTime() / 1000,
+            image: res.data.filename,
           }
           //Update user
           dispatch(updateMeRequest(userToUpdate))
@@ -294,21 +282,15 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
         })
       } else {
         //Se não selecionou nenhuma foto nova:
-        console.log("Nao selecionou nenhum arquivo")
+        console.log('Nao selecionou nenhum arquivo')
         var data = new Date()
         const userToUpdate: User = {
           id: me.me.id,
           email,
-          //username: email,
           num_turma: numTurma,
-          //created_at: created_at,
-          //profile: {
-          //user_id: me.me.id,
           name,
-          //profileUserId: me.me.id,
           whatsapp,
           cpf,
-          //endereco,
           address,
           addressNumber,
           addressDistrict,
@@ -318,11 +300,6 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
           postalCode: addressCEP,
           cityId: userCity,
           stateId: userState,
-          //occupation,
-          //bio,
-          //},
-
-          //updated_at: data.getTime() / 1000,
         }
 
         //console.log('------------------ USER TO UPDATE', userToUpdate)
@@ -731,7 +708,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
                                 src={
                                   image?.includes('https://')
                                     ? image
-                                    : 'https://labiopalatina.com.br/files/' + image
+                                    : 'http://localhost:3000/upload/file/' + image
                                 }
                                 style={{width: '100%'}}
                                 onError={({currentTarget}) => {

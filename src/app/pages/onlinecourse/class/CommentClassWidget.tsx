@@ -15,9 +15,13 @@ type Props = {
   url?: string
 }
 
-const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selectedClass, url}) => {
-  const annotationFromDb = useSelector((state: ApplicationState) => state.annotation)
-
+const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
+  className,
+  selectedClass,
+  url,
+}) => {
+  const annotationRedux = useSelector((state: ApplicationState) => state.annotation)
+  console.log('AnnotationRedux', annotationRedux)
   // const [validated, setValidated] = useState(false);
   const [annotation, setAnnotation] = useState('')
   const me = useSelector((state: ApplicationState) => state.me)
@@ -28,6 +32,10 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className
     dispatch(loadAnnotationSingleRequest(me.me.id!, Number(selectedClass.id)))
     // setValidated(false) // remove o validador das anotações
   }, [me, selectedClass.id, dispatch])
+
+  console.log('selectedClass.id', selectedClass.id)
+  console.log('me.me.id!', me.me.id!)
+  console.log('annotationRedux.data', annotationRedux.data ? 'nao' : 'sim')
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     const form = event.currentTarget
@@ -40,12 +48,15 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className
     if (annotation) {
       //&& terms === true
       const annotationToSave: Annotation = {
-        id: annotationFromDb.data?.id,
+        id: annotationRedux.data?.id,
         message: annotation,
-        parentUser: me.me.id,
-        parentComponent: Number(selectedClass.id),
+        userId: me.me.id,
+        componentId: Number(selectedClass.id),
       }
-      dispatch(createAnnotationRequest(annotationToSave))
+      console.log('annotationToSave', annotationToSave)
+
+      const isNew: boolean = annotationRedux.data ? false : true
+      dispatch(createAnnotationRequest(annotationToSave, isNew))
     }
   }
 
@@ -59,7 +70,7 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className
             <div className='tab-pane active' id='timeline'>
               {/* Post */}
               <div className='post clearfix'>
-                {annotationFromDb.loading ? (
+                {annotationRedux.loading ? (
                   <Loading />
                 ) : (
                   // <form noValidate validated={validated} onSubmit={handleSubmit} >
@@ -70,7 +81,7 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className
                       style={{width: '100%'}}
                       placeholder=''
                       required
-                      defaultValue={annotationFromDb.data?.message || ''}
+                      defaultValue={annotationRedux.data?.message || ''}
                       onChange={(e) => setAnnotation(e.target.value)}
                       name='description'
                     />

@@ -58,8 +58,8 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({
           style={{
             //display: 'flex',
             backgroundImage: !isAvailable
-              ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${'https://labiopalatina.com.br/files/' + img})`
-              : `url(${'https://labiopalatina.com.br/files/' + img})`,
+              ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${'http://localhost:3000/upload/file/' + img})`
+              : `url(${'http://localhost:3000/upload/file/' + img})`,
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',

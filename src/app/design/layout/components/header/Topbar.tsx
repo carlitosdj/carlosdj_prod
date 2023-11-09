@@ -18,7 +18,7 @@ const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
 const Topbar: FC<React.PropsWithChildren<unknown>> = () => {
   const {config} = useLayout()
   const me = useSelector((state: ApplicationState) => state.me)
-  const image = me.me.profile?.image
+  const image = me.me.image
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
       {/* begin::User */}
@@ -36,7 +36,7 @@ const Topbar: FC<React.PropsWithChildren<unknown>> = () => {
         >
           {/* <img src={toAbsoluteUrl('/media/avatars/blank.png')} alt='metronic' /> */}
            <img 
-            src={ image?.includes('https://') ? image : 'https://labiopalatina.com.br/files/' + image}
+            src={ image?.includes('https://') ? image : 'http://localhost:3000/upload/file/' + image}
             //style={{width: '40px', height:'40px'}}
             className=''
             onError={({ currentTarget }) => {

@@ -2,7 +2,7 @@ import {action} from 'typesafe-actions'
 import {SolicitationTypes, Solicitation} from './types'
 
 //Load
-export const loadAllSolicitationsRequest = (user_id: number) => action(SolicitationTypes.LOAD_ALLSOLICITATIONS_REQUEST, user_id)
+export const loadAllSolicitationsRequest = (userId: number) => action(SolicitationTypes.LOAD_ALLSOLICITATIONS_REQUEST, userId)
 export const loadAllSolicitationsSuccess = (data: Solicitation[]) =>
   action(SolicitationTypes.LOAD_ALLSOLICITATIONS_SUCCESS, data) //payload dps de LOAD_REQUEST
 export const loadAllSolicitationsFailure = () => action(SolicitationTypes.LOAD_ALLSOLICITATIONS_FAILURE)

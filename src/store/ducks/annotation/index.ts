@@ -13,7 +13,7 @@ const reducer: Reducer<AnnotationState> = (state = INITIAL_STATE, action) => {
     case AnnotationTypes.LOAD_ANNOTATION_SINGLE_REQUEST:
       return {...state, loading: true, data: {}}
     case AnnotationTypes.LOAD_ANNOTATION_SINGLE_SUCCESS:
-      return {...state, loading: false, error: {}, data: action.payload.data[0]}
+      return {...state, loading: false, error: {}, data: action.payload.data}
     case AnnotationTypes.LOAD_ANNOTATION_SINGLE_FAILURE:
       return {...state, loading: false, error: action.payload, data: {}}
 

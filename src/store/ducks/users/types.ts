@@ -89,7 +89,7 @@ export interface User {
 }
 
 export interface Profile {
-  user_id?: number
+  userId?: number
   name?: string
   public_email?: string
   gravatar_email?: string
@@ -124,7 +124,7 @@ export interface Occupation {
   name?: string
   created_at?: number
   status?: number
-  user_id?: number
+  userId?: number
   parentUser?: User
 }
 

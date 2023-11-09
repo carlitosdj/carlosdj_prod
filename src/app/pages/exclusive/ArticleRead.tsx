@@ -184,7 +184,7 @@ const ArticleReadPage: FC<React.PropsWithChildren<unknown>> = () => {
                     w: {size.width}<br/> */}
                     <Document 
                       //renderMode='no-cors'
-                      file={'https://labiopalatina.com.br/files/' + filePDF} 
+                      file={'http://localhost:3000/upload/file/' + filePDF} 
                       onLoadSuccess={onDocumentLoadSuccess}
                       onLoadError={console.log}
                       

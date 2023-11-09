@@ -81,11 +81,11 @@ export function* loadComponent(payload: ReturnType<typeof loadComponentRequest>)
 //Load Modules
 export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
   try {
-    //console.log("loadModules SAGA", [payload.payload.id, payload.payload.user_id, payload.payload.num_turma])
+    //console.log("loadModules SAGA", [payload.payload.id, payload.payload.userId, payload.payload.num_turma])
     put(
       loadModulesRequest(
         payload.payload.id,
-        payload.payload.user_id,
+        payload.payload.userId,
         payload.payload.num_turma,
         payload.payload.orderby
       )
@@ -95,7 +95,7 @@ export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
       'component/modules/' +
         payload.payload.id +
         '/' +
-        1 + //payload.payload.user_id +
+        1 + //payload.payload.userId +
         '/' +
         1 + //payload.payload.num_turma +
         '/' +
@@ -111,7 +111,7 @@ export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
 export function* loadClasses(payload: ReturnType<typeof loadClassesRequest>) {
   //console.log("loadClasses SAGA", payload)
   try {
-    put(loadClassesRequest(payload.payload.id, payload.payload.user_id, payload.payload.orderby))
+    put(loadClassesRequest(payload.payload.id, payload.payload.userId, payload.payload.orderby))
     const response: Component = yield call(
       api.get,
       `component/classes/${payload.payload.id}/1/${
@@ -140,10 +140,10 @@ export function* loadLastLiveClass(payload: ReturnType<typeof loadLastLiveClassR
 export function* loadLastClass(payload: ReturnType<typeof loadLastClassRequest>) {
   //console.log("loadLASTClass SAGA", payload)
   try {
-    put(loadLastClassRequest(payload.payload.user_id))
+    put(loadLastClassRequest(payload.payload.userId))
     const response: Component = yield call(
       api.get,
-      'lastclass/' + payload.payload.user_id //done
+      'lastclass/' + payload.payload.userId //done
     )
     yield put(loadLastClassSuccess(response))
   } catch (error: any) {
@@ -230,19 +230,25 @@ export function* deleteExtra(payload: ReturnType<typeof deleteExtraRequest>) {
 
 //Concluir Aula Concluida
 export function* createAulaConcluida(payload: ReturnType<typeof createAulaConcluidaRequest>) {
+  console.log('Payload', payload.payload)
   try {
     put(
       createAulaConcluidaRequest(
         payload.payload.id,
-        payload.payload.user_id,
+        payload.payload.userId,
         payload.payload.componentId,
-        payload.payload.parent_id,
+        payload.payload.parentId,
         payload.payload.status
       )
     )
-    const response: AulaConcluida = yield call(api.post, 'aulaconcluida', payload.payload)
+    const { parentId, ...result } = payload.payload
+
+    const response: AulaConcluida = yield payload.payload.id
+      ? call(api.patch, 'completed/'+payload.payload.id, result)
+      : call(api.post, 'completed', result)
+
     //console.log("CREATED AULACONCLUIDA response", response)
-    yield put(createAulaConcluidaSuccess(response, payload.payload.parent_id))
+    yield put(createAulaConcluidaSuccess(response, parentId))
   } catch (error: any) {
     yield put(createAulaConcluidaFailure(error.response.data))
   }
@@ -251,7 +257,7 @@ export function* createAulaConcluida(payload: ReturnType<typeof createAulaConclu
 //Delete Aula Concluida
 export function* deleteAulaConcluida(payload: ReturnType<typeof deleteAulaConcluidaRequest>) {
   try {
-    const number: number = yield call(api.delete, 'aulaconcluida/' + payload.payload.id)
+    const number: number = yield call(api.delete, 'completed/' + payload.payload.id)
     yield put(deleteAulaConcluidaSuccess(number, payload.payload.aula))
   } catch (error: any) {
     yield put(deleteAulaConcluidaFailure(error.response.data))
@@ -264,12 +270,12 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
     put(
       createRateRequest(
         payload.payload.id,
-        payload.payload.user_id,
+        payload.payload.userId,
         payload.payload.componentId,
         payload.payload.rate
       )
     )
-    const response: AulaConcluida = yield call(api.post, 'aulaconcluida', payload.payload)
+    const response: AulaConcluida = yield call(api.post, 'completed', payload.payload)
     //console.log("CREATED RATE response", response)
     yield put(createRateSuccess(response))
   } catch (error: any) {
@@ -282,7 +288,7 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
 export function* searchComponent(payload: ReturnType<typeof searchRequest>) {
   try {
     put(searchRequest(payload.payload))
-    const response: Component = yield call(api.get, 'search/' + payload.payload)
+    const response: Component = yield call(api.get, 'component/search/' + payload.payload)
     //console.log("RESPONSE SEARCH", response)
     yield put(searchSuccess(response))
   } catch (error: any) {

@@ -44,7 +44,7 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
               src={
                 me.me.image?.includes('https://')
                   ? me.me.image
-                  : 'https://labiopalatina.com.br/files/' + me.me.image
+                  : 'http://localhost:3000/upload/file/' + me.me.image
               }
               style={{width: '100%'}}
               onError={({currentTarget}) => {

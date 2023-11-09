@@ -225,7 +225,7 @@ const Requests: React.FC<Props> = ({className, solicitation, name, status, actio
                                   src={
                                     data.parentPatient?.profile?.image?.includes('https://')
                                       ? data.parentPatient?.profile?.image
-                                      : 'https://labiopalatina.com.br/files/' +
+                                      : 'http://localhost:3000/upload/file/' +
                                         data.parentPatient?.profile?.image
                                   }
                                   style={{width: '100%'}}

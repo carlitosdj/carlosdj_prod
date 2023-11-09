@@ -143,7 +143,7 @@ const History: React.FC<Props> = ({data, show, handleClose}) => {
                                         
                                         {data.detail?.map(detail => {
                                             if (detail.type_detail === 'img')
-                                                return <img alt='' src={'https://labiopalatina.com.br/files/'+detail.value_detail} className='col-md-3 p-2 col-6'></img>
+                                                return <img alt='' src={'http://localhost:3000/upload/file/'+detail.value_detail} className='col-md-3 p-2 col-6'></img>
                                             return <div className='text-info'>{detail.type_detail}: {detail.value_detail}</div>
                                         })}
                                         {data?.message && <div className='text-info' style={{ whiteSpace: 'pre-line' }}>{data?.message}</div>}
@@ -214,7 +214,7 @@ const History: React.FC<Props> = ({data, show, handleClose}) => {
                 <h3>Mais sobre o paciente</h3>
                 <div className='row'>
                     <div className='col-md-3'>
-                        <img alt='' src={'https://labiopalatina.com.br/files/'+data?.parentPatient?.profile?.image} width={'100%'}/>
+                        <img alt='' src={'http://localhost:3000/upload/file/'+data?.parentPatient?.profile?.image} width={'100%'}/>
                     </div>
                     <div className='col-md-8 mt-3 mb-2'>
                         {data?.parentPatient?.profile?.name}<br/>

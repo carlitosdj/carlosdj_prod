@@ -71,7 +71,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
                         transparent={false}
                         //autoplay
                         //onLoaded={() => console.log("Loaded")}
-                        //onEnd={() => aulaconcluida(selectedClass)}
+                        //onEnd={() => completed(selectedClass)}
                         //onProgress={(e:any) => console.log('oi', e)}
                       /> *x/}
                       <iframe
@@ -162,7 +162,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
                       name={data.name!}
                       description={data.description!}
                       className='card-xl-stretch mb-xl-8'
-                      img={'https://labiopalatina.com.br/files/' + img}
+                      img={'http://localhost:3000/upload/file/' + img}
                       height={200}
                       locked={!isAvailable}
                       release={release}

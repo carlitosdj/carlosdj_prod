@@ -77,7 +77,7 @@ const FormForward: React.FC<Props> = ({data, show, handleClose, message, setMess
       created_at: dateNowPlusOneSecond.getTime() / 1000,
       parentSolicitation: data!.id,
       status: 1,
-      // user_id: 2,
+      // userId: 2,
       parentUser: {id: parseInt(userSelected!)}, //MUDAR AQUI
       //message,
     }
@@ -87,7 +87,7 @@ const FormForward: React.FC<Props> = ({data, show, handleClose, message, setMess
       created_at: dateNow.getTime() / 1000,
       parentSolicitation: data!.id,
       status: 1,
-      // user_id: me.me.id!,
+      // userId: me.me.id!,
       parentUser: {id: me.me.id!},
       message,
     }

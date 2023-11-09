@@ -188,11 +188,11 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         modules: Object.assign([], state.modules, {
           ...state.modules.map((modulo) => {
             // console.log("Payload", action.payload)
-            // console.log("Payload", action.payload.data.data.parent_id)
+            // console.log("Payload", action.payload.parentId)
             // console.log("Modulo", modulo.id)
-            if (modulo.id === action.payload.data.data.parent_id) {
-              // console.log("Achei", modulo)
-              //modulo.aulaconcluida = [action.payload.data]
+            if (modulo.id === action.payload.parentId) {
+              console.log("Achei", modulo)
+              //modulo.completed = [action.payload.data]
               modulo.children?.map((aula) => {
                 if (aula.id === action.payload.data.data.componentId) {
                   // console.log("achei de novo", aula)
@@ -233,7 +233,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
           ...state.modules.map((modulo) => {
             // console.log("Payload", action.payload)
             // console.log("Modulo", modulo.id)
-            // console.log("Payload", action.payload.data.data.parent_id)
+            // console.log("Payload", action.payload.data.data.parentId)
             if (modulo.id === action.payload.aula.parent.id) {
               // console.log("Achei", modulo)
               modulo.children?.map((aula) => {
@@ -252,7 +252,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         classes: Object.assign([], state.classes, {
           ...state.classes.map((aula) => {
             if (aula.completed?.length) {
-              // console.log("aulaaa", aula.aulaconcluida![0].id)
+              // console.log("aulaaa", aula.completed![0].id)
               // console.log("payload", action.payload.id.data)
               if (aula.completed![0].id === action.payload.id.data) {
                 // console.log("Achei!", aula)

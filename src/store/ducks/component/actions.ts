@@ -15,17 +15,17 @@ export const loadComponentFailure = (err: any[]) =>
 //Load Modules
 export const loadModulesRequest = (
   id: string,
-  user_id: number,
+  userId: number,
   num_turma: number,
   orderby: string
-) => action(ComponentTypes.LOAD_MODULES_REQUEST, {id, user_id, num_turma, orderby})
+) => action(ComponentTypes.LOAD_MODULES_REQUEST, {id, userId, num_turma, orderby})
 export const loadModulesSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_MODULES_SUCCESS, data)
 export const loadModulesFailure = (err: any[]) => action(ComponentTypes.LOAD_MODULES_FAILURE, err)
 
 //Load Classes
-export const loadClassesRequest = (id: string, user_id: number, orderby: string) =>
-  action(ComponentTypes.LOAD_CLASSES_REQUEST, {id, user_id, orderby})
+export const loadClassesRequest = (id: string, userId: number, orderby: string) =>
+  action(ComponentTypes.LOAD_CLASSES_REQUEST, {id, userId, orderby})
 export const loadClassesSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_CLASSES_SUCCESS, data)
 export const loadClassesFailure = (err: any[]) => action(ComponentTypes.LOAD_CLASSES_FAILURE, err)
@@ -38,8 +38,8 @@ export const loadLastLiveClassFailure = (err: any[]) =>
   action(ComponentTypes.LOAD_LASTLIVECLASS_FAILURE, err)
 
 //Load Last Class
-export const loadLastClassRequest = (user_id: number) =>
-  action(ComponentTypes.LOAD_LASTCLASS_REQUEST, {user_id})
+export const loadLastClassRequest = (userId: number) =>
+  action(ComponentTypes.LOAD_LASTCLASS_REQUEST, {userId})
 export const loadLastClassSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_LASTCLASS_SUCCESS, data)
 export const loadLastClassFailure = (err: any[]) =>
@@ -104,20 +104,20 @@ export const deleteExtraFailure = (err: any[]) => action(ComponentTypes.DELETE_E
 //Single Aula Concluida
 export const createAulaConcluidaRequest = (
   id: number,
-  user_id: number,
+  userId: number,
   componentId: number,
-  parent_id: number,
+  parentId: number,
   status: number
 ) =>
   action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_REQUEST, {
     id,
-    user_id,
+    userId,
     componentId,
-    parent_id,
+    parentId,
     status,
   })
-export const createAulaConcluidaSuccess = (data: AulaConcluida, parent_id: number) =>
-  action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_SUCCESS, {data, parent_id})
+export const createAulaConcluidaSuccess = (data: AulaConcluida, parentId: number) =>
+  action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_SUCCESS, {data, parentId})
 export const createAulaConcluidaFailure = (err: any[]) =>
   action(AulaConcluidaTypes.CREATE_AULACONCLUIDA_FAILURE, err)
 
@@ -132,10 +132,10 @@ export const deleteAulaConcluidaFailure = (err: any[]) =>
 //Single Aula Concluida
 export const createRateRequest = (
   id: number,
-  user_id: number,
+  userId: number,
   componentId: number,
   rate: number
-) => action(ComponentTypes.CREATE_RATE_REQUEST, {id, user_id, componentId, rate})
+) => action(ComponentTypes.CREATE_RATE_REQUEST, {id, userId, componentId, rate})
 export const createRateSuccess = (data: AulaConcluida) =>
   action(ComponentTypes.CREATE_RATE_SUCCESS, data)
 export const createRateFailure = (err: any[]) => action(ComponentTypes.CREATE_RATE_FAILURE, err)

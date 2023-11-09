@@ -31,7 +31,7 @@ export interface Support {
   message?: string
   reply?: string
   parentUser?: number
-  user_id?: number
+  userId?: number
   parentAdmin?: number
   admin_id?: number
   created_at?: number

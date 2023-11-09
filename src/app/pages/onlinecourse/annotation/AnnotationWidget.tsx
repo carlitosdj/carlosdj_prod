@@ -22,7 +22,7 @@ type Props = {
 // }
 
 const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, annotations}) => {
-  // console.log("MODULOS", comp)
+  console.log('annotations', annotations)
   const intl = useIntl()
   return (
     <div className={`card ${className}`}>
@@ -50,11 +50,11 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, anno
                 {/* begin::Table head */}
                 <thead>
                   <tr className='border-0'>
-                    {/* <th className='p-0 w-40px'></th> */}
-                    <th className='p-0 min-w-150px'></th>
-                    <th className='p-0 min-w-140px'></th>
-                    <th className='p-0 min-w-110px'></th>
-                    <th className='p-0 min-w-50px'></th>
+                    {/* <th className='p-2 min-w-150px'>Comentário</th>
+                    <th className='p-2 min-w-140px'>Aula</th>
+                    <th className='p-2 min-w-110px'>Módulo</th>
+                    <th className='p-2 min-w-50px'>Curso</th>
+                    <th className='p-2 min-w-50px text-end'>Ação</th> */}
                   </tr>
                 </thead>
                 {/* end::Table head */}
@@ -63,49 +63,51 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, anno
                   {annotations.data?.map((annotation: any, index) => {
                     return (
                       <tr>
-                        {/* <td>
-                          <div className='m-2'>
-                            <span className=''>
-                              <KTSVG
-                                className={'svg-icon-success svg-icon-2'}
-                                path='/media/icons/duotune/abstract/abs034.svg'
-                              />
-                            </span>
-                          </div>
-                        </td> */}
                         <td>
                           <Link
                             className='fs-6 text-gray-800 text-hover-primary fw-bolder'
                             to={
                               '/class/' +
-                              annotation.course_id +
+                              annotation.parentComponent.parent.componentId +
                               '/' +
-                              annotation.module_id +
+                              annotation.parentComponent.parent.id +
                               '/' +
-                              annotation.class_id
+                              annotation.parentComponent.id
                             }
                             style={{display: 'flex'}}
                           >
                             {annotation.message}
                           </Link>
-                          <span className='text-muted fw-bold d-block'>{annotation.aula}</span>
                         </td>
-                        <td className='text-end text-muted fw-bold'>{annotation.modulo}</td>
-                        {/* <td className='text-end'>
-                      <span className='badge badge-light-success'>xxx</span>
-                    </td> */}
+                        <td className='text-muted fw-bold'>{annotation.parentComponent.name}</td>
+                        <td className='text-muted fw-bold'>
+                          {annotation.parentComponent.parent.name}
+                        </td>
+                        <td className='text-muted fw-bold'>
+                          {annotation.parentComponent.parent.parent.name}
+                        </td>
 
                         {/* <td className='text-end'>
-                      <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
-                        />
-                      </a>
-                    </td> */}
+                          <a
+                            href='#'
+                            className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr064.svg'
+                              className='svg-icon-2'
+                            />
+                          </a>
+                          &nbsp;
+                          <a
+                            href='#'
+                            className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr064.svg'
+                              className='svg-icon-2'
+                            />
+                          </a>
+                        </td> */}
                       </tr>
                     )
                   })}

@@ -148,7 +148,7 @@ const PhotoUpload: React.FC<Props> = ({ croppedImage, setCroppedImage, title, re
           <a style={{ cursor: 'pointer' }}>
             {image && !imgSrc && <img
               alt=''
-              src={image?.includes('https://') ? image : 'https://labiopalatina.com.br/files/' + image}
+              src={image?.includes('https://') ? image : 'http://localhost:3000/upload/file/' + image}
               style={{ width: '100%' }}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // prevents looping

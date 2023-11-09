@@ -38,11 +38,11 @@ const withLinkToModule = (text: any, id: any, module_id: any, isAvailable: boole
 }
 
 const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp, id}) => {
-  console.log('MODULOS', comp)
+  console.log('MODULOS', comp.modules)
   const intl = useIntl()
   let faseDuration = 0
   let extra = comp.modules[0].parent?.extras?.filter((extra: any) => extra.keyExtra === 'img')[0]
-  console.log("EXTRA",extra)
+  // console.log("EXTRA",extra)
   let img = '1652141135752-logo.png'
   if (extra?.valueExtra) img = extra?.valueExtra
 
@@ -53,7 +53,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
 
         <div className='card-header border-0 pt-5 mt-2'>
           <div className='col-md-1 col-3'>
-            <img src={'https://labiopalatina.com.br/files/' + img} alt='' style={{width: '100%'}} />
+            <img src={'http://localhost:3000/upload/file/' + img} alt='' style={{width: '100%'}} />
           </div>
           <div className=' col-md-11 col-9'>
             <div className=''>
@@ -105,37 +105,48 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                       )
                       faseDuration += duration
 
-                      // // let module_length = module.children!.length
-                      // // let conclusao = Math.round(
-                      // //   (module.children
-                      // //     .map(
-                      // //       (aula: any) =>
-                      // //         aula.completed.filter((ac: any) => ac.status === 1).length
-                      // //     )
-                      // //     .reduce(add, 0) /
-                      // //     module_length) *
-                      // //     100
-                      // // )
+                      let module_length = module.children!.length
+                      // console.log("module len", module_length)
+                      // console.log("module", module.children)
 
-                      // let dataAvailable = MOMENT(
-                      //   module.available[0]?.available_date
-                      // ).format('YYYY-MM-DD HH:mm:ss.000')
+                      // module.children
+                      //     .map(
+                      //       (aula: any) =>
+                      //         //aula.completed.filter((ac: any) => ac.status === 1).length
+                      //         console.log("aula", aula)
+                      //     )
 
-                      // let dataAvailableMoment = MOMENT(
-                      //   module.available[0]?.available_date
-                      // ).format('DD/MM')
+                      let conclusao = Math.round(
+                        (module.children
+                          .map(
+                            (aula: any) =>
+                              aula.completed.filter((ac: any) => ac.status === 1).length
+                          )
+                          .reduce(add, 0) /
+                          module_length) *
+                          100
+                      )
+                      // console.log("conclusao", conclusao)
 
-                      // let isAvailable = module.available[0]
-                      //   ? MOMENT(today).isAfter(dataAvailable)
-                      //     ? true
-                      //     : false
-                      //   : false
+                      let dataAvailable = MOMENT(
+                        module.available[0]?.available_date
+                      ).format('YYYY-MM-DD HH:mm:ss.000')
 
-                      // let textAvailable = module.available[0]
-                      //   ? isAvailable
-                      //     ? 'Liberado'
-                      //     : 'Disponível em: ' + dataAvailableMoment
-                      //   : 'A definir'
+                      let dataAvailableMoment = MOMENT(
+                        module.available[0]?.available_date
+                      ).format('DD/MM')
+
+                      let isAvailable = module.available[0]
+                        ? MOMENT(today).isAfter(dataAvailable)
+                          ? true
+                          : false
+                        : false
+
+                      let textAvailable = module.available[0]
+                        ? isAvailable
+                          ? 'Liberado'
+                          : 'Disponível em: ' + dataAvailableMoment
+                        : 'A definir'
 
                       return (
                         <tr key={index}>
@@ -144,7 +155,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                           {/* <td>{module.name}</td> */}
                           <td className='text-center text-muted fw-bold'>
                             {module.children!.length}
-                            {/* {intl.formatMessage({id: 'MENU.CLASSES'})} */}
+                            {intl.formatMessage({id: 'MENU.CLASSES'})}
                           </td>
                           <td className='text-center'>
                             <span className='badge badge-light-success'>
@@ -155,15 +166,15 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                           <td className='text-end'>
                             <div className='d-flex flex-column w-100 me-2'>
                               <div className='d-flex flex-stack mb-2'>
-                                {/* <span className='text-muted me-2 fs-7 fw-bold'>{conclusao}%</span> */}
-                                <span className='text-muted me-2 fs-7 fw-bold'>x%</span>
+                                <span className='text-muted me-2 fs-7 fw-bold'>{conclusao}%</span>
+                                {/* <span className='text-muted me-2 fs-7 fw-bold'>x%</span> */}
                               </div>
                               <div className='progress h-6px w-100'>
                                 <div
                                   className='progress-bar bg-success'
                                   role='progressbar'
-                                  //style={{width: conclusao + '%'}}
-                                  style={{width: 50 + '%'}}
+                                  style={{width: conclusao + '%'}}
+                                  // style={{width: 50 + '%'}}
                                 ></div>
                               </div>
                             </div>

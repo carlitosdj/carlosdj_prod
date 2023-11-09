@@ -27,7 +27,7 @@ const Leads = ({handleClose}: handleCloseProps) => {
     const support: Support = {
       message,
       parentUser: me.me.id,
-      user_id: me.me.id,
+      userId: me.me.id,
       status: 0,
       created_at: data.getTime() / 1000,
     }

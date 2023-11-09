@@ -23,7 +23,7 @@ import {SolicitationState} from './ducks/solicitation/types'
 import { CityState } from './ducks/city/types'
 import { StateState } from './ducks/state/types'
 import { MeState } from './ducks/me/types'
-// import { AulaConcluidaState } from './ducks/aulaconcluida/types';
+// import { AulaConcluidaState } from './ducks/completed/types';
 
 export interface ApplicationState {
   //carts: CartsState

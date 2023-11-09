@@ -52,8 +52,8 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
 
   //  let isAvailable = true
 
-  const aulaconcluida = (aula: any) => {
-    // console.log('aula ver', aula)
+  const completed = (aula: any) => {
+    console.log('AULACONCLUIDA-LENGTH', aula.completed.length)
     if (aula.completed[0]?.status === 1) {
       //Desmarcar
       // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
@@ -87,8 +87,8 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
       .indexOf(selectedClass.id)
     let next = comp.classes[index + 1]
 
-    if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) aulaconcluida(selectedClass)
-    //aulaconcluida(selectedClass)
+    if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
+    //completed(selectedClass)
     if (next) {
       navigate('/class/' + id + '/' + module_id + '/' + next.id)
     }
@@ -121,7 +121,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
     // console.log("Index", index)
     let next = comp.modules[index + 1]
 
-    if (!selectedClass.completed.length) aulaconcluida(selectedClass)
+    if (!selectedClass.completed.length) completed(selectedClass)
 
     if (next) {
       navigate('/class/' + id + '/' + next.id)
@@ -202,7 +202,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
                   {comp.loadingAulaConcluida && comp.loadingAulaConcluidaId === aula.id ? (
                     <span className='spinner-border spinner-border-sm'></span>
                   ) : (
-                    <Link to='#' onClick={() => aulaconcluida(aula)}>
+                    <Link to='#' onClick={() => completed(aula)}>
                       <div style={{display: 'flex'}}>
                         {aula.completed.length ? (
                           aula.completed[0].status ? (

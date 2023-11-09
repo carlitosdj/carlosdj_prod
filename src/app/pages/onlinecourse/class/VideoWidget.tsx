@@ -76,17 +76,18 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
   const me = useSelector((state: ApplicationState) => state.me)
   const component = useSelector((state: ApplicationState) => state.component)
   const navigate = useNavigate()
-  //let {id, module_id, class_id} = useParams<ParamTypes>()
+  let {id, module_id, class_id} = useParams<ParamTypes>()
 
   // useEffect(() => {
   //   //console.log("ei")
   // },[id, module_id, class_id])
 
-  const aulaconcluida = (aula: any) => {
-    if (aula.aulaconcluida[0]?.status === 1) {
+  const completed = (aula: any) => {
+    console.log("CONCLUINDO AULA AUTOMATICAMENTE............", aula)
+    if (aula.completed[0]?.status === 1) {
       //Desmarcar
-      // dispatch(deleteAulaConcluidaRequest(aula.aulaconcluida[0].id, aula))
-      //dispatch(createAulaConcluidaRequest(aula.aulaconcluida[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
+      // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
+      //dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
     } else {
       // console.log('MARCAR como concluida', aula)
       console.log('concluindo aula')
@@ -100,25 +101,25 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
         )
       )
     }
-    //goNextClass()
+    goNextClass()
   }
 
-  // const goNextClass = () => {
-  //   //console.log('next')
-  //   var index = component.classes
-  //     .map((e: any) => {
-  //       return e.id
-  //     })
-  //     .indexOf(selectedClass.id)
-  //   let next = component.classes[index + 1]
-
-  //   if (selectedClass.aulaconcluida[0]?.status === 0 || selectedClass.aulaconcluida[0]?.status === null || !selectedClass.aulaconcluida.length) aulaconcluida(selectedClass)
-  //   //aulaconcluida(selectedClass)
-  //   if (next) {
-  //     console.log("Tem next...")
-  //     navigate('/class/' + id + '/' + module_id + '/' + next.id)
-  //   }
-  // }
+  const goNextClass = () => {
+    //console.log('next')
+    var index = component.classes
+      .map((e: any) => {
+        return e.id
+      })
+      .indexOf(selectedClass.id)
+    let next = component.classes[index + 1]
+    console.log("GO NEXT?", next)
+    // if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
+    // //completed(selectedClass)
+    if (next) {
+      console.log("Tem next...")
+      navigate('/class/' + id + '/' + module_id + '/' + next.id)
+    }
+  }
 
   //console.log("pathname", video_id)
   return (
@@ -145,7 +146,7 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
               video={video_id}
               autoplay
               //onLoaded={() => console.log("Loaded")}
-              onEnd={() => aulaconcluida(selectedClass)}
+              onEnd={() => completed(selectedClass)}
               //onProgress={(e:any) => console.log('oi', e)}
             />
           )}

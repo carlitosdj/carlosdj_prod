@@ -14,7 +14,7 @@ import {Annotation} from '../annotation/types'
 export function* loadMyAnnotations(payload: ReturnType<typeof loadMyAnnotationsRequest>) {
   try {
     put(loadMyAnnotationsRequest(payload.payload))
-    const response: Annotation = yield call(api.get, 'allMyAnnotations/' + payload.payload)
+    const response: Annotation = yield call(api.get, 'annotation/' + payload.payload)
     yield put(loadMyAnnotationsSuccess(response))
   } catch (error: any) {
     yield put(loadMyAnnotationsFailure(error.response.data))

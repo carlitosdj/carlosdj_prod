@@ -135,7 +135,7 @@ export class ComponentToPrint extends React.Component<Props> {
                               return (
                                 <img
                                   alt=''
-                                  src={'https://labiopalatina.com.br/files/' + detail.value_detail}
+                                  src={'http://localhost:3000/upload/file/' + detail.value_detail}
                                   className='col-md-3 p-2 col-6'
                                 ></img>
                               )
@@ -212,7 +212,7 @@ export class ComponentToPrint extends React.Component<Props> {
             <img
               alt=''
               src={
-                'https://labiopalatina.com.br/files/' +
+                'http://localhost:3000/upload/file/' +
                 this.props.data?.parentPatient?.profile?.image
               }
               width={'100%'}

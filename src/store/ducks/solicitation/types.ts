@@ -31,7 +31,7 @@ export interface Solicitation {
   message?: string
   reply?: string
   parentUser?: User
-  user_id?: number
+  userId?: number
 
   parentPatient?: UserPatient
   patient_id?: number
@@ -51,7 +51,7 @@ export interface UserPatient {
   id?: number
   username?: string
   name?: string
-  user_id?: number
+  userId?: number
   
   email?: string
   password_hash?: string
@@ -74,7 +74,7 @@ export interface UserPatient {
 }
 
 export interface ProfilePatient {
-  user_id?: number
+  userId?: number
   name?: string
   public_email?: string
   gravatar_email?: string
@@ -109,7 +109,7 @@ export interface Solicitationhistory {
   parentSolicitation?: number
   solicitation_id?: number
 
-  user_id?: number
+  userId?: number
   parentUser?: User
 
   patient_id?: number

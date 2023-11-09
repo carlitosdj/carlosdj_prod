@@ -69,11 +69,11 @@ const ClassPage: React.FC<React.PropsWithChildren<Props>> = ({
             />
           </div>
           <div className='col-xxl-6'>
-            {/* <CommentClassWidget
+            <CommentClassWidget
               className='card-xxl-stretch mb-5 mb-xxl-8'
               selectedClass={selectedClass}
               url={url}
-            /> */}
+            />
           </div>
         </div>
       </div>

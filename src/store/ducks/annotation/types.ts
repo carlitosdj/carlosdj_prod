@@ -18,13 +18,15 @@ export enum AnnotationTypes {
 // User Imported from Me
 export interface Annotation {
   id?: number | undefined
-  user_id?: number | undefined
+  userId?: number | undefined
   componentId?: number | undefined
   message?: string | undefined
   created_at?: string | undefined
   status?: number | undefined
   parentUser?: any | undefined
   parentComponent?: any | undefined
+  //userId?: any | undefined
+
 }
 
 export interface Error {
