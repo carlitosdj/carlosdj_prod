@@ -17,7 +17,7 @@ const {v4: uuidv4} = require('uuid')
 
 type ParamTypes = {
   email: string | undefined
-  auth_key: string | undefined
+  authKey: string | undefined
 }
 
 const ChangePassInternal = () => {
@@ -33,13 +33,13 @@ const ChangePassInternal = () => {
   // const cookieUser:User = cookies.user_associacao;
   //Redux:
   const me = useSelector((state: ApplicationState) => state.me)
-  const {email, auth_key} = useParams<ParamTypes>()
+  const {email, authKey} = useParams<ParamTypes>()
 
   //console.log('ME', me)
 
   useEffect(() => {
-    dispatch(loadMeRequest(email!, auth_key!))
-  }, [auth_key, email, dispatch])
+    dispatch(loadMeRequest(email!, authKey!))
+  }, [authKey, email, dispatch])
 
   // console.log('cookies - login', cookies)
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +47,7 @@ const ChangePassInternal = () => {
     if (password && confirmPassword && password === confirmPassword) {
       //console.log('dispatching...')
       setError('')
-      dispatch(changePassMeRequest({id: me.me.id, email, newPassword: password, auth_key: uuidv4()}))
+      dispatch(changePassMeRequest({id: me.me.id, email, newPassword: password, authKey: uuidv4()}))
     } else {
       //errMsg('Dados inválidos, preencha novamente');
       //console.log('Erro!')

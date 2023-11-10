@@ -41,13 +41,15 @@ export function AuthPage() {
             
               <Route path='login' element={<Login />} />
               <Route path='registration' element={<Registration />} />
-              <Route path='change/:email/:auth_key' element={<ChangePass />} />
+              <Route path='change/:email/:authKey' element={<ChangePass />} />
               <Route path='forgot-password' element={<ForgotPassword />} />
               {/* <Route path='auth' element={<Navigate to='/auth/login'/>}></Route> */}
               {/* <Route element={<Navigate to='/auth/login'/>}></Route> */}
             
           </Routes>
         </div>
+
+        
         {/* end::Wrapper */}
       </div>
       {/* end::Content */}

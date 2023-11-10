@@ -11,8 +11,10 @@ export const loadAnnotationSingleFailure = (error: {}) =>
 
 //Create
 export const createAnnotationRequest = (annotation: Annotation, isNew: boolean) =>
-  action(AnnotationTypes.CREATE_ANNOTATION_REQUEST, { annotation, isNew })
+  action(AnnotationTypes.CREATE_ANNOTATION_REQUEST, {annotation, isNew})
 export const createAnnotationSuccess = (data: Annotation) =>
   action(AnnotationTypes.CREATE_ANNOTATION_SUCCESS, data)
 export const createAnnotationFailure = (error: {}) =>
   action(AnnotationTypes.CREATE_ANNOTATION_FAILURE, error)
+
+

@@ -25,6 +25,7 @@ const reducer: Reducer<AnnotationState> = (state = INITIAL_STATE, action) => {
     case AnnotationTypes.CREATE_ANNOTATION_FAILURE:
       return {...state, loading: false, error: action.payload, data: {}}
 
+
     default:
       return state
   }

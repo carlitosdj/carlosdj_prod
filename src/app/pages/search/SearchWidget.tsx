@@ -83,6 +83,8 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
 
                     // const terms = ["mentoria", "terça musical", "quinta teórica", "terca musical", "quinta teorica", "turma 2", "turma 1"]
                     // const result = terms.some(term => component.parentName.toLowerCase().includes(term))
+                    let extra = component.extras?.filter((extra:any) => extra.keyExtra === 'url')[0]
+                    console.log("EXTRA-VER", extra)
                     return (
 
                       <tr key={index} 
@@ -94,9 +96,9 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                             className='fs-6 text-gray-800 text-hover-primary fw-bolder'
                             to={
                               '/class/' +
-                              component.firstId +
+                              component.parent.componentId +
                               '/' +
-                              component.parentId +
+                              component.parent.id +
                               '/' +
                               component.id
                             }
@@ -118,10 +120,12 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                               <div 
                               // className={blockAreas && result ? 'block' : ''} 
                               >
+                                
+                                
                                 <iframe
                                     title='video'
                                     className='embed-responsive-item rounded'
-                                    src={component.valueExtra}
+                                    src={extra.valueExtra}
                                     
                                     style={{
                                       width:100, 
@@ -147,9 +151,9 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                             className='fs-6 text-gray-800 text-hover-primary fw-bolder'
                             to={
                               '/class/' +
-                              component.firstId +
+                              component.parent.componentId +
                               '/' +
-                              component.parentId +
+                              component.parent.id +
                               '/' +
                               component.id
                             }

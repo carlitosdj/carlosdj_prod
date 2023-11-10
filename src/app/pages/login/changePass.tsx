@@ -14,7 +14,7 @@ const {v4: uuidv4} = require('uuid')
 
 type ParamTypes = {
   email: string
-  auth_key: string
+  authKey: string
 }
 
 const LoginPage = () => {
@@ -28,11 +28,11 @@ const LoginPage = () => {
   // const cookieUser:User = cookies.user_associacao;
   //Redux:
   const me = useSelector((state: ApplicationState) => state.me)
-  const {email, auth_key} = useParams<ParamTypes>()
+  const {email, authKey} = useParams<ParamTypes>()
   //console.log('ME', me)
 
   useEffect(() => {
-    dispatch(loadMeRequest(email!, auth_key!))
+    dispatch(loadMeRequest(email!, authKey!))
   }, [])
 
   // console.log('cookies - login', cookies)
@@ -40,7 +40,7 @@ const LoginPage = () => {
     event.preventDefault()
     if (password && confirmPassword && password === confirmPassword) {
       //console.log('dispatching...')
-      dispatch(updateMeRequest({id: me.me.id, email, newPassword: password, auth_key: uuidv4()}))
+      dispatch(updateMeRequest({id: me.me.id, email, newPassword: password, authKey: uuidv4()}))
     } else {
       //errMsg('Dados inválidos, preencha novamente');
       //console.log('Erro!')
@@ -74,7 +74,7 @@ const LoginPage = () => {
                     <a href='/'> Entrar no sistema </a>
                   </div>
                 </>
-              ) : me.me.auth_key !== auth_key ? (
+              ) : me.me.authKey !== authKey ? (
                 <>
                   <div>Essa chave de autenticação expirou, repita o processo. </div>
                   <div>

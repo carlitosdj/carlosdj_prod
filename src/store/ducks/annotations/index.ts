@@ -17,6 +17,19 @@ const reducer: Reducer<AnnotationsState> = (state = INITIAL_STATE, action) => {
     case AnnotationsTypes.LOAD_MY_ANNOTATIONS_FAILURE:
       return {...state, loading: false, error: action.payload, data: []}
 
+    //Delete
+    case AnnotationsTypes.DELETE_ANNOTATION_REQUEST:
+      return {...state}
+    case AnnotationsTypes.DELETE_ANNOTATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: {},
+        data: state.data?.filter((item) => item.id !== action.payload.data.id),
+      }
+    case AnnotationsTypes.DELETE_ANNOTATION_FAILURE:
+      return {...state, loading: false, error: action.payload}
+
     default:
       return state
   }

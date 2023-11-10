@@ -6,6 +6,7 @@ import {useFormik} from 'formik'
 import {useDispatch, useSelector} from 'react-redux'
 import {recoveryUserRequest} from '../../../../store/ducks/me/actions'
 import {ApplicationState} from '../../../../store'
+import {Alert} from 'react-bootstrap-v5'
 // import {requestPassword} from '../reduxOLD/AuthCRUD'
 
 const initialValues = {
@@ -155,6 +156,13 @@ export function ForgotPassword() {
           </>
         )}
       </form>
+      {me.error && !me.loading ? (
+        <Alert variant='danger' className='mt-10'>
+          {me.error.message}
+        </Alert>
+      ) : (
+        ''
+      )}
     </>
   )
 }

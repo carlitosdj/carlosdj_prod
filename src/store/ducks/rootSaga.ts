@@ -55,7 +55,7 @@ import {createEmailToList, loadEmailToList} from './email/sagas'
 import {AnnotationTypes} from './annotation/types'
 import {loadAnnotationsSingle, createAnnotation} from './annotation/sagas'
 import {AnnotationsTypes} from './annotations/types'
-import {loadMyAnnotations} from './annotations/sagas'
+import {deleteAnnotation, loadMyAnnotations} from './annotations/sagas'
 
 import {SupportsTypes} from './support/types'
 import {createSupport, loadAllsupports, loadSupports, updateSupport} from './support/sagas'
@@ -146,6 +146,7 @@ export default function* rootSaga() {
     takeLatest(AnnotationTypes.CREATE_ANNOTATION_REQUEST, createAnnotation),
 
     takeLatest(AnnotationsTypes.LOAD_MY_ANNOTATIONS_REQUEST, loadMyAnnotations),
+    takeLatest(AnnotationsTypes.DELETE_ANNOTATION_REQUEST, deleteAnnotation),
 
     //AulaConcluida
     takeLatest(ComponentTypes.CREATE_AULACONCLUIDA_REQUEST, createAulaConcluida),

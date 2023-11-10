@@ -65,17 +65,18 @@ export function* loginUser(payload: ReturnType<typeof loginUserRequest>) {
 //Recovery
 export function* recoveryUser(payload: ReturnType<typeof recoveryUserRequest>) {
   try {
-    const response: string = yield call(api.post, 'recovery', {email: payload.payload}) //Payload.payload está ok
+    console.log("CHAMOU...")
+    const response: string = yield call(api.post, 'user/recovery', {email: payload.payload}) //Payload.payload está ok
     yield put(recoveryUserSuccess(response))
-  } catch (error) {
-    yield put(recoveryUserFailure())
+  } catch (error:any) {
+    yield put(recoveryUserFailure(error.response.data))
   }
 }
 
 //Load me
 export function* loadMe(payload: ReturnType<typeof loadMeRequest>) {
   try {
-    const response: User = yield call(api.post, 'user/recovery', payload.payload)
+    const response: User = yield call(api.get, 'user/email/'+ payload.payload.email)
     yield put(loadMeSuccess(response))
   } catch (error) {
     yield put(loadMeFailure())

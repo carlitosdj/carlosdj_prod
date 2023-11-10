@@ -41,11 +41,11 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
 
     //Recovery
     case MeTypes.RECOVERY_USER_REQUEST:
-      return {...state}
+      return {...state, loading: true }
     case MeTypes.RECOVERY_USER_SUCCESS:
       return {...state, message: 'sent', loading: false, error: false, msg: action.payload.data}
     case MeTypes.RECOVERY_USER_FAILURE:
-      return {...state, loading: false, error: true, me: {}}
+      return {...state, loading: false, error: action.payload, me: {}}
 
     //Update user
     case MeTypes.UPDATE_USER_REQUEST:

@@ -48,7 +48,7 @@ export interface User {
   email?: string
   password_hash?: string
   newPassword?: string
-  auth_key?: string
+  authKey?: string
   confirmed_at?: number
   unconfirmed_email?: string
   blocked_at?: number

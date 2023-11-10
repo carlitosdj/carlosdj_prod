@@ -30,7 +30,7 @@ const AsideDefault: FC<React.PropsWithChildren<unknown>> = () => {
           <Link to='/onlinecourses'>
             <img
               alt='Logo'
-              className='h-25px logo'
+              className='h-35px mt-5 logo'
               src={toAbsoluteUrl('/media/logos/logo.png')}
             />
           </Link>
@@ -39,7 +39,7 @@ const AsideDefault: FC<React.PropsWithChildren<unknown>> = () => {
           <Link to='/onlinecourses'>
             <img
               alt='Logo'
-              className='h-25px logo'
+              className='h-35px mt-5 logo'
               src={toAbsoluteUrl('/media/logos/logo.png')}
             />
           </Link>

@@ -13,14 +13,14 @@ export const authfromcookie = (data: User) => action(MeTypes.AUTH_FROM_COOKIE, d
 export const recoveryUserRequest = (email: string) => action(MeTypes.RECOVERY_USER_REQUEST, email)
 export const recoveryUserSuccess = (response: string) =>
   action(MeTypes.RECOVERY_USER_SUCCESS, response)
-export const recoveryUserFailure = () => action(MeTypes.RECOVERY_USER_FAILURE)
+export const recoveryUserFailure = (err:any) => action(MeTypes.RECOVERY_USER_FAILURE, err)
 
 //Logout
 export const logoutUser = () => action(MeTypes.LOGOUT_USER)
 
 //Load me: - for recovery
-export const loadMeRequest = (email: string, auth_key: string) =>
-  action(MeTypes.LOAD_ME_REQUEST, {email, auth_key})
+export const loadMeRequest = (email: string, authKey: string) =>
+  action(MeTypes.LOAD_ME_REQUEST, {email, authKey})
 export const loadMeSuccess = (data: User) => action(MeTypes.LOAD_ME_SUCCESS, data)
 export const loadMeFailure = () => action(MeTypes.LOAD_ME_FAILURE)
 

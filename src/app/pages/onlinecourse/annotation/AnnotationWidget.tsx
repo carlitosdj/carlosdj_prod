@@ -8,6 +8,9 @@ import {
 import {Link} from 'react-router-dom'
 import {useIntl} from 'react-intl'
 import {AnnotationsState} from '../../../../store/ducks/annotations/types'
+import { Annotation } from '../../../../store/ducks/annotation/types'
+import { useDispatch } from 'react-redux'
+import { deleteAnnotationRequest } from '../../../../store/ducks/annotations/actions'
 
 // const MOMENT= require( 'moment' );
 
@@ -24,6 +27,15 @@ type Props = {
 const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, annotations}) => {
   console.log('annotations', annotations)
   const intl = useIntl()
+
+  const dispatch = useDispatch()
+
+  // Deleta componente: CHILD
+  const deleteAnnotation = (annotation: Annotation) => {
+    //console.log("annotation",annotation)
+    dispatch(deleteAnnotationRequest(annotation.id!))
+  }
+
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
@@ -87,27 +99,23 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, anno
                           {annotation.parentComponent.parent.parent.name}
                         </td>
 
-                        {/* <td className='text-end'>
+                        <td className='text-end'>
                           <a
                             href='#'
-                            className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                            onClick={() => {
+                              if (
+                                window.confirm('Deseja realmente excluir?')
+                              )
+                                deleteAnnotation(annotation)
+                            }}
+                            className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
                           >
                             <KTSVG
-                              path='/media/icons/duotune/arrows/arr064.svg'
-                              className='svg-icon-2'
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
                             />
                           </a>
-                          &nbsp;
-                          <a
-                            href='#'
-                            className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
-                          >
-                            <KTSVG
-                              path='/media/icons/duotune/arrows/arr064.svg'
-                              className='svg-icon-2'
-                            />
-                          </a>
-                        </td> */}
+                        </td>
                       </tr>
                     )
                   })}

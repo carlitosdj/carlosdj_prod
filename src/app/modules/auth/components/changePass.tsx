@@ -15,7 +15,7 @@ const {v4: uuidv4} = require('uuid')
 
 type ParamTypes = {
   email: string | undefined
-  auth_key: string | undefined
+  authKey: string | undefined
 }
 
 const LoginPage = () => {
@@ -32,13 +32,13 @@ const LoginPage = () => {
   // const cookieUser:User = cookies.user_associacao;
   //Redux:
   const me = useSelector((state: ApplicationState) => state.me)
-  const {email, auth_key} = useParams<ParamTypes>()
+  const {email, authKey} = useParams<ParamTypes>()
 
   //console.log('ME', me)
 
   useEffect(() => {
-    dispatch(loadMeRequest(email!, auth_key!))
-  }, [auth_key, email, dispatch])
+    dispatch(loadMeRequest(email!, authKey!))
+  }, [authKey, email, dispatch])
 
   // console.log('cookies - login', cookies)
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,7 +46,7 @@ const LoginPage = () => {
     if (password && confirmPassword && password === confirmPassword) {
       //console.log('dispatching...')
       setError('')
-      dispatch(updateMeRequest({id: me.me.id, email, newPassword: password, auth_key: uuidv4()}))
+      dispatch(updateMeRequest({id: me.me.id, email, newPassword: password, authKey: uuidv4()}))
     } else {
       //errMsg('Dados inválidos, preencha novamente');
       //console.log('Erro!')
@@ -66,9 +66,13 @@ const LoginPage = () => {
           {/* <button onClick={handleSubmitB}>teste</button> */}
           {/* /.login-logo */}
           <div className='card'>
-            <div className='card-body login-card-body text-white'>
+            <div className='card-body login-card-body'>
               <b>ALTERAR SENHA: </b>
               {email}
+              {/* <br/>
+              {me.me.authKey}
+              <br/>
+              {authKey} */}
               <br />
               <br />
               {(error !== '') ?
@@ -76,18 +80,18 @@ const LoginPage = () => {
                   <Alert variant='danger'>{error}</Alert>
                 </>
               :''}
-              {(me.message === 'changed' && error ==='') ? (
+              {(me.message === 'updated' && error ==='') ? (
                 <>
                   <Alert variant='primary'>Senha alterada com sucesso.</Alert>
                   <div>
                     <a href='/'> Entrar no sistema </a>
                   </div>
                 </>
-              ) : me.me.auth_key !== auth_key ? (
+              ) : me.me.authKey !== authKey ? (
                 <>
                   <Alert variant='danger'>Essa chave de autenticação expirou, repita o processo.</Alert>
                   <div>
-                    <a href='/recovery'> Clique aqui para reiniciar o processo de recuperação de senha </a>
+                    <a href='/auth/forgot-password'> Clique aqui para reiniciar o processo de recuperação de senha </a>
                   </div>
                 </>
               ) : (

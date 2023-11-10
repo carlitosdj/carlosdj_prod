@@ -59,7 +59,7 @@ export interface Login {
 export interface MeState {
   readonly me: User
   readonly loading: boolean
-  error: boolean //Nao pode ser readonly pq na página de login estou setando error..
+  error: any //Nao pode ser readonly pq na página de login estou setando error..
   readonly logged: boolean
   readonly message?: string
 }
