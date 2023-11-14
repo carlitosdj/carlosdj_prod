@@ -72,16 +72,16 @@ const Replay: FC<React.PropsWithChildren<unknown>> = () => {
   if (component.modules[0].parent!.id !== Number(id)) return <Loading />
 
   // let today = MOMENT().format( 'YYYY-MM-DD HH:mm:ss.000' );
-  var created_at = MOMENT(Number(me.me.created_at) * 1000) //.format('DD/MM/YYYY HH:mm')
+  var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')
-  let blockAreas = (now.diff(created_at, 'years', true).toFixed(2) > 1);
+  let blockAreas = (now.diff(createdAt, 'years', true).toFixed(2) > 1);
 
   return (
     <>
       {/* <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.MODULES'})} </PageTitle> */}
       <PageTitle breadcrumbs={breadCrumbs}>{component?.modules[0].parent!.name}</PageTitle>
 
-      {((now.diff(created_at, 'years', true)).toFixed(2) > 0.9) && !blockAreas ?
+      {((now.diff(createdAt, 'years', true)).toFixed(2) > 0.9) && !blockAreas ?
         <Alert variant='info'>
           <h4 style={{ color: 'rgb(32 38 80)' }}>Contrato de Mentorias ao Vivo</h4>
           Olá, {me.me.profile?.name}.O seu contrato de <b>mentorias ao vivo</b> está prestes a expirar. Deseja renovar sua inscrição? Por favor, clique no botão abaixo:
@@ -91,13 +91,13 @@ const Replay: FC<React.PropsWithChildren<unknown>> = () => {
             Renovar mentorias ao vivo
           </a>
           <br /><br />
-          Data de entrada: <b>{created_at.format('DD/MM/YYYY HH:mm')}</b>
+          Data de entrada: <b>{createdAt.format('DD/MM/YYYY HH:mm')}</b>
           <br />
           Atenção: Após realizar o pagamento, entre em contato com o suporte para conferência do pagamento.
         </Alert>
         : ''}
 
-      {((now.diff(created_at, 'years', true)).toFixed(2) > 0.9) && blockAreas ?
+      {((now.diff(createdAt, 'years', true)).toFixed(2) > 0.9) && blockAreas ?
         <Alert variant='danger'>
           <h4 style={{ color: '#621f26' }}>Contrato de Mentorias ao Vivo</h4>
           Olá, {me.me.profile?.name}.<br /> Seu contrato de mentoria ao vivo <b>expirou</b> e algumas áreas estão agora bloqueadas. Deseja renovar sua inscrição? Por favor, clique no botão abaixo:
@@ -107,7 +107,7 @@ const Replay: FC<React.PropsWithChildren<unknown>> = () => {
             Renovar mentorias ao vivo
           </a>
           <br /><br />
-          Data de entrada: <b>{created_at.format('DD/MM/YYYY HH:mm')}</b>
+          Data de entrada: <b>{createdAt.format('DD/MM/YYYY HH:mm')}</b>
           <br />
           Atenção: Após realizar o pagamento, entre em contato com o suporte para conferência do pagamento.
         </Alert>

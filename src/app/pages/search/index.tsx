@@ -57,9 +57,9 @@ const Search = () => {
 
   }
   // const me = useSelector((state: ApplicationState) => state.me)
-  // var created_at = MOMENT(new Date(Number(me.me.created_at) * 1000)) //.format('DD/MM/YYYY HH:mm')
+  // var createdAt = MOMENT(new Date(Number(me.me.createdAt) * 1000)) //.format('DD/MM/YYYY HH:mm')
   // var now = MOMENT(new Date()) //.format('DD/MM/YYYY HH:mm')
-  //let blockAreas = (now.diff(created_at, 'years', true).toFixed(2) > 1);
+  //let blockAreas = (now.diff(createdAt, 'years', true).toFixed(2) > 1);
 
   return (
     <>

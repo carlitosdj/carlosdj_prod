@@ -15,7 +15,7 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
     case MeTypes.LOGIN_USER_SUCCESS:
       return {...state, loading: false, logged: true, me: action.payload.data}
     case MeTypes.LOGIN_USER_FAILURE:
-      return {...state, loading: false, logged: false, me: {}, error: true}
+      return {...state, loading: false, logged: false, me: {}, error: action.payload}
     case MeTypes.AUTH_FROM_COOKIE:
       return {...state, loading: false, logged: true, me: action.payload}
 
@@ -29,7 +29,7 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
     case MeTypes.LOAD_ME_SUCCESS:
       return {...state, loading: false, error: false, logged: false, me: action.payload.data}
     case MeTypes.LOAD_ME_FAILURE:
-      return {...state, loading: false, error: true, me: {}}
+      return {...state, loading: false, error: action.payload, me: {}}
 
     //Create
     case MeTypes.CREATE_USER_REQUEST:
@@ -37,7 +37,7 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
     case MeTypes.CREATE_USER_SUCCESS:
       return {...state, loading: false, error: false, me: action.payload.data}
     case MeTypes.CREATE_USER_FAILURE:
-      return {...state, loading: false, error: true, me: {}}
+      return {...state, loading: false, error: action.payload, me: {}}
 
     //Recovery
     case MeTypes.RECOVERY_USER_REQUEST:
@@ -53,7 +53,7 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
     case MeTypes.UPDATE_USER_SUCCESS:
       return {...state, message: 'updated', loading: false, error: false, me: action.payload.data}
     case MeTypes.UPDATE_USER_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Update user
     case MeTypes.CHANGEPASS_USER_REQUEST:
@@ -61,13 +61,13 @@ const reducer: Reducer<MeState> = (state = INITIAL_STATE, action) => {
     case MeTypes.CHANGEPASS_USER_SUCCESS:
       return {...state, message: 'changed', loading: false, error: false, me: action.payload.data}
     case MeTypes.CHANGEPASS_USER_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Delete user
     case MeTypes.DELETE_USER_SUCCESS:
       return {...state, loading: false, error: false, me: {}}
     case MeTypes.DELETE_USER_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
     default:
       return state
   }

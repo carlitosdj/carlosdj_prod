@@ -15,7 +15,6 @@ import annotations from './annotations'
 import supports from './support'
 import wppcamp from './wppcamp'
 import wppgroup from './wppgroup'
-import solicitation from './solicitation'
 import city from './city'
 import state from './state'
 
@@ -35,7 +34,6 @@ export default combineReducers({
   supports,
   wppcamp,
   wppgroup,
-  solicitation,
   city,
   state,
 })

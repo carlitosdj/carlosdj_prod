@@ -275,12 +275,19 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
         payload.payload.rate
       )
     )
-    const response: AulaConcluida = yield call(api.post, 'completed', payload.payload)
+    //const response: AulaConcluida = yield call(api.post, 'completed', payload.payload)
     //console.log("CREATED RATE response", response)
+    const { ...result } = payload.payload
+
+    const response: AulaConcluida = yield payload.payload.id
+      ? call(api.patch, 'completed/'+payload.payload.id, result)
+      : call(api.post, 'completed', result)
+
+
     yield put(createRateSuccess(response))
   } catch (error: any) {
     //console.log("error", error.resposne)
-    yield put(createRateFailure(error.response))
+    yield put(createRateFailure(error.response.data))
   }
 }
 
@@ -292,6 +299,6 @@ export function* searchComponent(payload: ReturnType<typeof searchRequest>) {
     //console.log("RESPONSE SEARCH", response)
     yield put(searchSuccess(response))
   } catch (error: any) {
-    yield put(searchFailure(error.response))
+    yield put(searchFailure(error.response.data))
   }
 }

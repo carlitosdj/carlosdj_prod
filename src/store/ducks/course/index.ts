@@ -15,7 +15,7 @@ const reducer: Reducer<CourseState> = (state = INITIAL_STATE, action) => {
     case CourseTypes.LOAD_COURSE_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case CourseTypes.LOAD_COURSE_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     default:
       return state

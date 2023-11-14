@@ -1,3 +1,5 @@
+import { User } from "../users/types"
+
 /**
  * Action types
  */
@@ -32,9 +34,9 @@ export interface Support {
   reply?: string
   parentUser?: number
   userId?: number
-  parentAdmin?: number
+  parentAdmin?: User
   admin_id?: number
-  created_at?: number
+  createdAt?: number
   replied_at?: number
   status?: number
 }

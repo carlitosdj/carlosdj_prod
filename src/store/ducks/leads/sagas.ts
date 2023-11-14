@@ -32,7 +32,7 @@ export function* searchLeads(payload: ReturnType<typeof searchLeadsRequest>) {
     put(searchLeadsRequest(payload.payload))
     const response: Lead[] = yield call(api.get, 'leadssearch/' + payload.payload)
     yield put(searchLeadsSuccess(response))
-  } catch (error) {
-    yield put(searchLeadsFailure())
+  } catch (error: any) {
+    yield put(searchLeadsFailure(error.response.data))
   }
 }

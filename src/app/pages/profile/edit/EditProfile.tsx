@@ -53,7 +53,7 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
   )
 }
 const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
-  // let created_at_text = MOMENT(Number(users.user.created_at!) * 1000) //.format('DD/MM/YYYY HH:mm')
+  // let created_at_text = MOMENT(Number(users.user.createdAt!) * 1000) //.format('DD/MM/YYYY HH:mm')
   // const title = `${document.title} | Salve Mais Um`;
   const [imgSrc, setImgSrc] = useState('')
   const [croppedImage, setCroppedImage] = useState<any>('')
@@ -151,7 +151,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
   const [addressState, setAddressState] = useState<string | undefined>('')
   const [addressCountry, setAddressCountry] = useState<string | undefined>('')
   const [numTurma, setNumTurma] = useState<number | undefined>()
-  const [created_at, setCreatedAt] = useState<number | undefined>()
+  const [createdAt, setCreatedAt] = useState<number | undefined>()
 
   const [image, setImage] = useState<string | undefined>('')
 
@@ -194,7 +194,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
     setAddressCountry(me.me.addressCountry)
     setAddressCEP(me.me.postalCode)
     setNumTurma(me.me.num_turma)
-    setCreatedAt(me.me.created_at)
+    setCreatedAt(me.me.createdAt)
     setUserCity('' + me.me.city?.id!)
     setUserState('' + me.me.state?.id!)
     //setOccupation(me.me.occupation!)

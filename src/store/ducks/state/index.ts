@@ -15,7 +15,7 @@ const reducer: Reducer<StateState> = (state = INITIAL_STATE, action) => {
     case StateTypes.LOAD_STATES_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case StateTypes.LOAD_STATES_REQUEST:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     default:
       return state

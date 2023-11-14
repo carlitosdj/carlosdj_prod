@@ -30,7 +30,7 @@ export function* loadAllsupports() {
     const response: Support[] = yield call(api.get, 'supports')
     yield put(loadAllsupportsSuccess(response))
   } catch (error: any) {
-    yield put(loadAllsupportsFailure())
+    yield put(loadAllsupportsFailure(error.message.data))
   }
 }
 
@@ -39,8 +39,9 @@ export function* loadSupports(payload: ReturnType<typeof loadSupportsRequest>) {
   try {
     const response: Support[] = yield call(api.get, 'support/' + payload.payload)
     yield put(loadSupportsSuccess(response))
-  } catch (error) {
-    yield put(loadSupportsFailure())
+  } catch (error:any) {
+    console.log("ERROR", error)
+    yield put(loadSupportsFailure(error.message.data))
   }
 }
 
@@ -59,9 +60,11 @@ export function* createSupport(payload: ReturnType<typeof createSupportRequest>)
 export function* updateSupport(payload: ReturnType<typeof updateSupportRequest>) {
   try {
     put(updateSupportRequest(payload.payload))
-    const response: Support = yield call(api.post, 'support', payload.payload)
+    console.log("DADOSxx", payload.payload)
+    const response: Support = yield call(api.patch, 'support/'+payload.payload.id, payload.payload)
     yield put(updateSupportSuccess(response))
-  } catch (error) {
-    yield put(updateSupportFailure())
+  } catch (error:any) {
+    console.log("ERRORXX", error)
+    yield put(updateSupportFailure(error.message.data))
   }
 }

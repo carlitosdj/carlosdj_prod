@@ -14,8 +14,8 @@ export function* loadCarts() {
   try {
     const response: Cart[] = yield call(api.get, 'cart')
     yield put(loadCartSuccess(response))
-  } catch (error) {
-    yield put(loadCartFailure())
+  } catch (error: any) {
+    yield put(loadCartFailure(error.response.message))
   }
 }
 

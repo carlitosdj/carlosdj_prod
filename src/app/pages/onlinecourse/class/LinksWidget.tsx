@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
+import {toAbsoluteUrl} from '../../../design/helpers'
 
 type Props = {
   className: string
@@ -8,7 +9,12 @@ type Props = {
   url?: string
 }
 
-const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({className, extras_files, extras_links, url}) => {
+const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
+  className,
+  extras_files,
+  extras_links,
+  url,
+}) => {
   // console.log('Links', extras_files)
   // console.log('extras_links', extras_links)
   // console.log('url', url)
@@ -30,9 +36,15 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({className, extra
               : ''}
 
             {extras_links.map((link: any, index: any) => {
+              
               return (
-                <a href={link.valueExtra} key={index} target="_blank">
+                <a href={link.valueExtra} key={index} target='_blank'>
                   <div className='fs-6 text-gray-800 text-hover-primary fw-bolder pb-2'>
+                    <img
+                      src={toAbsoluteUrl('/media/fileicons/link.png')}
+                      className='h-20px'
+                      alt='link'
+                    />{' '}
                     {link.valueExtra}
                   </div>
                 </a>
@@ -40,9 +52,21 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({className, extra
             })}
 
             {extras_files.map((link: any, index: any) => {
-              return ( 
-                <a href={'https://www.violaofeeling.com.br/files/' + link.valueExtra} key={index} target="_blank">
+              let split = link.valueExtra.split('.')
+              let extension = split.reverse()[0]
+              console.log('Extension', extension)
+              return (
+                <a
+                  href={'http://localhost:3000/upload/file/' + link.valueExtra}
+                  key={index}
+                  target='_blank'
+                >
                   <div className='fs-6 text-gray-800 text-hover-primary fw-bolder pb-2'>
+                    <img
+                      src={toAbsoluteUrl(`/media/fileicons/${extension}.png`)}
+                      className='h-20px'
+                      alt={extension}
+                    />{' '}
                     {link.valueExtra}
                   </div>
                 </a>

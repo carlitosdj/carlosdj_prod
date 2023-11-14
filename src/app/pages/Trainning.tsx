@@ -40,11 +40,11 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
   //   video_id = split[2];
   // }
 
-  // var created_at = MOMENT(new Date(Number(me.me.created_at) * 1000)) //.format('DD/MM/YYYY HH:mm')
+  // var createdAt = MOMENT(new Date(Number(me.me.createdAt) * 1000)) //.format('DD/MM/YYYY HH:mm')
   // var now = MOMENT(new Date()) //.format('DD/MM/YYYY HH:mm')
 
   // console.log("last class", component.lastclass)
-  // let blockAreas = (now.diff(created_at, 'years', true).toFixed(2) > 1);
+  // let blockAreas = (now.diff(createdAt, 'years', true).toFixed(2) > 1);
   // let today = MOMENT().format('YYYY-MM-DD HH:mm:ss.000')
   return (
     <> 

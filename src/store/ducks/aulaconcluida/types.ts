@@ -18,7 +18,7 @@ export enum AulaConcluidaTypes {
  */
 export interface AulaConcluida {
   id?: number | undefined
-  created_at?: string | undefined
+  createdAt?: string | undefined
   status?: number | undefined
   parentUser?: any | undefined
   parentComponent?: any | undefined

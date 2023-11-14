@@ -32,7 +32,7 @@ export interface Extras {
   componentId?: number
   keyExtra?: string
   valueExtra?: string
-  created_at?: number
+  createdAt?: number
   status?: number
 }
 /**

@@ -21,15 +21,15 @@ type Props = {
 }
 
 const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
-  //let created_at_text = MOMENT(Number(users.user.created_at!) * 1000) //.format('DD/MM/YYYY HH:mm')
+  //let created_at_text = MOMENT(Number(users.user.createdAt!) * 1000) //.format('DD/MM/YYYY HH:mm')
   //const title = `${document.title} | Salve Mais Um`
   const me = useSelector((state: ApplicationState) => state.me)
   //const iconSize = 48
   //const intl = useIntl()
 
-  var created_at = MOMENT(Number(me.me.created_at) * 1000) //.format('DD/MM/YYYY HH:mm')
+  var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')
-  let progress = (now.diff(created_at, 'years', true) * 100).toFixed(2)
+  let progress = (now.diff(createdAt, 'years', true) * 100).toFixed(2)
   if (parseInt(progress) > 100) progress = '100'
 
   return (
@@ -152,11 +152,11 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                         <br />
                         <br />
                         <span className='text-dark fw-bolder fs-6'>
-                          Última renovação: {created_at!.format('DD/MM/YYYY HH:mm')}
+                          Última renovação: {createdAt!.format('DD/MM/YYYY HH:mm')}
                         </span>
                         <br />
-                        {/* <span className='text-dark fw-bolder fs-5'>{now.diff(created_at, 'years', true) > 1? 'RENOVAÇÃO' : 'NO PRAZO'}</span> */}
-                        {/* <span className='text-dark fw-bolder fs-5'>{(now.diff(created_at, 'years', true)*100).toFixed(2)}%</span> */}
+                        {/* <span className='text-dark fw-bolder fs-5'>{now.diff(createdAt, 'years', true) > 1? 'RENOVAÇÃO' : 'NO PRAZO'}</span> */}
+                        {/* <span className='text-dark fw-bolder fs-5'>{(now.diff(createdAt, 'years', true)*100).toFixed(2)}%</span> */}
                         <br />
                         {/* <span className='text-dark fw-bolder fs-6'>Ocupações:</span>
                         {me.me.occupation?.map((occ) => {

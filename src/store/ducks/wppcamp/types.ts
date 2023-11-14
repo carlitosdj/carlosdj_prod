@@ -44,7 +44,7 @@ export interface Wppcamp {
   slug?: string
   maxclicks?: string
   description?: string
-  created_at?: number
+  createdAt?: number
   status?: number
 }
 

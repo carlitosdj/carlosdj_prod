@@ -15,7 +15,7 @@ const reducer: Reducer<CityState> = (state = INITIAL_STATE, action) => {
     case CityTypes.LOAD_CITIES_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case CityTypes.LOAD_CITIES_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     default:
       return state

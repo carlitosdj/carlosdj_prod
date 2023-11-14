@@ -15,7 +15,7 @@ const reducer: Reducer<SupportState> = (state = INITIAL_STATE, action) => {
     case SupportsTypes.LOAD_ALLSUPPORT_SUCCESS:
       return {...state, loading: false, error: false, all: action.payload.data}
     case SupportsTypes.LOAD_ALLSUPPORT_FAILURE:
-      return {...state, loading: false, error: true, all: []}
+      return {...state, loading: false, error: action.payload, all: []}
 
     //Load single
     case SupportsTypes.LOAD_SUPPORT_REQUEST:
@@ -23,7 +23,7 @@ const reducer: Reducer<SupportState> = (state = INITIAL_STATE, action) => {
     case SupportsTypes.LOAD_SUPPORT_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case SupportsTypes.LOAD_SUPPORT_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Create
     case SupportsTypes.CREATE_SUPPORT_REQUEST:
@@ -31,7 +31,7 @@ const reducer: Reducer<SupportState> = (state = INITIAL_STATE, action) => {
     case SupportsTypes.CREATE_SUPPORT_SUCCESS:
       return {...state, loading: false, error: false, data: [...state.data, action.payload.data]}
     case SupportsTypes.CREATE_SUPPORT_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Update
     case SupportsTypes.UPDATE_SUPPORT_REQUEST:
@@ -47,7 +47,7 @@ const reducer: Reducer<SupportState> = (state = INITIAL_STATE, action) => {
         ),
       } //update data?
     case SupportsTypes.UPDATE_SUPPORT_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     default:
       return state

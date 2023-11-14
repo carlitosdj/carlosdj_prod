@@ -53,7 +53,7 @@ export interface User {
   unconfirmed_email?: string
   blocked_at?: number
   registration_ip?: string
-  created_at?: number
+  createdAt?: number
   updated_at?: number
   flags?: number
   last_login_at?: number
@@ -122,7 +122,7 @@ export interface Profile {
 export interface Occupation {
   id?: number
   name?: string
-  created_at?: number
+  createdAt?: number
   status?: number
   userId?: number
   parentUser?: User

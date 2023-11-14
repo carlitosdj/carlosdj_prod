@@ -26,10 +26,10 @@ const Leads = ({handleClose}: handleCloseProps) => {
     var data = new Date()
     const support: Support = {
       message,
-      parentUser: me.me.id,
+      //parentUser: me.me.id,
       userId: me.me.id,
       status: 0,
-      created_at: data.getTime() / 1000,
+      //createdAt: data.getTime() / 1000,
     }
     dispatch(createSupportRequest(support))
     handleClose()

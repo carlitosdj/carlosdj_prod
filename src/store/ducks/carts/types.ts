@@ -25,7 +25,7 @@ export interface Cart {
   discount?: number
   total?: number
   tax?: number
-  created_at?: number
+  createdAt?: number
   status?: number
   description?: string
   numcartao?: string

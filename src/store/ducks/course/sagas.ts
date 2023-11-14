@@ -10,7 +10,7 @@ export function* loadCourse(payload: ReturnType<typeof loadCourseRequest>) {
   try {
     const response: CourseState = yield call(api.get, 'readCourse/' + payload.payload)
     yield put(loadCourseSuccess(response))
-  } catch (error) {
-    yield put(loadCourseFailure())
+  } catch (error: any) {
+    yield put(loadCourseFailure(error.response.data))
   }
 }

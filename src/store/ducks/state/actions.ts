@@ -4,5 +4,5 @@ import {StateTypes, State} from './types'
 //Load
 export const loadStateRequest = () => action(StateTypes.LOAD_STATES_REQUEST)
 export const loadStateSuccess = (data: State[]) => action(StateTypes.LOAD_STATES_SUCCESS, data)
-export const loadStateFailure = () => action(StateTypes.LOAD_STATES_FAILURE)
+export const loadStateFailure = (err: any[]) => action(StateTypes.LOAD_STATES_FAILURE, err)
 

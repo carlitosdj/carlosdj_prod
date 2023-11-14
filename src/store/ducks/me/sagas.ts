@@ -57,8 +57,8 @@ export function* loginUser(payload: ReturnType<typeof loginUserRequest>) {
     console.log("response B", responseB)
     yield put(loginUserSuccess(responseB))
 
-  } catch (error) {
-    yield put(loginUserFailure())
+  } catch (error: any) {
+    yield put(loginUserFailure(error.response.data))
   }
 }
 
@@ -78,8 +78,8 @@ export function* loadMe(payload: ReturnType<typeof loadMeRequest>) {
   try {
     const response: User = yield call(api.get, 'user/email/'+ payload.payload.email)
     yield put(loadMeSuccess(response))
-  } catch (error) {
-    yield put(loadMeFailure())
+  } catch (error: any) {
+    yield put(loadMeFailure(error.response.data))
   }
 }
 
@@ -89,8 +89,8 @@ export function* createMe(payload: ReturnType<typeof createMeRequest>) {
     put(createMeRequest(payload.payload))
     const response: User = yield call(api.post, 'user', payload.payload)
     yield put(createMeSuccess(response))
-  } catch (error) {
-    yield put(createMeFailure())
+  } catch (error: any) {
+    yield put(createMeFailure(error.response.data))
   }
 }
 
@@ -99,8 +99,8 @@ export function* updateMe(payload: ReturnType<typeof updateMeRequest>) {
   try {
     const response: User = yield call(api.patch, 'user/'+payload.payload.id, payload.payload)
     yield put(updateMeSuccess(response))
-  } catch (error) {
-    yield put(updateMeFailure())
+  } catch (error: any) {
+    yield put(updateMeFailure(error.response.data))
   }
 }
 
@@ -109,8 +109,8 @@ export function* changePassMe(payload: ReturnType<typeof changePassMeRequest>) {
   try {
     const response: User = yield call(api.post, 'user', payload.payload)
     yield put(changePassMeSuccess(response))
-  } catch (error) {
-    yield put(changePassMeFailure())
+  } catch (error: any) {
+    yield put(changePassMeFailure(error.response.data))
   }
 }
 
@@ -119,7 +119,7 @@ export function* deleteMe(payload: ReturnType<typeof deleteMeRequest>) {
   try {
     const response: User = yield call(api.delete, 'user/' + payload.payload)
     yield put(deleteMeSuccess(response))
-  } catch (error) {
-    yield put(deleteMeFailure())
+  } catch (error: any) {
+    yield put(deleteMeFailure(error.response.data))
   }
 }

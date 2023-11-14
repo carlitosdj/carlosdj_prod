@@ -24,8 +24,8 @@ export function* loadExtras(payload: ReturnType<typeof loadExtrasRequest>) {
     put(loadExtrasRequest(payload.payload))
     const response: Extras[] = yield call(api.get, 'compextra/extras/' + payload.payload)
     yield put(loadExtrasSuccess(response))
-  } catch (error) {
-    yield put(loadExtrasFailure())
+  } catch (error: any) {
+    yield put(loadExtrasFailure(error.response.data))
   }
 }
 
@@ -35,8 +35,8 @@ export function* createExtra(payload: ReturnType<typeof createExtraRequest>) {
     put(createExtraRequest())
     const response: Extras = yield call(api.post, 'xxxx', payload)
     yield put(createExtraSuccess(response))
-  } catch (error) {
-    yield put(createExtraFailure())
+  } catch (error: any) {
+    yield put(createExtraFailure(error.response.data))
   }
 }
 
@@ -46,8 +46,8 @@ export function* updateExtra(payload: ReturnType<typeof updateExtraRequest>) {
     put(updateExtraRequest())
     const response: Extras = yield call(api.put, 'xxxx' + payload, payload)
     yield put(updateExtraSuccess(response))
-  } catch (error) {
-    yield put(updateExtraFailure())
+  } catch (error: any) {
+    yield put(updateExtraFailure(error.response.data))
   }
 }
 
@@ -57,7 +57,7 @@ export function* deleteExtra(payload: ReturnType<typeof deleteExtraRequest>) {
     put(deleteExtraRequest())
     const response: Extras = yield call(api.delete, 'xxxx' + payload)
     yield put(deleteExtraSuccess(response))
-  } catch (error) {
-    yield put(deleteExtraFailure())
+  } catch (error: any) {
+    yield put(deleteExtraFailure(error.response.data))
   }
 }

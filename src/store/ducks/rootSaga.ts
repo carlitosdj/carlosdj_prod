@@ -73,8 +73,6 @@ import {WppcampTypes} from './wppcamp/types'
 import {WppgroupTypes} from './wppgroup/types'
 import {createWppgroup, deleteWppgroup, loadWppgroups, updateWppgroup} from './wppgroup/sagas'
 
-import { SolicitationTypes } from './solicitation/types'
-import { createSolicitation, loadAllSolicitations, updateSolicitation } from './solicitation/sagas'
 import { StateTypes } from './state/types'
 import { CityTypes } from './city/types'
 import { loadState } from './state/sagas'
@@ -172,11 +170,6 @@ export default function* rootSaga() {
     takeLatest(WppgroupTypes.CREATE_WPPGROUP_REQUEST, createWppgroup),
     takeLatest(WppgroupTypes.UPDATE_WPPGROUP_REQUEST, updateWppgroup),
     takeLatest(WppgroupTypes.DELETE_WPPGROUP_REQUEST, deleteWppgroup),
-
-    //Soliciation
-    takeLatest(SolicitationTypes.LOAD_ALLSOLICITATIONS_REQUEST, loadAllSolicitations),
-    takeLatest(SolicitationTypes.CREATE_SOLICITATION_REQUEST, createSolicitation),
-    takeLatest(SolicitationTypes.UPDATE_SOLICITATION_REQUEST, updateSolicitation),
 
     takeLatest(StateTypes.LOAD_STATES_REQUEST, loadState),
     takeLatest(CityTypes.LOAD_CITIES_REQUEST, loadCity),

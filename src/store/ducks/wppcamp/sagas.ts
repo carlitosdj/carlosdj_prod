@@ -29,7 +29,7 @@ export function* loadAllwppcamps() {
     const response: Wppcamp[] = yield call(api.get, 'wppcamp')
     yield put(loadAllcampSuccess(response))
   } catch (error: any) {
-    yield put(loadAllcampFailure())
+    yield put(loadAllcampFailure(error.response.data))
   }
 }
 
@@ -38,8 +38,8 @@ export function* loadWppcamps(payload: ReturnType<typeof loadCampRequest>) {
   try {
     const response: Wppcamp = yield call(api.get, 'wppcamp/' + payload.payload)
     yield put(loadCampSuccess(response))
-  } catch (error) {
-    yield put(loadCampFailure())
+  } catch (error: any) {
+    yield put(loadCampFailure(error.response.data))
   }
 }
 
@@ -60,8 +60,8 @@ export function* updateWppcamp(payload: ReturnType<typeof updateCampRequest>) {
     put(updateCampRequest(payload.payload))
     const response: Wppcamp = yield call(api.post, 'wppcamp', payload.payload)
     yield put(updateCampSuccess(response))
-  } catch (error) {
-    yield put(updateCampFailure())
+  } catch (error: any) {
+    yield put(updateCampFailure(error.response.data))
   }
 }
 
@@ -80,7 +80,7 @@ export function* loadWppgroupavailable(payload: ReturnType<typeof loadWppgroupav
   try {
     const response: Wppcamp = yield call(api.get, 'groupavailable/' + payload.payload)
     yield put(loadWppgroupavailableSuccess(response))
-  } catch (error) {
-    yield put(loadWppgroupavailableFailure())
+  } catch (error: any) {
+    yield put(loadWppgroupavailableFailure(error.response.data))
   }
 }

@@ -7,9 +7,9 @@ const MOMENT = require('moment')
 
 const Renovation = () => {
     const me = useSelector((state: ApplicationState) => state.me)
-    var created_at = MOMENT(Number(me.me.created_at) * 1000) //.format('DD/MM/YYYY HH:mm')
+    var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
     var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')
-    let progress = (now.diff(created_at, 'years', true)*100).toFixed(2);
+    let progress = (now.diff(createdAt, 'years', true)*100).toFixed(2);
 
     if (parseInt(progress) > 100)
       progress = '100';

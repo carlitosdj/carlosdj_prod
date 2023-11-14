@@ -33,7 +33,7 @@ export interface Wppgroup {
   name?: string
   url?: string
   clicks?: number
-  created_at?: number
+  createdAt?: number
   status?: number
 }
 

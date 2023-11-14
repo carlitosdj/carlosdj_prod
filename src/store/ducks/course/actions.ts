@@ -6,4 +6,4 @@ import {CourseTypes, CourseState} from './types'
 export const loadCourseRequest = (id: string) => action(CourseTypes.LOAD_COURSE_REQUEST, id)
 export const loadCourseSuccess = (data: CourseState) =>
   action(CourseTypes.LOAD_COURSE_SUCCESS, data)
-export const loadCourseFailure = () => action(CourseTypes.LOAD_COURSE_FAILURE)
+export const loadCourseFailure = (err: any[]) => action(CourseTypes.LOAD_COURSE_FAILURE, err)

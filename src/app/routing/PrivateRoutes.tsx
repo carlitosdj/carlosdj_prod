@@ -15,14 +15,6 @@ import { MyProfile } from '../pages/profile/view/MyProfile'
 import { useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
 import { Replay } from '../pages/onlinecourse/replay/Replay'
-import { Books } from '../pages/exclusive/Books'
-import { Articles } from '../pages/exclusive/Articles'
-import { Patients } from '../pages/exclusive/Patients'
-import { Suppliers } from '../pages/exclusive/Suppliers'
-import { Ranking } from '../pages/exclusive/Ranking'
-import { Professionals } from '../pages/exclusive/Professionals'
-import { BookRead } from '../pages/exclusive/BookRead'
-import { ArticleRead } from '../pages/exclusive/ArticleRead'
 import Renovation from '../pages/renovation/Renovation'
 const MOMENT = require('moment')
 // import ChangePass from '../../app/modules/'
@@ -55,9 +47,9 @@ export function PrivateRoutes() {
   //   )
   // }
 
-  var created_at = MOMENT(Number(me.me.created_at) * 1000) //.format('DD/MM/YYYY HH:mm')
+  var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')
-  let progress = parseInt((now.diff(created_at, 'years', true)*100).toFixed(2));
+  let progress = parseInt((now.diff(createdAt, 'years', true)*100).toFixed(2));
   
   if (progress > 100)
     progress = 100;
@@ -74,12 +66,6 @@ export function PrivateRoutes() {
   return (
       <Routes>
         <Route path="onlinecourses" element={<Trainning/>} />
-        <Route path="books" element={<Books/>} />
-        <Route path="book/:id" element={<BookRead/>} />
-        <Route path="article/:id" element={<ArticleRead/>} />
-        <Route path="articles" element={<Articles/>} />
-
-        <Route path="patients" element={<Patients/>} />
 
         <Route path="modules">
           <Route path=":id" element={<Modules/>}/>

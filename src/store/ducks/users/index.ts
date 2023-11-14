@@ -16,7 +16,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
     case UsersTypes.LOAD_USERS_SUCCESS:
       return {...state, loading: false, error: false, data: state.data.concat(action.payload.data.data), countTotal: action.payload.data.count }
     case UsersTypes.LOAD_USERS_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //User
     case UsersTypes.LOAD_USER_REQUEST:
@@ -24,7 +24,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
     case UsersTypes.LOAD_USER_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case UsersTypes.LOAD_USER_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Search
     case UsersTypes.SEARCH_USERS_REQUEST:
@@ -32,7 +32,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
     case UsersTypes.SEARCH_USERS_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case UsersTypes.SEARCH_USERS_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Create
     case UsersTypes.CREATE_USER_REQUEST:
@@ -40,7 +40,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
     case UsersTypes.CREATE_USER_SUCCESS:
       return {...state, loading: false, error: false, data: state.data.concat(action.payload.data)}
     case UsersTypes.CREATE_USER_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Update
     case UsersTypes.UPDATE_USER_REQUEST:
@@ -55,7 +55,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
         ),
       }
     case UsersTypes.UPDATE_USER_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Delete
     case UsersTypes.DELETE_USER_SUCCESS:
@@ -66,7 +66,7 @@ const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
         data: state.data?.filter((item) => item.id !== action.payload.data),
       } //só uma data: pq excluiu o user "Excluido com sucesso."
     case UsersTypes.DELETE_USER_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
     default:
       return state
   }

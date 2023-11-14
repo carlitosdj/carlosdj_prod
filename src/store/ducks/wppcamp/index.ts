@@ -16,7 +16,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
     case WppcampTypes.LOAD_ALLCAMP_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case WppcampTypes.LOAD_ALLCAMP_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Load single
     case WppcampTypes.LOAD_CAMP_REQUEST:
@@ -24,7 +24,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
     case WppcampTypes.LOAD_CAMP_SUCCESS:
       return {...state, loading: false, error: false, camp: action.payload.data}
     case WppcampTypes.LOAD_CAMP_FAILURE:
-      return {...state, loading: false, error: true, camp: {}}
+      return {...state, loading: false, error: action.payload, camp: {}}
 
     //Create
     case WppcampTypes.CREATE_CAMP_REQUEST:
@@ -32,7 +32,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
     case WppcampTypes.CREATE_CAMP_SUCCESS:
       return {...state, loading: false, error: false, data: [...state.data, action.payload.data]}
     case WppcampTypes.CREATE_CAMP_FAILURE:
-      return {...state, loading: false, error: true, data: []}
+      return {...state, loading: false, error: action.payload, data: []}
 
     //Update
     case WppcampTypes.UPDATE_CAMP_REQUEST:
@@ -48,7 +48,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
         ),
       } //update data?
     case WppcampTypes.UPDATE_CAMP_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Delete
     case WppcampTypes.DELETE_CAMP_REQUEST:
@@ -61,7 +61,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
         data: state.data?.filter((item) => item.id !== action.payload.data),
       }
     case WppcampTypes.DELETE_CAMP_FAILURE:
-      return {...state, loading: false, error: true}
+      return {...state, loading: false, error: action.payload}
 
     //Available
     case WppcampTypes.LOAD_WPPGROUPAVAILABLE_REQUEST:
@@ -69,7 +69,7 @@ const reducer: Reducer<WppcampState> = (state = INITIAL_STATE, action) => {
     case WppcampTypes.LOAD_WPPGROUPAVAILABLE_SUCCESS:
       return {...state, loading: false, error: false, groupavailable: action.payload.data}
     case WppcampTypes.LOAD_WPPGROUPAVAILABLE_FAILURE:
-      return {...state, loading: false, error: true, groupavailable: {}}
+      return {...state, loading: false, error: action.payload, groupavailable: {}}
 
     default:
       return state

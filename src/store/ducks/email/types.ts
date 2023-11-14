@@ -24,7 +24,7 @@ export interface EmailTolist {
   userId?: number | undefined
   status?: number | undefined
   quantity?: number | undefined
-  created_at?: string | undefined
+  createdAt?: string | undefined
 }
 
 export interface Error {

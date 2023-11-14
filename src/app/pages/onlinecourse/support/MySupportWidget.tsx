@@ -90,10 +90,11 @@ const MySupportWidget: React.FC<React.PropsWithChildren<Props>> = ({className, s
                   <thead>
                     <tr className='border-0'>
                       <th className='p-0 w-50px'>#Id</th>
-                      <th className='p-0 w-50px'>Data</th>
+                      <th className='p-0 min-w-140px'>Data</th>
                       <th className='p-0 min-w-140px'>Mensagem</th>
                       <th className='p-0 min-w-110px'>Resposta</th>
                       <th className='p-0 min-w-50px'>Status</th>
+                      <th className='p-0 min-w-50px'>Repondido por</th>
                     </tr>
                   </thead>
                   {/* end::Table head */}
@@ -107,7 +108,7 @@ const MySupportWidget: React.FC<React.PropsWithChildren<Props>> = ({className, s
                           </td>
                           <td>
                             <span className='text-left text-muted fw-bold d-block'>
-                              {MOMENT(Number(support.created_at) * 1000).format('DD/MM/YYYY HH:mm')}
+                              {MOMENT(support.createdAt).format('DD/MM/YYYY HH:mm')}
                             </span>
                           </td>
                           <td className='text-left fw-bold'>{support.message}</td>
@@ -117,6 +118,7 @@ const MySupportWidget: React.FC<React.PropsWithChildren<Props>> = ({className, s
                               {support.status ? 'Respondido' : 'Não respondido'}
                             </span>
                           </td>
+                          <td className='text-left fw-bold'>{support.parentAdmin?.name}</td>
                         </tr>
                       )
                     })}

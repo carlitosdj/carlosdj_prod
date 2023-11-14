@@ -19,7 +19,6 @@ import {AnnotationsState} from './ducks/annotations/types'
 import {SupportState} from './ducks/support/types'
 import {WppcampState} from './ducks/wppcamp/types'
 import {WppgroupState} from './ducks/wppgroup/types'
-import {SolicitationState} from './ducks/solicitation/types'
 import { CityState } from './ducks/city/types'
 import { StateState } from './ducks/state/types'
 import { MeState } from './ducks/me/types'
@@ -42,7 +41,6 @@ export interface ApplicationState {
   supports: SupportState
   wppcamp: WppcampState
   wppgroup: WppgroupState
-  solicitation: SolicitationState
   city: CityState
   state: StateState
   

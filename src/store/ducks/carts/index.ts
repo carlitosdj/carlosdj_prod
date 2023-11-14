@@ -14,7 +14,7 @@ const reducer: Reducer<CartsState> = (state = INITIAL_STATE, action) => {
     case CartsTypes.LOAD_CART_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data} //2x .data oO
     case CartsTypes.LOAD_CART_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     //Create
     case CartsTypes.CREATE_CART_REQUEST:
@@ -22,7 +22,7 @@ const reducer: Reducer<CartsState> = (state = INITIAL_STATE, action) => {
     case CartsTypes.CREATE_CART_SUCCESS:
       return {...state, loading: false, error: false, data: action.payload.data}
     case CartsTypes.CREATE_CART_FAILURE:
-      return {...state, loading: false, error: true, data: {}}
+      return {...state, loading: false, error: action.payload, data: {}}
 
     default:
       return state

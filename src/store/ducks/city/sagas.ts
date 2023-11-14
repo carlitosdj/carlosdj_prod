@@ -15,7 +15,7 @@ export function* loadCity(payload: ReturnType<typeof loadCityRequest>) {
     put(loadCityRequest(payload.payload))
     const response: City[] = yield call(api.get, 'city/state/' + payload.payload)
     yield put(loadCitySuccess(response))
-  } catch (error) {
-    yield put(loadCityFailure())
+  } catch (error: any) {
+    yield put(loadCityFailure(error.response.data))
   }
 }
