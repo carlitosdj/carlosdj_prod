@@ -6,6 +6,7 @@ import {ApplicationState} from '../../../../store'
 import {
   createAulaConcluidaRequest,
   createRateRequest,
+  createTimeWatchedRequest,
 } from '../../../../store/ducks/component/actions'
 import Vimeo from '@u-wave/react-vimeo'
 import {useNavigate, useParams} from 'react-router-dom'
@@ -27,6 +28,7 @@ const StarRating = (selectedClass: any) => {
   const [rating, setRating] = useState(0)
   const dispatch = useDispatch()
   const me = useSelector((state: ApplicationState) => state.me)
+
   //console.log("Selected class", selectedClass.selectedClass)
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const StarRating = (selectedClass: any) => {
     // dispatch(createRateRequest(1, 748, index))
   }
   return (
-    <div className='star-rating' style={{fontSize: 20}}>
+    <div className='star-rating d-flex align-items-center' style={{fontSize: 20}}>
       {[...Array(5)].map((star, index) => {
         index += 1
         return (
@@ -61,7 +63,7 @@ const StarRating = (selectedClass: any) => {
           </button>
         )
       })}
-      {rating}
+      <span style={{fontSize: 16, paddingLeft: 3}}>{rating}</span>
     </div>
   )
 }
@@ -78,12 +80,17 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
   const navigate = useNavigate()
   let {id, module_id, class_id} = useParams<ParamTypes>()
 
+  // console.log('**COMPONENT**', component)
+  // console.log('**SELECTEDCLASS**', selectedClass)
+  // console.log("selectedClass.completed[0].timeWatched === selectedClass.duration", selectedClass.completed[0].timeWatched === selectedClass.duration)
+  // console.log("selectedClass.completed[0].timeWatched", selectedClass.completed[0].timeWatched)
+  // console.log("selectedClass.duration", selectedClass.duration)
   // useEffect(() => {
   //   //console.log("ei")
   // },[id, module_id, class_id])
 
   const completed = (aula: any) => {
-    console.log("CONCLUINDO AULA AUTOMATICAMENTE............", aula)
+    console.log('CONCLUINDO AULA AUTOMATICAMENTE............', aula)
     if (aula.completed[0]?.status === 1) {
       //Desmarcar
       // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
@@ -92,13 +99,7 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       // console.log('MARCAR como concluida', aula)
       console.log('concluindo aula')
       dispatch(
-        createAulaConcluidaRequest(
-          aula.completed[0]?.id,
-          me.me.id!,
-          aula.id,
-          aula.parent.id,
-          1
-        )
+        createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 1)
       )
     }
     goNextClass()
@@ -112,16 +113,18 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       })
       .indexOf(selectedClass.id)
     let next = component.classes[index + 1]
-    console.log("GO NEXT?", next)
+    console.log('GO NEXT?', next)
     // if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
     // //completed(selectedClass)
     if (next) {
-      console.log("Tem next...")
+      console.log('Tem next...')
       navigate('/class/' + id + '/' + module_id + '/' + next.id)
     }
   }
 
   //console.log("pathname", video_id)
+  const [steps, setSteps] = useState(0)
+  const [watched, setWatched] = useState(0)
   return (
     <>
       {/* begin::Video */}
@@ -146,11 +149,55 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
               video={video_id}
               autoplay
               //onLoaded={() => console.log("Loaded")}
-              onEnd={() => completed(selectedClass)}
+              onEnd={() => {
+                completed(selectedClass)
+                dispatch(
+                  createTimeWatchedRequest(
+                    selectedClass.completed[0]?.id,
+                    me.me.id!,
+                    selectedClass.id,
+                    selectedClass.duration
+                  )
+                )
+              }}
               //onProgress={(e:any) => console.log('oi', e)}
+              onTimeUpdate={(time) => {
+                setSteps(steps + 1)
+                if (steps >= 59) {
+                  setSteps(0)
+
+                  // console.log("OI")
+                  // console.log("me.me.id!",me.me.id!)
+                  // console.log("selectedClass.selectedClass.id",selectedClass.id)
+                  // console.log("selectedClass.completed[0]?.id",selectedClass.completed[0]?.id)
+                  // console.log("time.seconds",time.seconds)
+
+                  dispatch(
+                    createTimeWatchedRequest(
+                      selectedClass.completed[0]?.id,
+                      me.me.id!,
+                      selectedClass.id,
+                      time.seconds
+                    )
+                  )
+                }
+              }}
+              //onProgress={progress => console.log("progress", progress)}
+              start={
+                selectedClass.completed[0]
+                  ? selectedClass.completed[0].timeWatched === selectedClass.duration
+                    ? 0
+                    : selectedClass.completed[0].timeWatched
+                  : 0
+              }
+              //responsive={true}
             />
           )}
-
+          {/* <div>
+            <br />
+            <br />
+            STEPS: {steps}
+          </div> */}
           {/*  */}
         </div>
       </div>

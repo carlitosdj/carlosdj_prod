@@ -12,8 +12,9 @@ import Loading from '../../../design/loading'
 import {createAulaConcluidaRequest, loadClassesRequest, loadModulesRequest} from '../../../../store/ducks/component/actions'
 
 import {ComponentState} from '../../../../store/ducks/component/types'
-import {CommentClassWidget} from './CommentClassWidget'
+import {AnnotationWidget} from './AnnotationWidget'
 import {LinksWidget} from './LinksWidget'
+import { CommentWidget } from './CommentWidget'
 
 type ParamTypes = {
   id: string
@@ -69,7 +70,18 @@ const ClassPage: React.FC<React.PropsWithChildren<Props>> = ({
             />
           </div>
           <div className='col-xxl-6'>
-            <CommentClassWidget
+            <AnnotationWidget
+              className='card-xxl-stretch mb-5 mb-xxl-8'
+              selectedClass={selectedClass}
+              url={url}
+            />
+          </div>
+        </div>
+      </div>
+      <div className='col-xxl-12'>
+        <div className='row g-5 gx-xxl-12'>
+          <div className='col-xxl-12'>
+            <CommentWidget
               className='card-xxl-stretch mb-5 mb-xxl-8'
               selectedClass={selectedClass}
               url={url}
@@ -163,11 +175,13 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
   ) {
     // console.log('Loading?', component.loading)
     
-    console.log('Component?', component)
+    
     // console.log('Modules lenght', component.modules.length)
 
     return <Loading />
   }
+
+  console.log('Component?', component)
 
   let url: string | undefined = ''
   let selectedClass: any = ''

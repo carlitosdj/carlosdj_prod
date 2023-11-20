@@ -14,7 +14,15 @@ import {
 } from './users/sagas'
 
 import {MeTypes} from './me/types'
-import {loginUser, createMe, updateMe, deleteMe, recoveryUser, loadMe, changePassMe} from './me/sagas'
+import {
+  loginUser,
+  createMe,
+  updateMe,
+  deleteMe,
+  recoveryUser,
+  loadMe,
+  changePassMe,
+} from './me/sagas'
 
 import {ComponentTypes} from './component/types'
 import {
@@ -34,6 +42,7 @@ import {
   searchComponent,
   loadLastLiveClass,
   loadLastClass,
+  createTimeWatched,
   // uploadExtra
 } from './component/sagas'
 
@@ -73,10 +82,12 @@ import {WppcampTypes} from './wppcamp/types'
 import {WppgroupTypes} from './wppgroup/types'
 import {createWppgroup, deleteWppgroup, loadWppgroups, updateWppgroup} from './wppgroup/sagas'
 
-import { StateTypes } from './state/types'
-import { CityTypes } from './city/types'
-import { loadState } from './state/sagas'
-import { loadCity } from './city/sagas'
+import {StateTypes} from './state/types'
+import {CityTypes} from './city/types'
+import {loadState} from './state/sagas'
+import {loadCity} from './city/sagas'
+import {CommentTypes} from './comments/types'
+import {createComment, createCommentWithParent, deleteComment, deleteCommentWithParent, loadComments, updateComment, updateCommentWithParent} from './comments/sagas'
 
 export default function* rootSaga() {
   yield all([
@@ -150,6 +161,7 @@ export default function* rootSaga() {
     takeLatest(ComponentTypes.CREATE_AULACONCLUIDA_REQUEST, createAulaConcluida),
     takeLatest(ComponentTypes.DELETE_AULACONCLUIDA_REQUEST, deleteAulaConcluida),
     takeLatest(ComponentTypes.CREATE_RATE_REQUEST, createRate),
+    takeLatest(ComponentTypes.CREATE_TIMEWATCHED_REQUEST, createTimeWatched),
 
     //Support
     takeLatest(SupportsTypes.LOAD_ALLSUPPORT_REQUEST, loadAllsupports),
@@ -177,6 +189,15 @@ export default function* rootSaga() {
     // takeLatest(ExtraTypes.CREATE_EXTRA_REQUEST,createExtra),
     // takeLatest(ExtraTypes.UPDATE_EXTRA_REQUEST,updateExtra),
     // takeLatest(ExtraTypes.DELETE_EXTRA_REQUEST,deleteExtra),
+
+    //Comments
+    takeLatest(CommentTypes.LOAD_COMMENTS_REQUEST, loadComments),
+    takeLatest(CommentTypes.CREATE_COMMENT_REQUEST, createComment),
+    takeLatest(CommentTypes.CREATE_COMMENT_WITH_PARENT_REQUEST, createCommentWithParent),
+    takeLatest(CommentTypes.UPDATE_COMMENT_REQUEST, updateComment),
+    takeLatest(CommentTypes.UPDATE_COMMENT_WITH_PARENT_REQUEST, updateCommentWithParent),
+    takeLatest(CommentTypes.DELETE_COMMENT_REQUEST, deleteComment),
+    takeLatest(CommentTypes.DELETE_COMMENT_WITH_PARENT_REQUEST, deleteCommentWithParent),
   ])
   // console.log('mounting saga...')
 }

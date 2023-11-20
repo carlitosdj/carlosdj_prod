@@ -185,7 +185,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                   </tbody>
                   {/* end::Table body */}
                 </table>
-                Duração da fase:{' '}
+                Duração:{' '}
                 {MOMENT.duration(faseDuration, 'seconds').format('hh:mm:ss', {trim: true})}
               </div>
               {/* end::Table */}

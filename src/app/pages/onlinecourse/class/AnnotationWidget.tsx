@@ -8,6 +8,7 @@ import {
   createAnnotationRequest,
   loadAnnotationSingleRequest,
 } from '../../../../store/ducks/annotation/actions'
+import ReactTextareaAutosize from 'react-textarea-autosize'
 
 type Props = {
   className: string
@@ -15,7 +16,7 @@ type Props = {
   url?: string
 }
 
-const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
+const AnnotationWidget: React.FC<React.PropsWithChildren<Props>> = ({
   className,
   selectedClass,
   url,
@@ -63,10 +64,10 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
   return (
     <div className={`card ${className}`}>
       {/* begin::Body */}
-      <div className='card-body d-flex flex-column pb-10 pb-lg-15'>
-        <div className='text-dark fw-bolder fs-4 mb-5'>Minhas anotações</div>
+      <div className='card-body d-flex flex-column pb-0 pb-lg-0'>
+        <div className='text-dark fw-bolder fs-4 mb-5'>Minhas anotações privadas</div>
         <div className='flex-grow-1'>
-          <div className='mb-6'>
+          <div className='mb-0'>
             <div className='tab-pane active' id='timeline'>
               {/* Post */}
               <div className='post clearfix'>
@@ -75,9 +76,10 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
                 ) : (
                   // <form noValidate validated={validated} onSubmit={handleSubmit} >
                   <form noValidate onSubmit={handleSubmit}>
-                    <textarea
+                    <ReactTextareaAutosize
+                      minRows={2}
                       className='form-control'
-                      rows={10}
+                      //rows={10}
                       style={{width: '100%'}}
                       placeholder=''
                       required
@@ -108,4 +110,4 @@ const CommentClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
   )
 }
 
-export {CommentClassWidget}
+export {AnnotationWidget}

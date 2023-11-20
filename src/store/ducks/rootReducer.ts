@@ -17,6 +17,7 @@ import wppcamp from './wppcamp'
 import wppgroup from './wppgroup'
 import city from './city'
 import state from './state'
+import comments from './comments'
 
 export default combineReducers({
   carts,
@@ -36,4 +37,5 @@ export default combineReducers({
   wppgroup,
   city,
   state,
+  comments
 })

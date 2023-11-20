@@ -178,7 +178,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
                       to={'/class/' + id + '/' + module_id + '/' + aula.id}
                       className='text-gray-800 text-hover-primary fw-bolder'
                     >
-                      {aula.name} 
+                      {aula.name}
                       <br/>
                       <span className='text-end text-muted fw-bold' style={{fontSize:11}}> 
                       <KTSVG

@@ -140,6 +140,18 @@ export const createRateSuccess = (data: AulaConcluida) =>
   action(ComponentTypes.CREATE_RATE_SUCCESS, data)
 export const createRateFailure = (err: any[]) => action(ComponentTypes.CREATE_RATE_FAILURE, err)
 
+
+//Single Aula Concluida
+export const createTimeWatchedRequest = (
+  id: number,
+  userId: number,
+  componentId: number,
+  timeWatched: number
+) => action(ComponentTypes.CREATE_TIMEWATCHED_REQUEST, {id, userId, componentId, timeWatched})
+export const createTimeWatchedSuccess = (data: AulaConcluida) =>
+  action(ComponentTypes.CREATE_TIMEWATCHED_SUCCESS, data)
+export const createTimeWatchedFailure = (err: any[]) => action(ComponentTypes.CREATE_TIMEWATCHED_FAILURE, err)
+
 //Search
 export const searchRequest = (search: string) => action(ComponentTypes.SEARCH_REQUEST, search)
 export const searchSuccess = (data: Component) => action(ComponentTypes.SEARCH_SUCCESS, data)

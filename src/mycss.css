@@ -8,7 +8,7 @@ button {
   cursor: pointer;
 }
 .on {
-  color: yellow;
+  color: #ddd236;
 }
 .off {
   color: #ccc;

@@ -44,16 +44,21 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.LOAD_LASTLIVECLASS_REQUEST:
       return {...state, loadingLastLiveClass: true}
     case ComponentTypes.LOAD_LASTLIVECLASS_SUCCESS:
-      return {...state, loadingLastLiveClass: false, error: false, lastliveclass: action.payload.data}
-      case ComponentTypes.LOAD_LASTLIVECLASS_FAILURE:
-        return {...state, loadingLastLiveClass: false, error: action.payload, lastliveclass: {}}
+      return {
+        ...state,
+        loadingLastLiveClass: false,
+        error: false,
+        lastliveclass: action.payload.data,
+      }
+    case ComponentTypes.LOAD_LASTLIVECLASS_FAILURE:
+      return {...state, loadingLastLiveClass: false, error: action.payload, lastliveclass: {}}
 
     case ComponentTypes.LOAD_LASTCLASS_REQUEST:
       return {...state, loadingLastClass: true}
     case ComponentTypes.LOAD_LASTCLASS_SUCCESS:
       return {...state, loadingLastClass: false, error: false, lastclass: action.payload.data}
-      case ComponentTypes.LOAD_LASTCLASS_FAILURE:
-        return {...state, loadingLastClass: false, error: action.payload, lastclass: {}}
+    case ComponentTypes.LOAD_LASTCLASS_FAILURE:
+      return {...state, loadingLastClass: false, error: action.payload, lastclass: {}}
     //Course:
     // case ComponentTypes.LOAD_COURSE_REQUEST:
     //     return { ...state, loading: true, }
@@ -191,7 +196,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
             // console.log("Payload", action.payload.parentId)
             // console.log("Modulo", modulo.id)
             if (modulo.id === action.payload.parentId) {
-              console.log("Achei", modulo)
+              console.log('Achei', modulo)
               //modulo.completed = [action.payload.data]
               modulo.children?.map((aula) => {
                 if (aula.id === action.payload.data.data.componentId) {
@@ -219,7 +224,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
 
     case ComponentTypes.CREATE_AULACONCLUIDA_FAILURE:
       return {...state, loading: false, loadingAulaConcluida: false, error: action.payload}
-      
+
     //create user:
     case ComponentTypes.DELETE_AULACONCLUIDA_REQUEST:
       return {...state, loadingAulaConcluida: true, loadingAulaConcluidaId: action.payload.aula.id}
@@ -266,11 +271,6 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.DELETE_AULACONCLUIDA_FAILURE:
       return {...state, loading: false, loadingAulaConcluida: false, error: action.payload}
 
-
-
-
-
-
     //Rate:
     case ComponentTypes.CREATE_RATE_REQUEST:
       return {
@@ -301,6 +301,35 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.CREATE_RATE_FAILURE:
       return {...state, loading: false, loadingAulaConcluida: false, error: action.payload}
 
+    //TimeWatched:
+    case ComponentTypes.CREATE_TIMEWATCHED_REQUEST:
+      return {
+        ...state,
+        // loadingAulaConcluida: true,
+        // loadingAulaConcluidaId: action.payload.componentId,
+      }
+    case ComponentTypes.CREATE_TIMEWATCHED_SUCCESS:
+      console.log("BATEUU!!", action.payload.data)
+      return {
+        ...state,
+        loading: false,
+        loadingAulaConcluida: false,
+        error: {},
+        classes: Object.assign([], state.classes, {
+          ...state.classes.map((aula) => {
+            // console.log("Payload New", action.payload.data.componentId)
+            // console.log("Aula", aula.id)
+            if (aula.id === action.payload.data.componentId) {
+              console.log("Achei",aula.id)
+              aula.completed = [action.payload.data]
+            }
+            return aula
+          }),
+        }),
+      }
+
+    case ComponentTypes.CREATE_TIMEWATCHED_FAILURE:
+      return {...state, loading: false, loadingAulaConcluida: false, error: action.payload}
 
     //search
     case ComponentTypes.SEARCH_REQUEST:
@@ -309,8 +338,6 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
       return {...state, loading: false, error: false, search: action.payload.data}
     case ComponentTypes.SEARCH_FAILURE:
       return {...state, loading: false, error: action.payload, search: []}
-
-
 
     default:
       return state

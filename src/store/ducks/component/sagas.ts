@@ -54,6 +54,9 @@ import {
   loadLastClassRequest,
   loadLastClassSuccess,
   loadLastClassFailure,
+  createTimeWatchedRequest,
+  createTimeWatchedSuccess,
+  createTimeWatchedFailure,
   // loadCourseRequest,
 } from './actions'
 
@@ -95,9 +98,9 @@ export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
       'component/modules/' +
         payload.payload.id +
         '/' +
-        1 + //payload.payload.userId +
+        payload.payload.userId +
         '/' +
-        1 + //payload.payload.num_turma +
+        payload.payload.num_turma +
         '/' +
         payload.payload.orderby
     )
@@ -114,7 +117,7 @@ export function* loadClasses(payload: ReturnType<typeof loadClassesRequest>) {
     put(loadClassesRequest(payload.payload.id, payload.payload.userId, payload.payload.orderby))
     const response: Component = yield call(
       api.get,
-      `component/classes/${payload.payload.id}/1/${
+      `component/classes/${payload.payload.id}/${payload.payload.userId}/${
         payload.payload.orderby ? payload.payload.orderby : 'asc'
       }`
     )
@@ -241,10 +244,10 @@ export function* createAulaConcluida(payload: ReturnType<typeof createAulaConclu
         payload.payload.status
       )
     )
-    const { parentId, ...result } = payload.payload
+    const {parentId, ...result} = payload.payload
 
     const response: AulaConcluida = yield payload.payload.id
-      ? call(api.patch, 'completed/'+payload.payload.id, result)
+      ? call(api.patch, 'completed/' + payload.payload.id, result)
       : call(api.post, 'completed', result)
 
     //console.log("CREATED AULACONCLUIDA response", response)
@@ -277,17 +280,42 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
     )
     //const response: AulaConcluida = yield call(api.post, 'completed', payload.payload)
     //console.log("CREATED RATE response", response)
-    const { ...result } = payload.payload
+    const {...result} = payload.payload
 
     const response: AulaConcluida = yield payload.payload.id
-      ? call(api.patch, 'completed/'+payload.payload.id, result)
+      ? call(api.patch, 'completed/' + payload.payload.id, result)
       : call(api.post, 'completed', result)
-
 
     yield put(createRateSuccess(response))
   } catch (error: any) {
     //console.log("error", error.resposne)
     yield put(createRateFailure(error.response.data))
+  }
+}
+
+//Concluir Aula Concluida
+export function* createTimeWatched(payload: ReturnType<typeof createTimeWatchedRequest>) {
+  try {
+    put(
+      createTimeWatchedRequest(
+        payload.payload.id,
+        payload.payload.userId,
+        payload.payload.componentId,
+        payload.payload.timeWatched
+      )
+    )
+    //const response: AulaConcluida = yield call(api.post, 'completed', payload.payload)
+    //console.log("CREATED RATE response", response)
+    const {...result} = payload.payload
+
+    const response: AulaConcluida = yield payload.payload.id
+      ? call(api.patch, 'completed/' + payload.payload.id, result)
+      : call(api.post, 'completed', result)
+
+    yield put(createTimeWatchedSuccess(response))
+  } catch (error: any) {
+    //console.log("error", error.resposne)
+    yield put(createTimeWatchedFailure(error.response.data))
   }
 }
 

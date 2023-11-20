@@ -23,6 +23,7 @@ export interface AulaConcluida {
   parentUser?: any | undefined
   parentComponent?: any | undefined
   rate?: any | undefined
+  timeWatched?: any
 }
 
 export interface Error {

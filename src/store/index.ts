@@ -19,14 +19,15 @@ import {AnnotationsState} from './ducks/annotations/types'
 import {SupportState} from './ducks/support/types'
 import {WppcampState} from './ducks/wppcamp/types'
 import {WppgroupState} from './ducks/wppgroup/types'
-import { CityState } from './ducks/city/types'
-import { StateState } from './ducks/state/types'
-import { MeState } from './ducks/me/types'
+import {CityState} from './ducks/city/types'
+import {StateState} from './ducks/state/types'
+import {MeState} from './ducks/me/types'
+import {CommentState} from './ducks/comments/types'
 // import { AulaConcluidaState } from './ducks/completed/types';
 
 export interface ApplicationState {
   //carts: CartsState
-  
+
   users: UsersState
   me: MeState
   component: ComponentState
@@ -43,14 +44,11 @@ export interface ApplicationState {
   wppgroup: WppgroupState
   city: CityState
   state: StateState
-  
+  comments: CommentState
 }
 
 const sagaMiddleware = createSagaMiddleware()
 const store: Store<ApplicationState> = createStore(rootReducer, applyMiddleware(sagaMiddleware))
-
 sagaMiddleware.run(rootSaga)
-
 export const persistor = persistStore(store)
-
 export default store
