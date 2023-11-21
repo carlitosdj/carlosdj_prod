@@ -85,6 +85,7 @@ const ClassPage: React.FC<React.PropsWithChildren<Props>> = ({
               className='card-xxl-stretch mb-5 mb-xxl-8'
               selectedClass={selectedClass}
               url={url}
+              
             />
           </div>
         </div>
@@ -181,7 +182,7 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
     return <Loading />
   }
 
-  console.log('Component?', component)
+  // console.log('Component?', component)
 
   let url: string | undefined = ''
   let selectedClass: any = ''

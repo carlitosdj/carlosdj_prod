@@ -22,7 +22,7 @@ const AnnotationWidget: React.FC<React.PropsWithChildren<Props>> = ({
   url,
 }) => {
   const annotationRedux = useSelector((state: ApplicationState) => state.annotation)
-  console.log('AnnotationRedux', annotationRedux)
+  // console.log('AnnotationRedux', annotationRedux)
   // const [validated, setValidated] = useState(false);
   const [annotation, setAnnotation] = useState('')
   const me = useSelector((state: ApplicationState) => state.me)
@@ -34,9 +34,9 @@ const AnnotationWidget: React.FC<React.PropsWithChildren<Props>> = ({
     // setValidated(false) // remove o validador das anotações
   }, [me, selectedClass.id, dispatch])
 
-  console.log('selectedClass.id', selectedClass.id)
-  console.log('me.me.id!', me.me.id!)
-  console.log('annotationRedux.data', annotationRedux.data ? 'nao' : 'sim')
+  // console.log('selectedClass.id', selectedClass.id)
+  // console.log('me.me.id!', me.me.id!)
+  // console.log('annotationRedux.data', annotationRedux.data ? 'nao' : 'sim')
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     const form = event.currentTarget

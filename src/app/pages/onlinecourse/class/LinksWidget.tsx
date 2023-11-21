@@ -54,7 +54,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
             {extras_files.map((link: any, index: any) => {
               let split = link.valueExtra.split('.')
               let extension = split.reverse()[0]
-              console.log('Extension', extension)
+              // console.log('Extension', extension)
               return (
                 <a
                   href={'http://localhost:3000/upload/file/' + link.valueExtra}

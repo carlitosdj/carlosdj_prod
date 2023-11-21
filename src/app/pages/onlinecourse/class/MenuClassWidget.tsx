@@ -128,7 +128,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
     }
   }
 
-  console.log('COMPONENT', comp)
+  // console.log('COMPONENT', comp)
   return (
     <div className={`card ${className}`}>
       {/* begin::Beader */}

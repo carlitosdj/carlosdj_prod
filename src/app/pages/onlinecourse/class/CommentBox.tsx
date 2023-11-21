@@ -1,19 +1,20 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react'
+import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react'
 import {Comment, CommentState} from '../../../../store/ducks/comments/types'
 import CommentWidgetWrite from './CommentWidgetWrite'
 import {useDispatch} from 'react-redux'
 import {useSelector} from 'react-redux'
 import {ApplicationState} from '../../../../store'
 import {
-  createCommentRequest,
   createCommentWithParentRequest,
   deleteCommentRequest,
   deleteCommentWithParentRequest,
   updateCommentRequest,
   updateCommentWithParentRequest,
 } from '../../../../store/ducks/comments/actions'
-import Loading from '../../../design/loading'
+//import Loading from '../../../design/loading'
 import CommentWidgetUpdate from './CommentWidgetUpdate'
+import {useOutsideClick} from './useOutsideClick'
+
 const MOMENT = require('moment')
 
 interface Props {
@@ -22,6 +23,8 @@ interface Props {
   comment: Comment
   handleSubmit: (event: any) => any
   setComment: Dispatch<SetStateAction<string>>
+  // hideAll: boolean
+  // setHideAll: (bool: any) => any
 }
 
 const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: Props) => {
@@ -29,12 +32,12 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
   const [showUpdate, setShowUpdate] = useState(false)
 
   const [reply, setReply] = useState(comment.parentUser ? comment.parentUser?.name + ', ' : '')
-  const [updateComment, setUpdateComment] = useState('')
+  const [updateComment, setUpdateComment] = useState(comment.comment!)
 
-  useEffect(() => {
-    console.log('TESTE', comment.comment)
-    setUpdateComment(comment.comment!)
-  }, [comment.id])
+  // useEffect(() => {
+  //   console.log('TESTE', comment)
+  //   //setUpdateComment(comment.comment!)
+  // }, [comment.id])
 
   const dispatch = useDispatch()
   const me = useSelector((state: ApplicationState) => state.me)
@@ -57,6 +60,7 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
       dispatch(createCommentWithParentRequest(commentToSave))
       setShowReply(false)
       setReply('')
+      setShowUpdate(false)
     }
   }
 
@@ -79,6 +83,7 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
       dispatch(updateCommentRequest(commentToSave))
       //setShowReply(false)
       setShowUpdate(false)
+      setShowReply(false)
       //setReply('')
     }
   }
@@ -100,19 +105,16 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
       }
       console.log('Update...', commentToSave)
       dispatch(updateCommentWithParentRequest(commentToSave)) //TODO:
-      //setShowReply(false)
       setShowUpdate(false)
-      //setReply('')
+      setShowReply(false)
     }
   }
 
   const deleteComment = (comment: Comment) => {
-    //console.log("annotation",annotation)
     dispatch(deleteCommentRequest(comment.id!))
   }
 
   const deleteCommentWithParent = (comment: Comment) => {
-    //console.log("annotation",annotation)
     dispatch(deleteCommentWithParentRequest(comment.id!))
   }
 
@@ -123,8 +125,8 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
   }
 
   return (
-    <>
-      <div className='d-flex  p-2'>
+    <div>
+      <div className='d-flex p-2'>
         <div
           className='cursor-pointer symbol symbol-40px symbol-md-50px show menu-dropdown p-2'
           data-kt-menu-trigger='click'
@@ -144,15 +146,12 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
               {comment.createdAt !== comment.updatedAt && ' - (Editado)'}
             </div>
             {!showUpdate && (
-              <div dangerouslySetInnerHTML={{__html: nl2br(comment.comment!, true, true)}}></div>
+              <>
+                {/* <div>ID: {comment.id} </div> */}
+                <div dangerouslySetInnerHTML={{__html: nl2br(comment.comment!, true, true)}}></div>
+              </>
             )}
           </div>
-
-          {/* {reply === comment.id && loading && <Loading/>} */}
-          {/* {comment.id}
-          {comment.parentId} */}
-
-          {/* {saveLoading && loading && <Loading />} */}
 
           <a
             href='#!'
@@ -162,17 +161,9 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
             }}
             style={{fontWeight: 'bold'}}
           >
-            {' '}
-            Responder
+            {/* {' Responder '+(showReply?'TRUE':'FALSE')} */}
+            {' Responder'}
           </a>
-
-          {/* {!comment.parentId ? (
-            <a href='#!' onClick={() => setShowReply(!showReply)} style={{fontWeight: 'bold'}}>
-              Responder
-            </a>
-          ) : (
-            ''
-          )} */}
 
           {comment.parentUser?.id === me.me.id && (
             <a
@@ -183,12 +174,11 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
               }}
               style={{fontWeight: 'bold'}}
             >
-              {' '}
-              Editar
+              {' Editar'}
             </a>
           )}
 
-          {comment.parentUser?.id === me.me.id && !comment.parentId ? (
+          {comment.parentUser?.id === me.me.id && !comment.parentId && (
             <a
               href='#!'
               onClick={() => {
@@ -196,60 +186,55 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
               }}
               style={{fontWeight: 'bold'}}
             >
-              {' '}
-              Excluir
+              {' Excluir'}
             </a>
-          ) : (
-            ''
+          )}
+          {comment.parentUser?.id === me.me.id && comment.parentId && (
+            <a
+              href='#!'
+              onClick={() => {
+                if (window.confirm('Deseja realmente excluir?')) deleteCommentWithParent(comment)
+              }}
+              style={{fontWeight: 'bold'}}
+            >
+              {' Excluir'}
+            </a>
           )}
 
-          {showReply ? (
+          {showReply && (
             <CommentWidgetWrite
+              key={comment.id}
+              setShowReply={setShowReply}
+              //setShowUpdate={setShowUpdate}
+              id={comment.id!}
               loading={loading}
               handleSubmit={handleSubmitWithParentId}
               setComment={setReply}
               comment={reply}
             />
-          ) : (
-            ''
           )}
 
-          {showUpdate && !comment.parentId ? (
+          {showUpdate && !comment.parentId && (
             <CommentWidgetUpdate
+              key={comment.id}
+              id={comment.id!}
               loading={loading}
               handleSubmit={handleUpdate}
               setComment={setUpdateComment}
               comment={updateComment}
+              setShowUpdate={setShowUpdate}
             />
-          ) : (
-            ''
           )}
-          {showUpdate && comment.parentId ? (
+          {showUpdate && comment.parentId && (
             <CommentWidgetUpdate
+              key={comment.id}
+              id={comment.id!}
               loading={loading}
               handleSubmit={handleUpdateWithParentId}
               setComment={setUpdateComment}
               comment={updateComment}
+              setShowUpdate={setShowUpdate}
             />
-          ) : (
-            ''
-          )}
-
-          {comment.parentUser?.id === me.me.id && comment.parentId ? (
-            <>
-              {' '}
-              <a
-                href='#!'
-                onClick={() => {
-                  if (window.confirm('Deseja realmente excluir?')) deleteCommentWithParent(comment)
-                }}
-                style={{fontWeight: 'bold'}}
-              >
-                Excluir
-              </a>
-            </>
-          ) : (
-            ''
           )}
         </div>
       </div>
@@ -266,7 +251,7 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
           </div>
         )
       })}
-    </>
+    </div>
   )
 }
 
