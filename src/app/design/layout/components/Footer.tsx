@@ -13,7 +13,7 @@ const Footer: FC<React.PropsWithChildren<unknown>> = () => {
         {/* begin::Copyright */}
         <div className='text-dark order-2 order-md-1'>
           <span className='text-muted fw-bold me-2'>{new Date().getFullYear()} &copy;</span>
-          <a href='#' className='text-gray-800 text-hover-primary'>
+          <a href='#!' className='text-gray-800 text-hover-primary'>
             Defelícibus Soluções
           </a>
         </div>
@@ -22,17 +22,17 @@ const Footer: FC<React.PropsWithChildren<unknown>> = () => {
         {/* begin::Nav *-/}
         <ul className='menu menu-gray-600 menu-hover-primary fw-bold order-1'>
           <li className='menu-item'>
-            <a href='#' className='menu-link ps-0 pe-2'>
+            <a href='#!' className='menu-link ps-0 pe-2'>
               About
             </a>
           </li>
           <li className='menu-item'>
-            <a href='#' className='menu-link pe-0 pe-2'>
+            <a href='#!' className='menu-link pe-0 pe-2'>
               Contact
             </a>
           </li>
           <li className='menu-item'>
-            <a href='#' className='menu-link pe-0'>
+            <a href='#!' className='menu-link pe-0'>
               Purchase
             </a>
           </li>

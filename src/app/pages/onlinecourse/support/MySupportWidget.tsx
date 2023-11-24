@@ -65,7 +65,7 @@ const MySupportWidget: React.FC<React.PropsWithChildren<Props>> = ({className, s
             title='Click to add a user'
           >
             <a
-              href='#'
+              href='#!'
               className='btn btn-sm btn-light-primary'
               // data-bs-toggle='modal'
               // data-bs-target='#kt_modal_invite_friends'

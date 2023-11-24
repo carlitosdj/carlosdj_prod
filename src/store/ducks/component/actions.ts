@@ -12,6 +12,14 @@ export const loadComponentSuccess = (data: Component) =>
 export const loadComponentFailure = (err: any[]) =>
   action(ComponentTypes.LOAD_COMPONENT_FAILURE, err)
 
+//Load
+export const loadComponentWithAccessRequest = (id: string, userId: string, sort: string) =>
+  action(ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_REQUEST, {id, userId, sort})
+export const loadComponentWithAccessSuccess = (data: Component) =>
+  action(ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_SUCCESS, data)
+export const loadComponentWithAccessFailure = (err: any[]) =>
+  action(ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_FAILURE, err)
+
 //Load Modules
 export const loadModulesRequest = (
   id: string,
@@ -130,16 +138,11 @@ export const deleteAulaConcluidaFailure = (err: any[]) =>
   action(AulaConcluidaTypes.DELETE_AULACONCLUIDA_FAILURE, err)
 
 //Single Aula Concluida
-export const createRateRequest = (
-  id: number,
-  userId: number,
-  componentId: number,
-  rate: number
-) => action(ComponentTypes.CREATE_RATE_REQUEST, {id, userId, componentId, rate})
+export const createRateRequest = (id: number, userId: number, componentId: number, rate: number) =>
+  action(ComponentTypes.CREATE_RATE_REQUEST, {id, userId, componentId, rate})
 export const createRateSuccess = (data: AulaConcluida) =>
   action(ComponentTypes.CREATE_RATE_SUCCESS, data)
 export const createRateFailure = (err: any[]) => action(ComponentTypes.CREATE_RATE_FAILURE, err)
-
 
 //Single Aula Concluida
 export const createTimeWatchedRequest = (
@@ -150,7 +153,8 @@ export const createTimeWatchedRequest = (
 ) => action(ComponentTypes.CREATE_TIMEWATCHED_REQUEST, {id, userId, componentId, timeWatched})
 export const createTimeWatchedSuccess = (data: AulaConcluida) =>
   action(ComponentTypes.CREATE_TIMEWATCHED_SUCCESS, data)
-export const createTimeWatchedFailure = (err: any[]) => action(ComponentTypes.CREATE_TIMEWATCHED_FAILURE, err)
+export const createTimeWatchedFailure = (err: any[]) =>
+  action(ComponentTypes.CREATE_TIMEWATCHED_FAILURE, err)
 
 //Search
 export const searchRequest = (search: string) => action(ComponentTypes.SEARCH_REQUEST, search)

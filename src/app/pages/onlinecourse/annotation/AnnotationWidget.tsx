@@ -101,7 +101,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, anno
 
                         <td className='text-end'>
                           <a
-                            href='#'
+                            href='#!'
                             onClick={() => {
                               if (
                                 window.confirm('Deseja realmente excluir?')

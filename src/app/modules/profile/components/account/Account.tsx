@@ -50,7 +50,7 @@ export function Account() {
               </div>
               <div className='form-text'>
                 Email will not be publicly displayed.{' '}
-                <a href='#' className='fw-bold'>
+                <a href='#!' className='fw-bold'>
                   Learn more
                 </a>
                 .
@@ -648,7 +648,7 @@ export function Account() {
               <div className='form-text'>
                 After you log in, you will be asked for additional information to confirm your
                 identity and protect your account from being compromised.
-                <a href='#' className='fw-bold'>
+                <a href='#!' className='fw-bold'>
                   Learn more
                 </a>
                 .
@@ -677,7 +677,7 @@ export function Account() {
               <div className='form-text py-2'>
                 For extra security, this requires you to confirm your email or phone number when you
                 reset your password.
-                <a href='#' className='fw-boldk'>
+                <a href='#!' className='fw-boldk'>
                   Learn more
                 </a>
                 .

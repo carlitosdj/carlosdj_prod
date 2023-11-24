@@ -5,7 +5,7 @@ import { CourseWidget1 } from './CourseWidget1'
 import { useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
 import { useDispatch } from 'react-redux'
-import { loadComponentRequest } from '../../store/ducks/component/actions'
+import { loadComponentRequest, loadComponentWithAccessRequest } from '../../store/ducks/component/actions'
 import Loading from '../design/loading'
 // import Vimeo from '@u-wave/react-vimeo'
 // import { right } from '@popperjs/core'
@@ -14,14 +14,18 @@ import Loading from '../design/loading'
 const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
   // const me = useSelector((state: ApplicationState) => state.me)
   const component = useSelector((state: ApplicationState) => state.component)
+  const me = useSelector((state: ApplicationState) => state.me)
   const dispatch = useDispatch()
   // const intl = useIntl()
 
   useEffect(() => {
     // dispatch(loadLastLiveClassRequest())
     // dispatch(loadLastClassRequest(me.me.id!))
-    dispatch(loadComponentRequest('2','desc'))
+    console.log("ID", me.me.id?.toString()!)
+    dispatch(loadComponentWithAccessRequest('2',me.me.id?.toString()!, 'desc'))
   }, [])
+
+  console.log("component", component)
   // console.log("COMPONENT*******", component)
   // let url: string | undefined = ''
   // let urlLastClass: string | undefined = ''
@@ -187,6 +191,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
                       link={'/modules/' + data.id}
                       className='card-xl-stretch mb-xl-8'
                       //height={200}
+                      //locked={true}
                       //locked={!isAvailable}
                       //release={release}
                     />

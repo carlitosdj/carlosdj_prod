@@ -85,6 +85,7 @@ export interface User {
 
   cityId?: string
   stateId?: string
+  roles?: string
   /*  */
 }
 

@@ -43,6 +43,7 @@ import {
   loadLastLiveClass,
   loadLastClass,
   createTimeWatched,
+  loadComponentWithAccess,
   // uploadExtra
 } from './component/sagas'
 
@@ -113,6 +114,7 @@ export default function* rootSaga() {
 
     //Components
     takeLatest(ComponentTypes.LOAD_COMPONENT_REQUEST, loadComponent),
+    takeLatest(ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_REQUEST, loadComponentWithAccess),
     takeLatest(ComponentTypes.SEARCH_REQUEST, searchComponent),
 
     takeLatest(ComponentTypes.LOAD_COMPONENT_BY_DESC_REQUEST, loadComponentByDescription),

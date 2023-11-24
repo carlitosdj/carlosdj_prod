@@ -6,7 +6,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
     <div className='col-lg-4 border-left-lg-1'>
       <div className='menu-inline menu-column menu-active-bg'>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -14,7 +14,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -22,7 +22,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -30,7 +30,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -38,51 +38,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
-            <span className='menu-bullet'>
-              <span className='bullet bullet-dot'></span>
-            </span>
-            <span className='menu-title'>Example link</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div className='col-lg-4 border-left-lg-1'>
-      <div className='menu-inline menu-column menu-active-bg'>
-        <div className='menu-item'>
-          <a href='#' className='menu-link'>
-            <span className='menu-bullet'>
-              <span className='bullet bullet-dot'></span>
-            </span>
-            <span className='menu-title'>Example link</span>
-          </a>
-        </div>
-        <div className='menu-item'>
-          <a href='#' className='menu-link'>
-            <span className='menu-bullet'>
-              <span className='bullet bullet-dot'></span>
-            </span>
-            <span className='menu-title'>Example link</span>
-          </a>
-        </div>
-        <div className='menu-item'>
-          <a href='#' className='menu-link'>
-            <span className='menu-bullet'>
-              <span className='bullet bullet-dot'></span>
-            </span>
-            <span className='menu-title'>Example link</span>
-          </a>
-        </div>
-        <div className='menu-item'>
-          <a href='#' className='menu-link'>
-            <span className='menu-bullet'>
-              <span className='bullet bullet-dot'></span>
-            </span>
-            <span className='menu-title'>Example link</span>
-          </a>
-        </div>
-        <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -94,7 +50,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
     <div className='col-lg-4 border-left-lg-1'>
       <div className='menu-inline menu-column menu-active-bg'>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -102,7 +58,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -110,7 +66,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -118,7 +74,7 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>
@@ -126,7 +82,51 @@ const MegaMenu: FC<React.PropsWithChildren<unknown>> = () => (
           </a>
         </div>
         <div className='menu-item'>
-          <a href='#' className='menu-link'>
+          <a href='#!' className='menu-link'>
+            <span className='menu-bullet'>
+              <span className='bullet bullet-dot'></span>
+            </span>
+            <span className='menu-title'>Example link</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div className='col-lg-4 border-left-lg-1'>
+      <div className='menu-inline menu-column menu-active-bg'>
+        <div className='menu-item'>
+          <a href='#!' className='menu-link'>
+            <span className='menu-bullet'>
+              <span className='bullet bullet-dot'></span>
+            </span>
+            <span className='menu-title'>Example link</span>
+          </a>
+        </div>
+        <div className='menu-item'>
+          <a href='#!' className='menu-link'>
+            <span className='menu-bullet'>
+              <span className='bullet bullet-dot'></span>
+            </span>
+            <span className='menu-title'>Example link</span>
+          </a>
+        </div>
+        <div className='menu-item'>
+          <a href='#!' className='menu-link'>
+            <span className='menu-bullet'>
+              <span className='bullet bullet-dot'></span>
+            </span>
+            <span className='menu-title'>Example link</span>
+          </a>
+        </div>
+        <div className='menu-item'>
+          <a href='#!' className='menu-link'>
+            <span className='menu-bullet'>
+              <span className='bullet bullet-dot'></span>
+            </span>
+            <span className='menu-title'>Example link</span>
+          </a>
+        </div>
+        <div className='menu-item'>
+          <a href='#!' className='menu-link'>
             <span className='menu-bullet'>
               <span className='bullet bullet-dot'></span>
             </span>

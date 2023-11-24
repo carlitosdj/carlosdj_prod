@@ -54,7 +54,7 @@ const Languages: FC<React.PropsWithChildren<unknown>> = () => {
       data-kt-menu-placement='left-start'
       data-kt-menu-flip='bottom'
     >
-      <a href='#' className='menu-link px-5'>
+      <a href='#!' className='menu-link px-5'>
         <span className='menu-title position-relative'>
           Idioma
           <span className='fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0'>
@@ -78,7 +78,7 @@ const Languages: FC<React.PropsWithChildren<unknown>> = () => {
             }}
           >
             <a
-              href='#'
+              href='#!'
               className={clsx('menu-link d-flex px-5', {active: l.lang === currentLanguage?.lang})}
             >
               <span className='symbol symbol-20px me-4'>

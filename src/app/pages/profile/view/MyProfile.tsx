@@ -8,6 +8,8 @@ import {useParams} from 'react-router-dom'
 
 import {UsersState} from '../../../../store/ducks/users/types'
 import {Link} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {loadLastClassRequest} from '../../../../store/ducks/component/actions'
 
 const MOMENT = require('moment')
 type ParamTypes = {
@@ -24,10 +26,16 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
   //let created_at_text = MOMENT(Number(users.user.createdAt!) * 1000) //.format('DD/MM/YYYY HH:mm')
   //const title = `${document.title} | Salve Mais Um`
   const me = useSelector((state: ApplicationState) => state.me)
+  const component = useSelector((state: ApplicationState) => state.component)
   //const iconSize = 48
   //const intl = useIntl()
 
-  var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadLastClassRequest(me.me.id!))
+  }, [])
+
+  var createdAt = MOMENT(me.me.createdAt) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')
   let progress = (now.diff(createdAt, 'years', true) * 100).toFixed(2)
   if (parseInt(progress) > 100) progress = '100'
@@ -127,7 +135,41 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                       {/* end::Table head */}
                       {/* begin::Table body */}
                       <tbody>
-                        <span className='text-dark fw-bolder fs-6'>
+                        <div className='col-xxl-8'>
+                          <h1>{me.me.name}</h1>
+                          <div>
+                            <span className='text-dark fw-bolder fs-6'>Email:</span> {me.me.email}
+                          </div>
+                          <div>
+                            <span className='text-dark fw-bolder fs-6'>WhatsApp:</span>{' '}
+                            {me.me.whatsapp}
+                          </div>
+                          <div>
+                            <span className='text-dark fw-bolder fs-6'>CPF:</span> {me.me.cpf}
+                          </div>
+                          <div>
+                            <span className='text-dark fw-bolder fs-6'>Endereço:</span>{' '}
+                            {me.me.address}, {me.me.addressNumber}, {me.me.addressDistrict} -{' '}
+                            {me.me.city?.name} / {me.me.state?.state} - {me.me.postalCode}
+                          </div>
+                          <br />
+                          <span className='text-dark fw-bolder fs-6'>Última renovação:</span>{' '}
+                          {createdAt.format('DD/MM/YYYY HH:mm')}
+                          {' / '}
+                          {now.diff(createdAt, 'years', true) > 1 ? 'RENOVAÇÃO' : 'NO PRAZO'}
+                          {' / '}
+                          {(now.diff(createdAt, 'years', true) * 100).toFixed(2)}%
+                          {/* {component.error} */}
+                          <br />
+                          <br />
+                          <span className='text-dark fw-bolder fs-6'>
+                            Última aula assistida:
+                          </span>
+                          {component.lastclass?.parent?.parent?.name} -{' '}
+                          {component.lastclass?.parent?.name} - {component.lastclass?.name}
+                        </div>
+
+                        {/* <span className='text-dark fw-bolder fs-6'>
                           Nome: {me.me.name}
                         </span>
                         <br />
@@ -153,7 +195,8 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
                         <br />
                         <span className='text-dark fw-bolder fs-6'>
                           Última renovação: {createdAt!.format('DD/MM/YYYY HH:mm')}
-                        </span>
+                        </span> */}
+
                         <br />
                         {/* <span className='text-dark fw-bolder fs-5'>{now.diff(createdAt, 'years', true) > 1? 'RENOVAÇÃO' : 'NO PRAZO'}</span> */}
                         {/* <span className='text-dark fw-bolder fs-5'>{(now.diff(createdAt, 'years', true)*100).toFixed(2)}%</span> */}
@@ -201,8 +244,8 @@ const MyProfile: FC<React.PropsWithChildren<unknown>> = () => {
   // const dispatch = useDispatch()
   let {id} = useParams<ParamTypes>()
 
-  console.log("ME AQUI", me)
-  console.log("USERS", users)
+  console.log('ME AQUI', me)
+  console.log('USERS', users)
 
   useEffect(() => {
     // console.log("############ Loading component hey...", { module_id, class_id, me })

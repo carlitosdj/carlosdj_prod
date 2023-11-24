@@ -57,6 +57,9 @@ import {
   createTimeWatchedRequest,
   createTimeWatchedSuccess,
   createTimeWatchedFailure,
+  loadComponentWithAccessRequest,
+  loadComponentWithAccessSuccess,
+  loadComponentWithAccessFailure,
   // loadCourseRequest,
 } from './actions'
 
@@ -78,6 +81,32 @@ export function* loadComponent(payload: ReturnType<typeof loadComponentRequest>)
     yield put(loadComponentSuccess(response))
   } catch (error: any) {
     yield put(loadComponentFailure(error.response.data))
+  }
+}
+
+export function* loadComponentWithAccess(
+  payload: ReturnType<typeof loadComponentWithAccessRequest>
+) {
+  try {
+    put(
+      loadComponentWithAccessRequest(
+        payload.payload.id,
+        payload.payload.userId,
+        payload.payload.sort
+      )
+    )
+    const response: Component = yield call(
+      api.get,
+      'component/mycourses/' +
+        payload.payload.id +
+        '/' +
+        payload.payload.userId +
+        '/' +
+        payload.payload.sort
+    )
+    yield put(loadComponentWithAccessSuccess(response))
+  } catch (error: any) {
+    yield put(loadComponentWithAccessFailure(error.response.data))
   }
 }
 
@@ -146,7 +175,7 @@ export function* loadLastClass(payload: ReturnType<typeof loadLastClassRequest>)
     put(loadLastClassRequest(payload.payload.userId))
     const response: Component = yield call(
       api.get,
-      'lastclass/' + payload.payload.userId //done
+      'component/lastclassattended/' + payload.payload.userId //done
     )
     yield put(loadLastClassSuccess(response))
   } catch (error: any) {

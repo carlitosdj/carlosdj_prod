@@ -109,7 +109,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                     </td> */}
                         {/* <td className='text-end'>
                       <a
-                        href='#'
+                        href='#!'
                         className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
                       >
                         <KTSVG

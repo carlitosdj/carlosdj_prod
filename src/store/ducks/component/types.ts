@@ -10,6 +10,10 @@ export enum ComponentTypes {
   LOAD_COMPONENT_SUCCESS = '@component/LOAD_COMPONENT_SUCCESS',
   LOAD_COMPONENT_FAILURE = '@component/LOAD_COMPONENT_FAILURE',
 
+  LOAD_COMPONENT_WITH_ACCESS_REQUEST = '@component/LOAD_COMPONENT_WITH_ACCESS_REQUEST',
+  LOAD_COMPONENT_WITH_ACCESS_SUCCESS = '@component/LOAD_COMPONENT_WITH_ACCESS_SUCCESS',
+  LOAD_COMPONENT_WITH_ACCESS_FAILURE = '@component/LOAD_COMPONENT_WITH_ACCESS_FAILURE',
+
   LOAD_MODULES_REQUEST = '@component/LOAD_MODULES_REQUEST',
   LOAD_MODULES_SUCCESS = '@component/LOAD_MODULES_SUCCESS',
   LOAD_MODULES_FAILURE = '@component/LOAD_MODULES_FAILURE',
@@ -126,6 +130,7 @@ export interface Component {
   completed?: AulaConcluida[]
   available?: any
   orderby?: any
+  access?: any
 }
 /**
  * State type

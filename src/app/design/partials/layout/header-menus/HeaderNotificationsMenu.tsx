@@ -67,7 +67,7 @@ const HeaderNotificationsMenu: FC<React.PropsWithChildren<unknown>> = () => (
                 </div>
 
                 <div className='mb-0 me-2'>
-                  <a href='#' className='fs-6 text-gray-800 text-hover-primary fw-bolder'>
+                  <a href='#!' className='fs-6 text-gray-800 text-hover-primary fw-bolder'>
                     {alert.title}
                   </a>
                   <div className='text-gray-400 fs-7'>{alert.description}</div>
@@ -100,7 +100,7 @@ const HeaderNotificationsMenu: FC<React.PropsWithChildren<unknown>> = () => (
 
             <div className='text-center mt-5 mb-9'>
               <a
-                href='#'
+                href='#!'
                 className='btn btn-sm btn-primary px-6'
                 data-bs-toggle='modal'
                 data-bs-target='#kt_modal_upgrade_plan'
@@ -129,7 +129,7 @@ const HeaderNotificationsMenu: FC<React.PropsWithChildren<unknown>> = () => (
                   {log.code}
                 </span>
 
-                <a href='#' className='text-gray-800 text-hover-primary fw-bold'>
+                <a href='#!' className='text-gray-800 text-hover-primary fw-bold'>
                   {log.message}
                 </a>
 

@@ -25,7 +25,7 @@ const HeaderUserMenu: FC<React.PropsWithChildren<unknown>> = () => {
               {me.me.profile?.name}
               {/* <span className='badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2'>Pro</span> */}
             </div>
-            <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
+            <a href='#!' className='fw-bold text-muted text-hover-primary fs-7'>
               {me.me.email}
             </a>
           </div>
@@ -41,7 +41,7 @@ const HeaderUserMenu: FC<React.PropsWithChildren<unknown>> = () => {
       </div> */}
 
       {/* <div className='menu-item px-5'>
-        <a href='#' className='menu-link px-5'>
+        <a href='#!' className='menu-link px-5'>
           <span className='menu-text'>My Projects</span>
           <span className='menu-badge'>
             <span className='badge badge-light-danger badge-circle fw-bolder fs-7'>3</span>
@@ -55,32 +55,32 @@ const HeaderUserMenu: FC<React.PropsWithChildren<unknown>> = () => {
         data-kt-menu-placement='left-start'
         data-kt-menu-flip='bottom'
       >
-        <a href='#' className='menu-link px-5'>
+        <a href='#!' className='menu-link px-5'>
           <span className='menu-title'>My Subscription</span>
           <span className='menu-arrow'></span>
         </a>
 
         <div className='menu-sub menu-sub-dropdown w-175px py-4'>
           <div className='menu-item px-3'>
-            <a href='#' className='menu-link px-5'>
+            <a href='#!' className='menu-link px-5'>
               Referrals
             </a>
           </div>
 
           <div className='menu-item px-3'>
-            <a href='#' className='menu-link px-5'>
+            <a href='#!' className='menu-link px-5'>
               Billing
             </a>
           </div>
 
           <div className='menu-item px-3'>
-            <a href='#' className='menu-link px-5'>
+            <a href='#!' className='menu-link px-5'>
               Payments
             </a>
           </div>
 
           <div className='menu-item px-3'>
-            <a href='#' className='menu-link d-flex flex-stack px-5'>
+            <a href='#!' className='menu-link d-flex flex-stack px-5'>
               Statements
               <i
                 className='fas fa-exclamation-circle ms-2 fs-7'
@@ -110,7 +110,7 @@ const HeaderUserMenu: FC<React.PropsWithChildren<unknown>> = () => {
       </div> */}
 
       {/* <div className='menu-item px-5'>
-        <a href='#' className='menu-link px-5'>
+        <a href='#!' className='menu-link px-5'>
           My Statements
         </a>
       </div> */}

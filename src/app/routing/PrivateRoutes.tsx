@@ -26,26 +26,26 @@ export function PrivateRoutes() {
   //const navigate = useNavigate()
 
   //TRAVA PESSOA QUE NAO TEM PERFIL COMPLETO:
-  // if (
-  //     !me.me.profile?.name ||
-  //     !me.me.profile.address ||
-  //     !me.me.profile.addressNumber ||
-  //     !me.me.profile.whatsapp ||
-  //     !me.me.profile.cpf ||
-  //     // !me.me.profile.addressDistrict ||
-  //     // !me.me.profile.addressCity ||
-  //     // !me.me.profile.addressState ||
-  //     //!me.me.profile.addressCountry ||
-  //     !me.me.profile.postalCode
-  // )
+  if (
+      !me.me.name ||
+      !me.me.whatsapp ||
+      !me.me.cpf ||
+      !me.me.address ||
+      !me.me.addressNumber ||
+      !me.me.addressDistrict ||
+      // !me.me.addressCountry ||
+      !me.me.cityId ||
+      !me.me.stateId ||
+      !me.me.postalCode
+  )
   
-  // {
-  //   return (
-  //     <Routes>
-  //       <Route path="*" element={<EditProfile/>} />
-  //     </Routes>
-  //   )
-  // }
+  {
+    return (
+      <Routes>
+        <Route path="*" element={<EditProfile/>} />
+      </Routes>
+    )
+  }
 
   var createdAt = MOMENT(Number(me.me.createdAt) * 1000) //.format('DD/MM/YYYY HH:mm')
   var now = MOMENT(Date()) //.format('DD/MM/YYYY HH:mm')

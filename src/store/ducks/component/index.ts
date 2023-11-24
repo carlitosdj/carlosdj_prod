@@ -26,6 +26,14 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
     case ComponentTypes.LOAD_COMPONENT_FAILURE:
       return {...state, loading: false, error: action.payload, data: {}}
 
+    //all users:
+    case ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_REQUEST:
+      return {...state, loading: true}
+    case ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_SUCCESS:
+      return {...state, loading: false, error: false, data: action.payload.data}
+    case ComponentTypes.LOAD_COMPONENT_WITH_ACCESS_FAILURE:
+      return {...state, loading: false, error: action.payload, data: {}}
+
     //load modules
     case ComponentTypes.LOAD_MODULES_REQUEST:
       return {...state, loading: true}
@@ -309,7 +317,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
         // loadingAulaConcluidaId: action.payload.componentId,
       }
     case ComponentTypes.CREATE_TIMEWATCHED_SUCCESS:
-      console.log("BATEUU!!", action.payload.data)
+      console.log('BATEUU!!', action.payload.data)
       return {
         ...state,
         loading: false,
@@ -320,7 +328,7 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
             // console.log("Payload New", action.payload.data.componentId)
             // console.log("Aula", aula.id)
             if (aula.id === action.payload.data.componentId) {
-              console.log("Achei",aula.id)
+              console.log('Achei', aula.id)
               aula.completed = [action.payload.data]
             }
             return aula
