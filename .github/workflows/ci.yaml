@@ -28,17 +28,17 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           #TARGET: ${{ secrets.REMOTE_TARGET }}
-          TARGET: /home/wwinst/prod.institutodefelicibus.com.br/build
+          TARGET: /home/wwinst/prod.institutodefelicibus.com.br/
 
-      - name: Post Deploy
-        uses: appleboy/ssh-action@master
-        with:
-            host: ${{ secrets.REMOTE_HOST }}
-            username: ${{ secrets.REMOTE_USER }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: ${{ secrets.REMOTE_PORT }}
-            # script: | 
-            #   cd /home/wwinst/nodeapp_test
-            #   yarn restart
+      # - name: Post Deploy
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #       host: ${{ secrets.REMOTE_HOST }}
+      #       username: ${{ secrets.REMOTE_USER }}
+      #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #       port: ${{ secrets.REMOTE_PORT }}
+      #       # script: | 
+      #       #   cd /home/wwinst/nodeapp_test
+      #       #   yarn restart
       
     
