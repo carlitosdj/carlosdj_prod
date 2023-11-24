@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install --global yarn
+      - run: CI=false
       - run: yarn install
       - run: yarn build
 
