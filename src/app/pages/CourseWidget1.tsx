@@ -94,7 +94,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
 
               {/* end::Row */}
               <div className='card-title fw-bolder text-dark'>{data.name}</div>
-              <div className='card-title text-dark'>{data.description}</div>
+              {/* <div className='card-title text-dark'>{data.description}</div> */}
               {access && <div className='card-title text-white text-center rounded p-2' style={{ backgroundColor: '#2ecc71'}} >ACESSO LIBERADO</div>}
               {!access && <div className='card-title text-white text-center rounded p-2' style={{ backgroundColor: '#C43531'}}>SEM ACESSO</div>}
               
