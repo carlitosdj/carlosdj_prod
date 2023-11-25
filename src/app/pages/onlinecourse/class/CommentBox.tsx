@@ -134,7 +134,7 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
           data-kt-menu-placement='bottom-end'
           data-kt-menu-flip='bottom'
         >
-          <img src={`http://localhost:3000/upload/file/${comment.parentUser?.image}`} />
+          <img src={`https://institutodefelicibus.com.br/apimodelo/upload/file/${comment.parentUser?.image}`} />
         </div>
         <div className='w-100'>
           <div>

@@ -72,9 +72,9 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               backgroundImage:
                 !isAvailable || !access
                   ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${
-                      'http://localhost:3000/upload/file/' + img
+                      'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img
                     })`
-                  : `url(${'http://localhost:3000/upload/file/' + img})`,
+                  : `url(${'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img})`,
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',

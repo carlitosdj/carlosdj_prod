@@ -53,7 +53,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
 
         <div className='card-header border-0 pt-5 mt-2'>
           <div className='col-md-1 col-3'>
-            <img src={'http://localhost:3000/upload/file/' + img} alt='' style={{width: '100%'}} />
+            <img src={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img} alt='' style={{width: '100%'}} />
           </div>
           <div className=' col-md-11 col-9'>
             <div className=''>

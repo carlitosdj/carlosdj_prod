@@ -57,7 +57,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
               // console.log('Extension', extension)
               return (
                 <a
-                  href={'http://localhost:3000/upload/file/' + link.valueExtra}
+                  href={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + link.valueExtra}
                   key={index}
                   target='_blank'
                 >

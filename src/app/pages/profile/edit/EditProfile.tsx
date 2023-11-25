@@ -708,7 +708,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
                                 src={
                                   image?.includes('https://')
                                     ? image
-                                    : 'http://localhost:3000/upload/file/' + image
+                                    : 'https://institutodefelicibus.com.br/apimodelo/upload/file/' + image
                                 }
                                 style={{width: '100%'}}
                                 onError={({currentTarget}) => {
