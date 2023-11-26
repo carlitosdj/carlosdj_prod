@@ -96,7 +96,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               {/* end::Row */}
               <div className='card-title fw-bolder text-dark'>{data.name}</div>
               {/* <div className='card-title text-dark'>{data.description}</div> */}
-              {access && (
+              {/* {access && (
                 <div
                   className='card-title text-white text-center rounded p-2'
                   style={{backgroundColor: '#2ecc71'}}
@@ -111,7 +111,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
                 >
                   SEM ACESSO
                 </div>
-              )}
+              )} */}
 
               {!isAvailable && (
                 <div className='card-title text-dark' style={{fontSize: 11}}>
