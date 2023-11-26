@@ -95,7 +95,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
 
               {/* end::Row */}
               <div className='card-title fw-bolder text-dark'>{data.name}</div>
-              {/* <div className='card-title text-dark'>{data.description}</div> */}
+              <div className='card-title text-dark'>{data.description}</div>
               {/* {access && (
                 <div
                   className='card-title text-white text-center rounded p-2'
