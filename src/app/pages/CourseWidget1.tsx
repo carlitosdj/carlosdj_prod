@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 import ModalNotAvailable from './ModalNotAvailable'
 import {Component} from '../../store/ducks/component/types'
 import ModalNoACcess from './ModalNoAccess'
-import { useSelector } from 'react-redux'
-import { ApplicationState } from '../../store'
+import {useSelector} from 'react-redux'
+import {ApplicationState} from '../../store'
 const MOMENT = require('moment')
 
 type Props = {
@@ -33,7 +33,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
   let today = MOMENT().format('YYYY-MM-DD HH:mm:ss.000')
   let dataAvailable = MOMENT(release).format('YYYY-MM-DD HH:mm:ss.000')
   let isAvailable = MOMENT(today).isAfter(dataAvailable) ? true : false
-  let access = data.access.length || me.me.roles === 'admin';
+  let access = data.access.length || me.me.roles === 'admin'
 
   console.log('TODAY', today)
   let date = new Date(release)
@@ -55,16 +55,16 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
         to={!isAvailable || !access ? '#!' : link}
         onClick={() => {
           !access && setShowModalNoAccess(true)
-          !isAvailable && setShowModalNotAvailable(true);
-          
+          !isAvailable && setShowModalNotAvailable(true)
         }}
       >
         <div className={`toHover card ${className}`}>
           {/* begin::Header */}
+
           <div
             className={
               !isAvailable || !access
-                ? `disabled-blog card-header wave border-0`
+                ? `card-header wave border-0 disabled-blog`
                 : `card-header wave border-0`
             }
             style={{
@@ -78,13 +78,14 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
-
+              opacity: !isAvailable || !access ? 0.6 : 1,
               // color: 'rgba(255, 255, 255, 0.1)',
               width: '100%',
               paddingTop: '135%',
               height: 0,
             }}
           ></div>
+
           {/* end::Header */}
           {/* begin::Body */}
           <div className='card-body p-0'>
@@ -95,9 +96,23 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               {/* end::Row */}
               <div className='card-title fw-bolder text-dark'>{data.name}</div>
               {/* <div className='card-title text-dark'>{data.description}</div> */}
-              {access && <div className='card-title text-white text-center rounded p-2' style={{ backgroundColor: '#2ecc71'}} >ACESSO LIBERADO</div>}
-              {!access && <div className='card-title text-white text-center rounded p-2' style={{ backgroundColor: '#C43531'}}>SEM ACESSO</div>}
-              
+              {access && (
+                <div
+                  className='card-title text-white text-center rounded p-2'
+                  style={{backgroundColor: '#2ecc71'}}
+                >
+                  ACESSO LIBERADO
+                </div>
+              )}
+              {!access && (
+                <div
+                  className='card-title text-white text-center rounded p-2'
+                  style={{backgroundColor: '#C43531'}}
+                >
+                  SEM ACESSO
+                </div>
+              )}
+
               {!isAvailable && (
                 <div className='card-title text-dark' style={{fontSize: 11}}>
                   <b>Disponível em: {MOMENT(release).format('DD/MM/YY')}</b>
@@ -106,6 +121,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
             </div>
             {/* end::Stats */}
           </div>
+          
           {/* end::Body */}
         </div>
       </Link>
