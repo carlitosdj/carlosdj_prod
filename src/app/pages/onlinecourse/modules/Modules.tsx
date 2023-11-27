@@ -48,30 +48,52 @@ const Modules: FC<React.PropsWithChildren<unknown>> = () => {
   ]
   useEffect(() => {
     //console.log('****************** Loading component...', component)
-    if (!component.modules.length) {
-      dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
-      //console.log("HEEEYYYY", [id!, me.me.id!, me.me.num_turma!])
-      console.log("nao tem length")
-    } 
-    
-    else {
-      if (component.modules[0].parent!.id !== Number(id)) {
-        dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
-        console.log("nao tem parent.id")
-        console.log("Number ID", Number(id))
-        console.log("Number ID", component.modules[0].parent!.id)
-        
-      }
-        
-    }
+    // if (!component.modules.length) {
+    //   dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+    //   //console.log("HEEEYYYY", [id!, me.me.id!, me.me.num_turma!])
+    //   console.log("nao tem length")
+    // }
 
-  }, [id, me, component.modules, dispatch])
+    // else {
+    //   if (component.modules[0].parent!.id !== Number(id)) {
+    //     dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+    //     console.log("nao tem parent.id")
+    //     console.log("Number ID", Number(id))
+    //     console.log("Number ID", component.modules[0].parent!.id)
 
-  console.log("Component loaded", component)
+    //   }
 
-  if (component.loading || !component.modules.length) return <Loading />
+    // }
+    dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+  }, [])
+  //}, [id, me, component.modules, dispatch])
+
+  console.log('Component loaded', component)
+
+  if (component.loadingModules) return <Loading />
   //if (component.modules[0].parent!.id !== Number(id)) return <Loading />
- 
+
+  if (!component.modules.length && !component.loadingModules)
+    return (
+      <>
+        {/* <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.MODULES'})} </PageTitle> */}
+        <PageTitle breadcrumbs={breadCrumbs}>Erro!</PageTitle>
+        {/* <ModulesPage comp={component} id={id!} /> */}
+        <div className='row g-5 gx-xxl-12'>
+          <div className='col-xxl-12'>
+            <div className={`card card-xxl-stretch mb-0`}>
+              {/* begin::Header */}
+
+              <div className='card-header border-0 pt-5 mt-2'>
+                <div className='col-md-12'>
+                  Não encontrado
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
 
   return (
     <>
