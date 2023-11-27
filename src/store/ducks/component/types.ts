@@ -148,4 +148,7 @@ export interface ComponentState {
   readonly loadingAulaConcluidaId?: number
   readonly loadingLastLiveClass?: boolean
   readonly loadingLastClass?: boolean
+  readonly loadingModules?: boolean
+  readonly loadingClasses?: boolean
+
 }

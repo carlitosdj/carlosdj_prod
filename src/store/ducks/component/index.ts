@@ -13,6 +13,8 @@ const INITIAL_STATE: ComponentState = {
   loadingAulaConcluida: false,
   loadingLastLiveClass: false,
   loadingLastClass: false,
+  loadingClasses: true,
+  loadingModules: true,
 }
 
 const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
@@ -36,18 +38,30 @@ const reducer: Reducer<ComponentState> = (state = INITIAL_STATE, action) => {
 
     //load modules
     case ComponentTypes.LOAD_MODULES_REQUEST:
-      return {...state, loading: true}
+      return {...state, loading: true, loadingModules: true}
     case ComponentTypes.LOAD_MODULES_SUCCESS:
-      return {...state, loading: false, error: false, modules: action.payload.data}
+      return {
+        ...state,
+        loading: false,
+        loadingModules: false,
+        error: false,
+        modules: action.payload.data,
+      }
     case ComponentTypes.LOAD_MODULES_FAILURE:
-      return {...state, loading: false, error: action.payload, modules: []}
+      return {...state, loading: false, loadingModules: false, error: action.payload, modules: []}
 
     case ComponentTypes.LOAD_CLASSES_REQUEST:
-      return {...state, loading: true}
+      return {...state, loading: true, loadingClasses: true}
     case ComponentTypes.LOAD_CLASSES_SUCCESS:
-      return {...state, loading: false, error: false, classes: action.payload.data}
+      return {
+        ...state,
+        loading: false,
+        loadingClasses: false,
+        error: false,
+        classes: action.payload.data,
+      }
     case ComponentTypes.LOAD_CLASSES_FAILURE:
-      return {...state, loading: false, error: action.payload, classes: []}
+      return {...state, loading: false, loadingClasses: false, error: action.payload, classes: []}
 
     case ComponentTypes.LOAD_LASTLIVECLASS_REQUEST:
       return {...state, loadingLastLiveClass: true}

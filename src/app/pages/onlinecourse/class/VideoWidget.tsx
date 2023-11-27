@@ -69,10 +69,13 @@ const StarRating = (selectedClass: any) => {
 }
 
 const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selectedClass, url}) => {
-  let reg = /.+?:\/\/.+?(\/.+?)(?:#|\?|$)/
-  var pathname = reg.exec(url!)![1]
-  let split = pathname.split('/')
-  let video_id = split[2]
+  let video_id = ''
+  if (url) {
+    let reg = /.+?:\/\/.+?(\/.+?)(?:#|\?|$)/
+    var pathname = reg.exec(url!)![1]
+    let split = pathname.split('/')
+    video_id = split[2]
+  }
 
   const dispatch = useDispatch()
   const me = useSelector((state: ApplicationState) => state.me)
@@ -131,76 +134,79 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       {/* <div style={{ backgroundColor: 'red', color: 'green', zIndex: 999}}>
         Proteção
       </div> */}
-      <div className='embed-responsive embed-responsive-16by9'>
-        <div>
-          {url!.includes('youtube') ? (
-            <iframe
-              title='video'
-              className='embed-responsive-item rounded'
-              src={url}
-              width={640}
-              height={564}
-              frameBorder={0}
-              allow='autoplay; fullscreen'
-              allowFullScreen
-            />
-          ) : (
-            <Vimeo
-              video={video_id}
-              autoplay
-              //onLoaded={() => console.log("Loaded")}
-              onEnd={() => {
-                completed(selectedClass)
-                dispatch(
-                  createTimeWatchedRequest(
-                    selectedClass.completed[0]?.id,
-                    me.me.id!,
-                    selectedClass.id,
-                    selectedClass.duration
-                  )
-                )
-              }}
-              //onProgress={(e:any) => console.log('oi', e)}
-              onTimeUpdate={(time) => {
-                setSteps(steps + 1)
-                if (steps >= 59) {
-                  setSteps(0)
-
-                  // console.log("OI")
-                  // console.log("me.me.id!",me.me.id!)
-                  // console.log("selectedClass.selectedClass.id",selectedClass.id)
-                  // console.log("selectedClass.completed[0]?.id",selectedClass.completed[0]?.id)
-                  // console.log("time.seconds",time.seconds)
-
+      {!url && <div className='text-center'>OPS! Essa aula não existe</div>}
+      {url && (
+        <div className='embed-responsive embed-responsive-16by9'>
+          <div>
+            {url!.includes('youtube') ? (
+              <iframe
+                title='video'
+                className='embed-responsive-item rounded'
+                src={url}
+                width={640}
+                height={564}
+                frameBorder={0}
+                allow='autoplay; fullscreen'
+                allowFullScreen
+              />
+            ) : (
+              <Vimeo
+                video={video_id}
+                autoplay
+                //onLoaded={() => console.log("Loaded")}
+                onEnd={() => {
+                  completed(selectedClass)
                   dispatch(
                     createTimeWatchedRequest(
                       selectedClass.completed[0]?.id,
                       me.me.id!,
                       selectedClass.id,
-                      time.seconds
+                      selectedClass.duration
                     )
                   )
+                }}
+                //onProgress={(e:any) => console.log('oi', e)}
+                onTimeUpdate={(time) => {
+                  setSteps(steps + 1)
+                  if (steps >= 59) {
+                    setSteps(0)
+
+                    // console.log("OI")
+                    // console.log("me.me.id!",me.me.id!)
+                    // console.log("selectedClass.selectedClass.id",selectedClass.id)
+                    // console.log("selectedClass.completed[0]?.id",selectedClass.completed[0]?.id)
+                    // console.log("time.seconds",time.seconds)
+
+                    dispatch(
+                      createTimeWatchedRequest(
+                        selectedClass.completed[0]?.id,
+                        me.me.id!,
+                        selectedClass.id,
+                        time.seconds
+                      )
+                    )
+                  }
+                }}
+                //onProgress={progress => console.log("progress", progress)}
+                start={
+                  selectedClass.completed[0]
+                    ? selectedClass.completed[0].timeWatched === selectedClass.duration
+                      ? 0
+                      : selectedClass.completed[0].timeWatched
+                    : 0
                 }
-              }}
-              //onProgress={progress => console.log("progress", progress)}
-              start={
-                selectedClass.completed[0]
-                  ? selectedClass.completed[0].timeWatched === selectedClass.duration
-                    ? 0
-                    : selectedClass.completed[0].timeWatched
-                  : 0
-              }
-              //responsive={true}
-            />
-          )}
-          {/* <div>
+                //responsive={true}
+              />
+            )}
+            {/* <div>
             <br />
             <br />
             STEPS: {steps}
           </div> */}
-          {/*  */}
+            {/*  */}
+          </div>
         </div>
-      </div>
+      )}
       {/* end::Video */}
       {/* {url} */}
       <div className={`${className}`}>

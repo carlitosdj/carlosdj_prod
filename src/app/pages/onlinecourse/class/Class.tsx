@@ -168,11 +168,17 @@ const Class: FC<React.PropsWithChildren<unknown>> = () => {
   }, [me, module_id, class_id, component.modules[0]?.orderby]) //class_id
   //}, [class_id]);
 
+  console.log("########COMPONENT###########", component)
   if (
-    component.loading ||
-    !component.modules.length ||
-    !component.classes.length ||
-    Number(module_id) !== component.classes[0].parent?.id
+    component.loading 
+    ||
+    component.loadingModules
+    ||
+    component.loadingClasses
+    
+    // !component.modules.length ||
+    // !component.classes.length ||
+    //Number(module_id) !== component.classes[0].parent?.id
   ) {
     // console.log('Loading?', component.loading)
     

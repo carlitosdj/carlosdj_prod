@@ -22,7 +22,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
     // dispatch(loadLastLiveClassRequest())
     // dispatch(loadLastClassRequest(me.me.id!))
     console.log("ID", me.me.id?.toString()!)
-    dispatch(loadComponentWithAccessRequest('2',me.me.id?.toString()!, 'desc'))
+    dispatch(loadComponentWithAccessRequest('2',me.me.id?.toString()!, 'asc'))
   }, [])
 
   console.log("component", component)
@@ -50,6 +50,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
   // console.log("last class", component.lastclass)
   // let blockAreas = (now.diff(createdAt, 'years', true).toFixed(2) > 1);
   // let today = MOMENT().format('YYYY-MM-DD HH:mm:ss.000')
+  
   return (
     <> 
       
