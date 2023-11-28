@@ -16,6 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "outDir": "./build",
+    "paths": {
+      "react": [ "./node_modules/@types/react" ]
+    }
   },
   "include": ["src"]
 }
