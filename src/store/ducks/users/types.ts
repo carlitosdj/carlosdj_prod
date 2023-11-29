@@ -58,7 +58,7 @@ export interface User {
   flags?: number
   last_login_at?: number
   origin?: string
-  num_turma?: number
+  numTurma?: number
   
   //profile:
   profile?: Profile

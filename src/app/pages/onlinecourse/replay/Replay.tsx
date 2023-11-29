@@ -56,11 +56,11 @@ const Replay: FC<React.PropsWithChildren<unknown>> = () => {
   useEffect(() => {
     console.log('****************** Loading component...', component)
     if (!component.modules.length) {
-      dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
-      //console.log("HEEEYYYY", [id!, me.me.id!, me.me.num_turma!])
+      dispatch(loadModulesRequest(id!, me.me.id!, me.me.numTurma!, 'asc')) //Puxa componentes com seus filhos primários
+      //console.log("HEEEYYYY", [id!, me.me.id!, me.me.numTurma!])
     } else {
       if (component.modules[0].parent!.id !== Number(id))
-        dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+        dispatch(loadModulesRequest(id!, me.me.id!, me.me.numTurma!, 'asc')) //Puxa componentes com seus filhos primários
     }
 
   }, [id, me, component.modules, dispatch])

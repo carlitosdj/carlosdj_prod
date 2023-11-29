@@ -10,6 +10,7 @@ import {
 } from '../../../../store/ducks/component/actions'
 import Vimeo from '@u-wave/react-vimeo'
 import {useNavigate, useParams} from 'react-router-dom'
+import {Alert} from 'react-bootstrap-v5'
 // import {toAbsoluteUrl} from '../../../helpers'
 
 type Props = {
@@ -94,7 +95,7 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
 
   const completed = (aula: any) => {
     console.log('CONCLUINDO AULA AUTOMATICAMENTE............', aula)
-    if (aula.completed[0]?.status === 1) {
+    if (aula.completed[0]?.status === '1') {
       //Desmarcar
       // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
       //dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
@@ -117,7 +118,7 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       .indexOf(selectedClass.id)
     let next = component.classes[index + 1]
     console.log('GO NEXT?', next)
-    // if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
+    // if (selectedClass.completed[0]?.status === '0' || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
     // //completed(selectedClass)
     if (next) {
       console.log('Tem next...')
@@ -134,7 +135,12 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       {/* <div style={{ backgroundColor: 'red', color: 'green', zIndex: 999}}>
         Proteção
       </div> */}
-      {!url && <div className='text-center'>OPS! Essa aula não existe</div>}
+      {!url && (
+        <Alert variant='danger' className='text-center'>
+          Ops! Essa aula ainda não está cadastrada no sistema. Se você acredita que isso seja um
+          erro, por favor contacte o administrador.
+        </Alert>
+      )}
       {url && (
         <div className='embed-responsive embed-responsive-16by9'>
           <div>
@@ -212,16 +218,9 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
       <div className={`${className}`}>
         {/* begin::Body */}
         <div className='p-3'>
-          Avalie esta aula: <StarRating selectedClass={selectedClass} />
-          <div className='flex-grow-1'>
-            <div className='mb-6'>
-              {/* begin::Text */}
-              {/* <div className='text-gray-800 fs-6 fw-normal mb-5'>
-              Titulo
-            </div> */}
-              {/* end::Text */}
-            </div>
-
+          Avalie esta aula:
+          <StarRating selectedClass={selectedClass} />
+          <div className='flex-grow-1 mt-3'>
             {/* begin::Info */}
 
             {/* <div className='d-flex align-items-center pe-2 mb-5'>

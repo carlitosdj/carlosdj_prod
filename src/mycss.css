@@ -1,3 +1,10 @@
+.order-product-1 {
+  order: 2;
+}
+.order-product-2 {
+  order: 1;
+}
+
 .annotationLayer {
   height: 0 !important;
 }
@@ -140,5 +147,16 @@ a:hover {
     height: 30px;
     z-index: 999;
   }
+  
+}
+
+@media (max-width: 1399.98px) {
+  .order-product-1 {
+    order: 2;
+  }
+  .order-product-2 {
+    order: 1;
+  }
+  
 }
 

@@ -11,7 +11,7 @@ import {
 } from '../../../../store/ducks/component/actions'
 import {ApplicationState} from '../../../../store'
 const MOMENT = require('moment')
-require("moment-duration-format");
+require('moment-duration-format')
 
 type Props = {
   className: string
@@ -21,7 +21,13 @@ type Props = {
   id: string
 }
 
-const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp, selectedClass, module_id, id}) => {
+const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({
+  className,
+  comp,
+  selectedClass,
+  module_id,
+  id,
+}) => {
   // console.log("VER AQUI!!!!", comp)
   // console.log("VER AQUI!!!! ID", id)
   const intl = useIntl()
@@ -46,21 +52,35 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
   let nextModule = comp.modules[indexModule + 1]
   let pastModule = comp.modules[indexModule - 1]
 
-  let today = MOMENT(new Date()).format( 'YYYY-MM-DD HH:mm:ss.000' );
-  let dataAvailable = nextModule?nextModule.available[0]?.available_date:''
-  let isAvailable = nextModule?nextModule.available[0] ? MOMENT(today).isAfter(dataAvailable)? true : false : false: false;
+  console.log('next module', nextModule)
+
+  let today = MOMENT(new Date()).format('YYYY-MM-DD HH:mm:ss.000')
+  let dataAvailable = nextModule ? nextModule.available[0]?.availableDate : ''
+  let isAvailable = nextModule
+    ? nextModule.available[0]
+      ? MOMENT(today).isAfter(dataAvailable)
+        ? true
+        : false
+      : false
+    : false
+
+  console.log('isAvailable', isAvailable)
 
   //  let isAvailable = true
 
   const completed = (aula: any) => {
     console.log('AULACONCLUIDA-LENGTH', aula.completed.length)
-    if (aula.completed[0]?.status === 1) {
+    if (aula.completed[0]?.status === '1') {
       //Desmarcar
       // dispatch(deleteAulaConcluidaRequest(aula.completed[0].id, aula))
-      dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 0))
+      dispatch(
+        createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 0)
+      )
     } else {
       // console.log('MARCAR como concluida', aula)
-      dispatch(createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 1))
+      dispatch(
+        createAulaConcluidaRequest(aula.completed[0]?.id, me.me.id!, aula.id, aula.parent.id, 1)
+      )
     }
   }
 
@@ -87,7 +107,12 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
       .indexOf(selectedClass.id)
     let next = comp.classes[index + 1]
 
-    if (selectedClass.completed[0]?.status === 0 || selectedClass.completed[0]?.status === null || !selectedClass.completed.length) completed(selectedClass)
+    if (
+      selectedClass.completed[0]?.status === '0' ||
+      selectedClass.completed[0]?.status === null ||
+      !selectedClass.completed.length
+    )
+      completed(selectedClass)
     //completed(selectedClass)
     if (next) {
       navigate('/class/' + id + '/' + module_id + '/' + next.id)
@@ -147,6 +172,52 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
 
       {/* begin::Body */}
       <div className='m-5 d-flex flex-column'>
+
+        <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%'}}>
+          {pastClass ? (
+            <button
+              type='button'
+              className='btn-block btn btn-primary mx-1 mb-2'
+              style={{ flexGrow: 1}}
+              onClick={() => goBackClass()}
+            >
+              Aula anterior
+            </button>
+          ) : pastModule ? (
+            <button
+              type='button'
+              className='btn-block btn btn-primary mx-1 mb-2'
+              style={{ flexGrow: 1}}
+              onClick={() => goBackModule()}
+            >
+              Módulo anterior
+            </button>
+          ) : (
+            ''
+          )}
+          {nextClass ? (
+            <button
+              type='button'
+              className='btn-block btn btn-primary mx-1 mb-2'
+              style={{ flexGrow: 1}}
+              onClick={() => goNextClass()}
+            >
+              Próxima aula
+            </button>
+          ) : nextModule && isAvailable ? (
+            <button
+              type='button'
+              style={{ flexGrow: 1}}
+              className='btn-block btn btn-primary mx-1 mb-2'
+              onClick={() => goNextModule()}
+            >
+              Próximo módulo
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
+
         {comp.classes?.map((aula: any, index: any) => {
           return (
             <div className='mt-1' key={index}>
@@ -179,20 +250,20 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
                       className='text-gray-800 text-hover-primary fw-bolder'
                     >
                       {aula.name}
-                      <br/>
-                      <span className='text-end text-muted fw-bold' style={{fontSize:11}}> 
-                      <KTSVG
+                      <br />
+                      <span className='text-end text-muted fw-bold' style={{fontSize: 11}}>
+                        <KTSVG
                           className='svg-icon-5 svg-icon-alert'
                           path='/media/icons/duotune/general/gen013.svg'
                         />
-                       &nbsp;{MOMENT.duration(aula.duration, "seconds").format("hh:mm:ss", {trim: true})}
-                       </span>
+                        &nbsp;
+                        {MOMENT.duration(aula.duration, 'seconds').format('hh:mm:ss', {trim: true})}
+                      </span>
                     </Link>
-                    
+
                     {/* <div className='fs-7 text-muted fw-bold mt-1'>{aula.description}</div> */}
                   </div>
-                  
-                  
+
                   {/* end::Title */}
                 </div>
                 {/* end::Section */}
@@ -205,7 +276,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
                     <Link to='#' onClick={() => completed(aula)}>
                       <div style={{display: 'flex'}}>
                         {aula.completed.length ? (
-                          aula.completed[0].status ? (
+                          aula.completed[0].status === '1' ? (
                             <KTSVG
                               className='svg-icon-2 svg-icon-success'
                               path='/media/icons/duotune/arrows/arr016.svg'
@@ -234,7 +305,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
         })}
 
         {/* end::Items */}
-        {pastClass ? (
+        {/* {pastClass ? (
           <button
             type='button'
             className='btn-block btn btn-primary m-2'
@@ -253,7 +324,6 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
         ) : (
           ''
         )}
-        
 
         {nextClass ? (
           <button
@@ -273,8 +343,7 @@ const MenuClassWidget: React.FC<React.PropsWithChildren<Props>> = ({className, c
           </button>
         ) : (
           ''
-        )}
-        
+        )} */}
       </div>
 
       {/* end::Body */}

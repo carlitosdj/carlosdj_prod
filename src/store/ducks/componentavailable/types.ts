@@ -18,7 +18,7 @@ export enum availableTypes {}
 export interface available {
   id?: number | undefined
   turma_num?: any | undefined
-  available_date?: any | undefined
+  availableDate?: any | undefined
   componentId?: any | undefined
   parent?: any | undefined
 }

@@ -23,7 +23,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
       {/* begin::Body */}
       <div className='card-body d-flex flex-column pb-10 pb-lg-15'>
         <div className='flex-grow-1'>
-          <div className='mb-6'>
+          <div className='mb-0'>
             {/* begin::Text */}
             <div className='text-dark fw-bolder fs-4 mb-5'>
               Links e Downloads{' '}

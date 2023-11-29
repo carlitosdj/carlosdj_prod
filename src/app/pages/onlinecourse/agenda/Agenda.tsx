@@ -45,10 +45,10 @@ const Agenda: FC<React.PropsWithChildren<unknown>> = () => {
     //   component: component.modules[0],
     // })
     if (!component.modules.length) {
-      dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+      dispatch(loadModulesRequest(id!, me.me.id!, me.me.numTurma!, 'asc')) //Puxa componentes com seus filhos primários
     } else {
       if (component.modules[0].parent!.id !== Number(id))
-        dispatch(loadModulesRequest(id!, me.me.id!, me.me.num_turma!, 'asc')) //Puxa componentes com seus filhos primários
+        dispatch(loadModulesRequest(id!, me.me.id!, me.me.numTurma!, 'asc')) //Puxa componentes com seus filhos primários
     }
   }, [id, me, component.modules, dispatch])
 

@@ -86,15 +86,15 @@ const ReplayWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                     let module_length = module.children!.length
                     let conclusao = Math.round(
                       (module.children
-                        .map((aula: any) => aula.completed.filter((ac:any) => ac.status === 1).length).reduce(add, 0) / module_length) *100
+                        .map((aula: any) => aula.completed.filter((ac:any) => ac.status === '1').length).reduce(add, 0) / module_length) *100
                       )
 
-                    let dataAvailable = MOMENT(module.available[0]?.available_date).format(
+                    let dataAvailable = MOMENT(module.available[0]?.availableDate).format(
                       'YYYY-MM-DD HH:mm:ss.000'
                     )
 
                     let dataAvailableMoment = MOMENT(
-                      module.available[0]?.available_date
+                      module.available[0]?.availableDate
                     ).format('DD/MM')
 
                     let isAvailable = module.available[0]

@@ -113,12 +113,12 @@ export function* loadComponentWithAccess(
 //Load Modules
 export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
   try {
-    //console.log("loadModules SAGA", [payload.payload.id, payload.payload.userId, payload.payload.num_turma])
+    //console.log("loadModules SAGA", [payload.payload.id, payload.payload.userId, payload.payload.numTurma])
     put(
       loadModulesRequest(
         payload.payload.id,
         payload.payload.userId,
-        payload.payload.num_turma,
+        payload.payload.numTurma,
         payload.payload.orderby
       )
     )
@@ -129,7 +129,7 @@ export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
         '/' +
         payload.payload.userId +
         '/' +
-        payload.payload.num_turma +
+        payload.payload.numTurma +
         '/' +
         payload.payload.orderby
     )
@@ -142,11 +142,12 @@ export function* loadModules(payload: ReturnType<typeof loadModulesRequest>) {
 //Load Classes
 export function* loadClasses(payload: ReturnType<typeof loadClassesRequest>) {
   //console.log("loadClasses SAGA", payload)
+  console.log("*******payload*******",payload)
   try {
     put(loadClassesRequest(payload.payload.id, payload.payload.userId, payload.payload.orderby))
     const response: Component = yield call(
       api.get,
-      `component/classes/${payload.payload.id}/${payload.payload.userId}/${
+      `component/classes/${payload.payload.id}/${payload.payload.userId.toString()}/${
         payload.payload.orderby ? payload.payload.orderby : 'asc'
       }`
     )
@@ -313,7 +314,7 @@ export function* createRate(payload: ReturnType<typeof createRateRequest>) {
 
     const response: AulaConcluida = yield payload.payload.id
       ? call(api.patch, 'completed/' + payload.payload.id, result)
-      : call(api.post, 'completed', result)
+      : call(api.post, 'completed', {...result, status: 0})
 
     yield put(createRateSuccess(response))
   } catch (error: any) {
@@ -339,7 +340,7 @@ export function* createTimeWatched(payload: ReturnType<typeof createTimeWatchedR
 
     const response: AulaConcluida = yield payload.payload.id
       ? call(api.patch, 'completed/' + payload.payload.id, result)
-      : call(api.post, 'completed', result)
+      : call(api.post, 'completed', {...result, status: 0})
 
     yield put(createTimeWatchedSuccess(response))
   } catch (error: any) {

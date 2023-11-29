@@ -24,9 +24,9 @@ export const loadComponentWithAccessFailure = (err: any[]) =>
 export const loadModulesRequest = (
   id: string,
   userId: number,
-  num_turma: number,
+  numTurma: number,
   orderby: string
-) => action(ComponentTypes.LOAD_MODULES_REQUEST, {id, userId, num_turma, orderby})
+) => action(ComponentTypes.LOAD_MODULES_REQUEST, {id, userId, numTurma, orderby})
 export const loadModulesSuccess = (data: Component) =>
   action(ComponentTypes.LOAD_MODULES_SUCCESS, data)
 export const loadModulesFailure = (err: any[]) => action(ComponentTypes.LOAD_MODULES_FAILURE, err)

@@ -53,7 +53,11 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
 
         <div className='card-header border-0 pt-5 mt-2'>
           <div className='col-md-1 col-3'>
-            <img src={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img} alt='' style={{width: '100%'}} />
+            <img
+              src={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img}
+              alt=''
+              style={{width: '100%'}}
+            />
           </div>
           <div className=' col-md-11 col-9'>
             <div className=''>
@@ -90,7 +94,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                       <th className='min-w-40px text-center'>Aulas</th>
                       <th className='min-w-50px text-center'>Liberação</th>
                       {/* <th className='min-w-50px text-center'>Duração</th> */}
-                      <th className='min-w-50px'>Conclusão</th>
+                      <th className='min-w-50px'></th>
                       {/* <th className='min-w-50px text-end'>Ação</th> */}
                     </tr>
                   </thead>
@@ -112,7 +116,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                       // module.children
                       //     .map(
                       //       (aula: any) =>
-                      //         //aula.completed.filter((ac: any) => ac.status === 1).length
+                      //         //aula.completed.filter((ac: any) => ac.status === '1').length
                       //         console.log("aula", aula)
                       //     )
 
@@ -120,7 +124,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                         (module.children
                           .map(
                             (aula: any) =>
-                              aula.completed.filter((ac: any) => ac.status === 1).length
+                              aula.completed.filter((ac: any) => ac.status === '1').length
                           )
                           .reduce(add, 0) /
                           module_length) *
@@ -128,13 +132,13 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                       )
                       // console.log("conclusao", conclusao)
 
-                      let dataAvailable = MOMENT(
-                        module.available[0]?.available_date
-                      ).format('YYYY-MM-DD HH:mm:ss.000')
+                      let dataAvailable = MOMENT(module.available[0]?.availableDate).format(
+                        'YYYY-MM-DD HH:mm:ss.000'
+                      )
 
-                      let dataAvailableMoment = MOMENT(
-                        module.available[0]?.available_date
-                      ).format('DD/MM')
+                      let dataAvailableMoment = MOMENT(module.available[0]?.availableDate).format(
+                        'DD/MM'
+                      )
 
                       let isAvailable = module.available[0]
                         ? MOMENT(today).isAfter(dataAvailable)
@@ -150,16 +154,16 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
 
                       return (
                         <tr key={index}>
-                          {/* <td>{withLinkToModule(module.name, id, module.id, isAvailable)}</td> */}
-                          <td>{withLinkToModule(module.name, id, module.id, true)}</td>
+                          <td>{withLinkToModule(module.name, id, module.id, isAvailable)}</td>
+                          {/* <td>{withLinkToModule(module.name, id, module.id, true)}</td> */}
                           {/* <td>{module.name}</td> */}
                           <td className='text-center text-muted fw-bold'>
                             {module.children!.length}
-                            {intl.formatMessage({id: 'MENU.CLASSES'})}
+                            {/* {intl.formatMessage({id: 'MENU.CLASSES'})} */}
                           </td>
                           <td className='text-center'>
                             <span className='badge badge-light-success'>
-                              {/* {intl.formatMessage({id: textAvailable})} */}
+                              {intl.formatMessage({id: textAvailable})}
                             </span>
                           </td>
 
@@ -185,8 +189,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                   </tbody>
                   {/* end::Table body */}
                 </table>
-                Duração:{' '}
-                {MOMENT.duration(faseDuration, 'seconds').format('hh:mm:ss', {trim: true})}
+                Duração: {MOMENT.duration(faseDuration, 'seconds').format('hh:mm:ss', {trim: true})}
               </div>
               {/* end::Table */}
             </div>

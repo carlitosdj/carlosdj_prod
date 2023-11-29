@@ -193,7 +193,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
     setAddressState(me.me.addressState)
     setAddressCountry(me.me.addressCountry)
     setAddressCEP(me.me.postalCode)
-    setNumTurma(me.me.num_turma)
+    setNumTurma(me.me.numTurma)
     setCreatedAt(me.me.createdAt)
     setUserCity('' + me.me.city?.id!)
     setUserState('' + me.me.state?.id!)
@@ -255,7 +255,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
           const userToUpdate: User = {
             id: me.me.id,
             email,
-            num_turma: numTurma,
+            numTurma: numTurma,
             name,
             whatsapp,
             cpf,
@@ -287,7 +287,7 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
         const userToUpdate: User = {
           id: me.me.id,
           email,
-          num_turma: numTurma,
+          numTurma: numTurma,
           name,
           whatsapp,
           cpf,
