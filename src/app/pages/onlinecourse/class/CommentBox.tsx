@@ -134,7 +134,13 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
           data-kt-menu-placement='bottom-end'
           data-kt-menu-flip='bottom'
         >
-          <img src={`https://institutodefelicibus.com.br/apimodelo/upload/file/${comment.parentUser?.image}`} />
+          <img
+            src={`https://institutodefelicibus.com.br/files/${comment.parentUser?.image}`}
+            onError={({currentTarget}) => {
+              currentTarget.onerror = null // prevents looping
+              currentTarget.src = 'https://institutodefelicibus.com.br/files/notfound.jpg'
+            }}
+          />
         </div>
         <div className='w-100'>
           <div>

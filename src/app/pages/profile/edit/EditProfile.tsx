@@ -708,13 +708,13 @@ const EditProfilePage: FC<React.PropsWithChildren<unknown>> = () => {
                                 src={
                                   image?.includes('https://')
                                     ? image
-                                    : 'https://institutodefelicibus.com.br/apimodelo/upload/file/' + image
+                                    : 'https://institutodefelicibus.com.br/files/' + image
                                 }
                                 style={{width: '100%'}}
                                 onError={({currentTarget}) => {
                                   currentTarget.onerror = null // prevents looping
                                   currentTarget.src =
-                                    'https://labiopalatina.com.br/media/guestuser.jpg'
+                                    'https://institutodefelicibus.com.br/files/notfound.jpg'
                                 }}
                               />
                             )}

@@ -167,7 +167,7 @@ const TrainningPage: FC<React.PropsWithChildren<unknown>> = () => {
                       name={data.name!}
                       description={data.description!}
                       className='card-xl-stretch mb-xl-8'
-                      img={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img}
+                      img={'https://institutodefelicibus.com.br/files/' + img}
                       height={200}
                       locked={!isAvailable}
                       release={release}

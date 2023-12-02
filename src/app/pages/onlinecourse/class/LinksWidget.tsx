@@ -44,6 +44,10 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
                       src={toAbsoluteUrl('/media/fileicons/link.png')}
                       className='h-20px'
                       alt='link'
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+                      }}
                     />{' '}
                     {link.valueExtra}
                   </div>
@@ -57,7 +61,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
               // console.log('Extension', extension)
               return (
                 <a
-                  href={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + link.valueExtra}
+                  href={'https://institutodefelicibus.com.br/files/' + link.valueExtra}
                   key={index}
                   target='_blank'
                 >
@@ -66,6 +70,10 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
                       src={toAbsoluteUrl(`/media/fileicons/${extension}.png`)}
                       className='h-20px'
                       alt={extension}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+                      }}
                     />{' '}
                     {link.valueExtra}
                   </div>

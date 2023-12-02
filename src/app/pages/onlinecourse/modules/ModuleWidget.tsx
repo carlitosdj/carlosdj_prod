@@ -54,9 +54,13 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
         <div className='card-header border-0 pt-5 mt-2'>
           <div className='col-md-1 col-3'>
             <img
-              src={'https://institutodefelicibus.com.br/apimodelo/upload/file/' + img}
+              src={'https://institutodefelicibus.com.br/files/' + img}
               alt=''
               style={{width: '100%'}}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+              }}
             />
           </div>
           <div className=' col-md-11 col-9'>
