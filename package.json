@@ -68,6 +68,7 @@
     "lint": "prettier --check .",
     "format": "prettier --write .",
     "rtl": "webpack --config webpack-rtl.config.js"
+    
   },
   "eslintConfig": {
     "extends": [
