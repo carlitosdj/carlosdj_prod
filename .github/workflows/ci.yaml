@@ -30,7 +30,7 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           #TARGET: ${{ secrets.REMOTE_TARGET }}
-          TARGET: /home/wwinst/produto.institutodefelicibus.com.br/build/
+          TARGET: /home/carlos/produto.carlosdj.com.br/build/
 
       # - name: Post Deploy
       #   uses: appleboy/ssh-action@master

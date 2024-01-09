@@ -1,7 +1,7 @@
 # Stage 1
 # Build docker image of react app
 FROM node:18-alpine3.16 as build
-WORKDIR /modelo_prod
+WORKDIR /carlosdj_prod
 COPY package*.json .
 # install and cache app dependencies
 RUN yarn
