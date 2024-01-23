@@ -159,6 +159,7 @@ const VideoWidget: React.FC<React.PropsWithChildren<Props>> = ({className, selec
               <Vimeo
                 video={video_id}
                 autoplay
+                speed={true}
                 //onLoaded={() => console.log("Loaded")}
                 onEnd={() => {
                   completed(selectedClass)
