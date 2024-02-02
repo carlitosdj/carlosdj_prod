@@ -7,6 +7,7 @@ import {
 import {ComponentState} from '../../../../store/ducks/component/types'
 import {Link} from 'react-router-dom'
 import {useIntl} from 'react-intl'
+import {useNavigate} from 'react-router-dom'
 
 const MOMENT = require('moment')
 
@@ -38,6 +39,7 @@ const withLinkToModule = (text: any, id: any, module_id: any, isAvailable: boole
 }
 
 const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp, id}) => {
+  const navigate = useNavigate()
   console.log('MODULOS', comp.modules)
   const intl = useIntl()
   let faseDuration = 0
@@ -57,9 +59,9 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
               src={'https://institutodefelicibus.com.br/files/' + img}
               alt=''
               style={{width: '100%'}}
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+              onError={({currentTarget}) => {
+                currentTarget.onerror = null // prevents looping
+                currentTarget.src = 'https://institutodefelicibus.com.br/files/notfound.jpg'
               }}
             />
           </div>
@@ -94,6 +96,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                   <thead>
                     <tr className='fw-bolder text-muted'>
                       {/* <th className='w-20px'></th> */}
+                      <th className='w-100px'>#</th>
                       <th className='min-w-100px'>Módulo</th>
                       <th className='min-w-40px text-center'>Aulas</th>
                       <th className='min-w-50px text-center'>Liberação</th>
@@ -157,7 +160,24 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                         : 'A definir'
 
                       return (
-                        <tr key={index}>
+                        <tr
+                          key={index}
+                          onClick={() =>
+                            isAvailable ? navigate('/class/' + id + '/' + module.id) : ''
+                          }
+                        >
+                          <td>
+                            <img
+                              src={'https://institutodefelicibus.com.br/files/' + img}
+                              alt=''
+                              style={{width: '100%'}}
+                              onError={({currentTarget}) => {
+                                currentTarget.onerror = null // prevents looping
+                                currentTarget.src =
+                                  'https://institutodefelicibus.com.br/files/notfound.jpg'
+                              }}
+                            />
+                          </td>
                           <td>{withLinkToModule(module.name, id, module.id, isAvailable)}</td>
                           {/* <td>{withLinkToModule(module.name, id, module.id, true)}</td> */}
                           {/* <td>{module.name}</td> */}
