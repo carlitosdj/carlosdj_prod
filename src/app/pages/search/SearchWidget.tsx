@@ -85,6 +85,7 @@ const SearchWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                     // const result = terms.some(term => component.parentName.toLowerCase().includes(term))
                     let extra = component.extras?.filter((extra:any) => extra.keyExtra === 'url')[0]
                     console.log("EXTRA-VER", extra)
+                    if (extra)
                     return (
 
                       <tr key={index} 

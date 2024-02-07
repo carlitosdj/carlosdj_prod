@@ -96,7 +96,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                   <thead>
                     <tr className='fw-bolder text-muted'>
                       {/* <th className='w-20px'></th> */}
-                      <th className='w-100px'>#</th>
+                      {/* <th className='w-100px'>#</th> */}
                       <th className='min-w-100px'>Módulo</th>
                       <th className='min-w-40px text-center'>Aulas</th>
                       <th className='min-w-50px text-center'>Liberação</th>
@@ -166,7 +166,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                             isAvailable ? navigate('/class/' + id + '/' + module.id) : ''
                           }
                         >
-                          <td>
+                          {/* <td>
                             <img
                               src={'https://institutodefelicibus.com.br/files/' + img}
                               alt=''
@@ -177,7 +177,7 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                                   'https://institutodefelicibus.com.br/files/notfound.jpg'
                               }}
                             />
-                          </td>
+                          </td> */}
                           <td>{withLinkToModule(module.name, id, module.id, isAvailable)}</td>
                           {/* <td>{withLinkToModule(module.name, id, module.id, true)}</td> */}
                           {/* <td>{module.name}</td> */}
