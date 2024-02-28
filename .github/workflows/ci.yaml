@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do Repositorio
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
       - run: npm install --global yarn
@@ -24,7 +24,8 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete"
+          #ARGS: "-rltgoDzvO --delete"
+          ARGS: "-rlgoDzvc -i"
           SOURCE: "build/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }} #//institutodefelicibus.com.br
           REMOTE_USER: ${{ secrets.REMOTE_USER }} #//root
