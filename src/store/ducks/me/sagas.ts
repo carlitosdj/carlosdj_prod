@@ -107,7 +107,7 @@ export function* updateMe(payload: ReturnType<typeof updateMeRequest>) {
 //Update
 export function* changePassMe(payload: ReturnType<typeof changePassMeRequest>) {
   try {
-    const response: User = yield call(api.post, 'user', payload.payload)
+    const response: User = yield call(api.patch, 'user/'+payload.payload.id, payload.payload)
     yield put(changePassMeSuccess(response))
   } catch (error: any) {
     yield put(changePassMeFailure(error.response.data))

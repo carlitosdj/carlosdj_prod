@@ -27,7 +27,7 @@ jobs:
           #ARGS: "-rltgoDzvO --delete"
           ARGS: "-rlgoDzvc -i"
           SOURCE: "build/"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} #//institutodefelicibus.com.br
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} #//carlosdj.com.br
           REMOTE_USER: ${{ secrets.REMOTE_USER }} #//root
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }} #//22022
           #TARGET: ${{ secrets.REMOTE_TARGET }}

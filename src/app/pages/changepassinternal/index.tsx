@@ -67,7 +67,7 @@ const ChangePassInternal = () => {
           {/* <button onClick={handleSubmitB}>teste</button> */}
           {/* /.login-logo */}
           <div className='card'>
-            <div className='card-body login-card-body text-white'>
+            <div className='card-body login-card-body istdef-login'>
               <b>ALTERAR SENHA </b>
               {email}
               <br />
