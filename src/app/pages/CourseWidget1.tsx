@@ -72,7 +72,7 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               backgroundImage:
                 !isAvailable || !access
                   //? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${
-                  ? `url(https://carlosdj.com.br/files/cadeado.jpg), url(${
+                  ? `url(https://carlosdj.com.br/files/cadeado.png), url(${
                       'https://carlosdj.com.br/files/' + img
                     })`
                   : `url(${'https://carlosdj.com.br/files/' + img})`,
