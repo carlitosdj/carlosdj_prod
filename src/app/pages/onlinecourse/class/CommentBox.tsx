@@ -135,10 +135,10 @@ const CommentBox = ({comment, loading, handleSubmit, setComment, componentId}: P
           data-kt-menu-flip='bottom'
         >
           <img
-            src={`https://institutodefelicibus.com.br/files/${comment.parentUser?.image}`}
+            src={`https://carlosdj.com.br/files/${comment.parentUser?.image}`}
             onError={({currentTarget}) => {
               currentTarget.onerror = null // prevents looping
-              currentTarget.src = 'https://institutodefelicibus.com.br/files/notfound.jpg'
+              currentTarget.src = 'https://carlosdj.com.br/files/notfound.jpg'
             }}
           />
         </div>

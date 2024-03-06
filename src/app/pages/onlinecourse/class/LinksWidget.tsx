@@ -46,7 +46,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
                       alt='link'
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+                        currentTarget.src="https://carlosdj.com.br/files/notfound.jpg";
                       }}
                     />{' '}
                     {link.valueExtra}
@@ -61,7 +61,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
               // console.log('Extension', extension)
               return (
                 <a
-                  href={'https://institutodefelicibus.com.br/files/' + link.valueExtra}
+                  href={'https://carlosdj.com.br/files/' + link.valueExtra}
                   key={index}
                   target='_blank'
                 >
@@ -72,7 +72,7 @@ const LinksWidget: React.FC<React.PropsWithChildren<Props>> = ({
                       alt={extension}
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+                        currentTarget.src="https://carlosdj.com.br/files/notfound.jpg";
                       }}
                     />{' '}
                     {link.valueExtra}

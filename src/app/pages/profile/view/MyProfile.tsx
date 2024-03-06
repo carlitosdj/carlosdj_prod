@@ -52,12 +52,12 @@ const MyProfilePage: FC<React.PropsWithChildren<Props>> = ({users, id}) => {
               src={
                 me.me.image?.includes('https://')
                   ? me.me.image
-                  : 'https://institutodefelicibus.com.br/files/' + me.me.image
+                  : 'https://carlosdj.com.br/files/' + me.me.image
               }
               style={{width: '100%'}}
               onError={({currentTarget}) => {
                 currentTarget.onerror = null // prevents looping
-                currentTarget.src = 'https://institutodefelicibus.com.br/files/notfound.jpg'
+                currentTarget.src = 'https://carlosdj.com.br/files/notfound.jpg'
               }}
             />
             {/* begin::Header */}

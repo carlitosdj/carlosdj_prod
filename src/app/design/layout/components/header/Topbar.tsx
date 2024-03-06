@@ -38,12 +38,12 @@ const Topbar: FC<React.PropsWithChildren<unknown>> = () => {
         >
           {/* <img src={toAbsoluteUrl('/media/avatars/blank.png')} alt='metronic' /> */}
            <img 
-            src={ image?.includes('https://') ? image : 'https://institutodefelicibus.com.br/files/' + image}
+            src={ image?.includes('https://') ? image : 'https://carlosdj.com.br/files/' + image}
             //style={{width: '40px', height:'40px'}}
             className=''
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src="https://institutodefelicibus.com.br/files/notfound.jpg";
+              currentTarget.src="https://carlosdj.com.br/files/notfound.jpg";
             }}
             />
         </div>

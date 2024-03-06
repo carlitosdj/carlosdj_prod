@@ -56,12 +56,12 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
         <div className='card-header border-0 pt-5 mt-2'>
           <div className='col-md-1 col-3'>
             <img
-              src={'https://institutodefelicibus.com.br/files/' + img}
+              src={'https://carlosdj.com.br/files/' + img}
               alt=''
               style={{width: '100%'}}
               onError={({currentTarget}) => {
                 currentTarget.onerror = null // prevents looping
-                currentTarget.src = 'https://institutodefelicibus.com.br/files/notfound.jpg'
+                currentTarget.src = 'https://carlosdj.com.br/files/notfound.jpg'
               }}
             />
           </div>
@@ -168,13 +168,13 @@ const ModuleWidget: React.FC<React.PropsWithChildren<Props>> = ({className, comp
                         >
                           {/* <td>
                             <img
-                              src={'https://institutodefelicibus.com.br/files/' + img}
+                              src={'https://carlosdj.com.br/files/' + img}
                               alt=''
                               style={{width: '100%'}}
                               onError={({currentTarget}) => {
                                 currentTarget.onerror = null // prevents looping
                                 currentTarget.src =
-                                  'https://institutodefelicibus.com.br/files/notfound.jpg'
+                                  'https://carlosdj.com.br/files/notfound.jpg'
                               }}
                             />
                           </td> */}

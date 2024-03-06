@@ -71,10 +71,11 @@ const CourseWidget1: React.FC<React.PropsWithChildren<Props>> = ({className, lin
               //display: 'flex',
               backgroundImage:
                 !isAvailable || !access
-                  ? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${
-                      'https://institutodefelicibus.com.br/files/' + img
+                  //? `url(${toAbsoluteUrl('/media/violaofeeling/cadeado.png')}), url(${
+                  ? `url(https://carlosdj.com.br/files/cadeado.jpg), url(${
+                      'https://carlosdj.com.br/files/' + img
                     })`
-                  : `url(${'https://institutodefelicibus.com.br/files/' + img})`,
+                  : `url(${'https://carlosdj.com.br/files/' + img})`,
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
