@@ -14,7 +14,7 @@ const App: React.FC<React.PropsWithChildren<Props>> = ({basename}) => {
       <BrowserRouter basename={basename}>
         <I18nProvider>
           <LayoutProvider>
-            <AppRoutes />
+            <AppRoutes /> 
           </LayoutProvider>
         </I18nProvider>
       </BrowserRouter>
